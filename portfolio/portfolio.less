@@ -1,0 +1,164 @@
+/* VARIABLES */
+
+@pageHeight: `$(window).height()`;
+@documentHeight: `$(document).height()`;
+@pageWidth: `$(window).width()`;
+@pageIWidth: `$(window).innerWidth()`;
+
+@splashHeight: @pageHeight*0.85;
+@splashTitleHeight: @splashHeight/3;
+@splashDescHeight: @splashHeight*0.02;
+@splashTitleFontSize: @pageWidth*0.07;
+@splashDescFontSize: @pageWidth*0.02;
+@logoWidth: @pageWidth*0.12;
+@logoPos: @pageWidth*-0.07;
+@topBarWidth: @pageIWidth - 40;
+@topBarHeight: `$("#top_bar").height()`;
+
+@pS: unit(@pageWidth*0.003, px);
+@pM: unit(@pageWidth*0.007, px);
+@pL: unit(@pageWidth*0.011, px);
+@pXL: unit(@pageWidth*0.015, px);
+@pXXL: unit(@pageWidth*0.019, px);
+@p3XL: unit(@pageWidth*0.027, px);
+@p4XL: unit(@pageWidth*0.035, px);
+@p5XL: unit(@pageWidth*0.045, px);
+@p6XL: unit(@pageWidth*0.055, px);
+@p7XL: unit(@pageWidth*0.065, px);
+@text: unit(@pageWidth*0.013, px);
+@text2: unit(@pageWidth*0.016, px);
+
+/* FUNCTIONS */
+
+.calculateFromHeight(@value){
+
+    @output: unit(@pageHeight*@value, px);
+
+}
+
+.calculateFromWidth(@value){
+
+    @output: unit(@pageWidth*@value, px);
+
+}
+#header_bg{
+
+    background: url(../img/splash.png);
+    background-size: 100%;
+    bachground-position: center;
+    background-attachment: fixed;
+
+}
+.label.second{
+
+    margin-bottom: 0;
+    padding-bottom: @p4XL;
+
+}
+.white_bg{
+
+    width: @pageWidth;
+    height: auto;
+    padding: @pXL;
+    background: #FFF;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-size: @pXL;
+    text-align: center;
+
+}
+#portfolio_container{
+
+    margin: 0 auto;
+    margin-bottom: @pXXL;
+
+}
+.work{
+
+    width: 33.33333%;
+    background-size: 120%;
+    background-position: center;
+    transition: all 0.4s ease;
+    float: left;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3) inset;
+
+
+    .cnt{ 
+
+        transition: all 0.4s ease;
+        padding: @pXXL @pXXL;
+        opacity: 0;
+        
+        .year{
+        
+            border: 1px solid #006cac;
+            color: #006cac;
+            padding: 5px;
+            font-size: @pL;
+        
+        }
+        .title{
+
+            color: #006cac;
+            font-family: 'Raleway';
+            font-weight: 900;
+            font-size: @p3XL;
+            transition: all 0.4s ease;
+            padding-bottom: @pXL;
+            text-transform: uppercase;
+
+        }
+        .desc{
+
+            transition: all 0.4s ease;
+            color: #000;
+            font-size: @text;
+            font-family: 'Open Sans';
+            font-weight: 300;
+            line-height: 130%;
+
+        }
+        .sep{
+
+            width: 20%;
+            height: 1px;
+            background: #006cac;
+            margin-bottom: @pXL;
+
+        }
+        .button{
+        
+            border: 1px solid #000;
+            padding: @pM;
+            text-transform: uppercase;
+            margin: @pXL 0;
+            width: 30%;
+            text-align: center;
+            font-family: 'Open Sans';
+            font-weight: 400;
+            transition: all 0.2s ease;
+            font-size: @pL;
+            display: block;
+            &:hover{
+            
+                transform: scale(1.05);
+            
+            }
+        
+        }
+
+
+    }
+}
+
+.work:hover{
+    
+    background-size: 130%;
+    .cnt{
+
+        background: rgba(255,255,255,0.7);
+        opacity: 1;
+    
+    }
+    
+}

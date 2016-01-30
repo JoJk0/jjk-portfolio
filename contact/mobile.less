@@ -1,0 +1,92 @@
+@pageHeight: `$(window).height()`;
+@documentHeight: `$(document).height()`;
+@pageWidth: `$(window).width()`;
+@pageIWidth: `$(window).innerWidth()`;
+
+@pS: unit(@pageWidth*0.009, px);
+@pM: unit(@pageWidth*0.013, px);
+@pL: unit(@pageWidth*0.017, px);
+@pXL: unit(@pageWidth*0.021, px);
+@pXXL: unit(@pageWidth*0.024, px);
+@p3XL: unit(@pageWidth*0.033, px);
+@p4XL: unit(@pageWidth*0.041, px);
+@p5XL: unit(@pageWidth*0.051, px);
+@p6XL: unit(@pageWidth*0.061, px);
+@p7XL: unit(@pageWidth*0.071, px);
+@text: unit(@pageWidth*0.019, px);
+@text2: unit(@pageWidth*0.021, px);
+
+@splashTitleFontSize: unit(@pageWidth*0.1,px);
+@splashDescFontSize: unit(@pageWidth*0.05,px);
+
+.calculateFromHeight(@value){
+
+    @output: unit(@pageHeight*@value, px);
+
+}
+
+.calculateFromWidth(@value){
+
+    @output: unit(@pageWidth*@value, px);
+
+}
+
+.label{
+    
+    margin-top: 0;
+    
+    .cnt{
+
+        padding: @pS @pM;
+        .calculateFromWidth(0.05);
+        font-size: @output;
+
+    }
+    .cnt{
+
+        .calculateFromWidth(0.006);
+        border: @output solid #006cac;  
+
+    }
+
+}
+.label.first{
+
+    position: relative;
+    top: -@p7XL;
+
+}
+.label.second{
+
+    margin: @p7XL auto !important;
+
+}
+.white_bg{
+
+    padding: @p4XL;
+    font-size: @p4XL;
+
+}
+.contact{
+
+    float: none;
+    width: 100%;
+    padding: @p3XL;
+
+}
+.contact_img{
+
+    .calculateFromWidth(0.3);
+    width: @output;
+
+}
+#footer{
+
+    padding: @pXXL;
+    .calculateFromWidth(0.035);
+    font-size: @output !important;
+    width: 60%;
+    border-top: 4px solid #006cac;
+    margin: @p3XL auto;
+
+}

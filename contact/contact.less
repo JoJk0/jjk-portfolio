@@ -1,0 +1,70 @@
+/* VARIABLES */
+
+@pageHeight: `$(window).height()`;
+@documentHeight: `$(document).height()`;
+@pageWidth: `$(window).width()`;
+@pageIWidth: `$(window).innerWidth()`;
+
+@splashHeight: @pageHeight*0.85;
+@splashTitleHeight: @splashHeight/3;
+@splashDescHeight: @splashHeight*0.02;
+@splashTitleFontSize: @pageWidth*0.07;
+@splashDescFontSize: @pageWidth*0.02;
+@logoWidth: @pageWidth*0.12;
+@logoPos: @pageWidth*-0.07;
+@topBarWidth: @pageIWidth - 40;
+@topBarHeight: `$("#top_bar").height()`;
+
+@pS: unit(@pageWidth*0.003, px);
+@pM: unit(@pageWidth*0.007, px);
+@pL: unit(@pageWidth*0.011, px);
+@pXL: unit(@pageWidth*0.015, px);
+@pXXL: unit(@pageWidth*0.019, px);
+@p3XL: unit(@pageWidth*0.027, px);
+@p4XL: unit(@pageWidth*0.035, px);
+@p5XL: unit(@pageWidth*0.045, px);
+@p6XL: unit(@pageWidth*0.055, px);
+@p7XL: unit(@pageWidth*0.065, px);
+@text: unit(@pageWidth*0.013, px);
+@text2: unit(@pageWidth*0.016, px);
+
+/* FUNCTIONS */
+
+.calculateFromHeight(@value){
+
+    @output: unit(@pageHeight*@value, px);
+
+}
+
+.calculateFromWidth(@value){
+
+    @output: unit(@pageWidth*@value, px);
+
+}
+.white_bg{
+
+    width: @pageWidth;
+    height: auto;
+    padding: @pXL;
+    background: #FFF;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-size: @pXL;
+    font-size: @pXL;
+    text-align: center;
+
+}
+.contact{
+
+    width: 25%;
+    float: left;
+
+}
+.contact_img{
+
+    max-width: 256px;
+    max-height: 256px;
+    .calculateFromWidth(0.15);
+    width: @output;
+
+}

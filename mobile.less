@@ -1,0 +1,170 @@
+@pageHeight: `$(window).height()`;
+@documentHeight: `$(document).height()`;
+@pageWidth: `$(window).width()`;
+@pageIWidth: `$(window).innerWidth()`;
+
+@pS: unit(@pageWidth*0.009, px);
+@pM: unit(@pageWidth*0.013, px);
+@pL: unit(@pageWidth*0.017, px);
+@pXL: unit(@pageWidth*0.021, px);
+@pXXL: unit(@pageWidth*0.024, px);
+@p3XL: unit(@pageWidth*0.033, px);
+@p4XL: unit(@pageWidth*0.041, px);
+@p5XL: unit(@pageWidth*0.051, px);
+@p6XL: unit(@pageWidth*0.061, px);
+@p7XL: unit(@pageWidth*0.071, px);
+@text: unit(@pageWidth*0.019, px);
+@text2: unit(@pageWidth*0.021, px);
+
+@splashTitleFontSize: unit(@pageWidth*0.1,px);
+@splashDescFontSize: unit(@pageWidth*0.05,px);
+
+.calculateFromHeight(@value){
+
+    @output: unit(@pageHeight*@value, px);
+
+}
+
+.calculateFromWidth(@value){
+
+    @output: unit(@pageWidth*@value, px);
+
+}
+
+#splash{
+
+    background-size: 300%;
+    transition: none;
+    .title{ font-size: @splashTitleFontSize }
+    .desc{ font-size: @splashDescFontSize }
+    
+}
+.label{
+    
+    margin-top: 0;
+    
+    .cnt{
+
+        padding: @pS @pM;
+        .calculateFromWidth(0.05);
+        font-size: @output;
+
+    }
+    .cnt{
+
+        .calculateFromWidth(0.006);
+        border: @output solid #006cac;  
+
+    }
+
+}
+.label.first{
+
+    position: relative;
+    top: -@p7XL;
+
+}
+.label.second{
+
+    margin: @p7XL auto !important;
+
+}
+#about_me, #where{
+
+    float: none !important;
+    width: 100% !important;
+    .calculateFromWidth(0.5);
+    height: @output !important;
+
+}
+.bold_title{
+        
+        .calculateFromWidth(0.09);
+        font-size: @output !important;
+        padding: @p3XL !important;
+        padding-top: @p7XL !important;
+        padding-bottom: @p3XL !important;
+        
+    }
+.seperator{
+
+    width: 30% !important;
+    margin-top: @p3XL;
+    float: none !important;
+
+}
+#about_me_cnt .cnt .seperator{
+
+    position: relative;
+    left: @p3XL;
+
+}
+#about_me_cnt .cnt, #where_cnt .cnt{
+
+    padding: @p3XL;
+
+}
+#about_me_cnt .cnt p,#where_cnt .cnt p{
+
+    padding: @p3XL;
+    padding-top: @pL;
+    .calculateFromWidth(0.04);
+    font-size: @output;
+    line-height: 130%;
+
+}
+#where_cnt .cnt p{
+
+    width: 100%;
+    
+
+}
+
+.skills_banner{
+
+    .calculateFromWidth(0.55);
+    height: @output !important;
+    .title{
+    
+        .calculateFromWidth(0.07);
+         font-size: @output;
+         margin-top: @p6XL;
+    
+    }
+    #db_m_code, #db_m_graphics, #db_m_android{
+    
+        .calculateFromWidth(0.32);
+        width: @output;
+        height: @output;
+    
+    }
+    .desc{
+    
+        .calculateFromWidth(0.03);
+         font-size: @output;
+         margin-top: @pXXL;
+    
+    }
+
+}
+.arrow{
+
+    display: none;
+
+}
+.big_text{
+
+    .calculateFromWidth(0.04);
+    font-size: @output !important;
+
+}
+#footer{
+
+    padding: @pXXL;
+    .calculateFromWidth(0.035);
+    font-size: @output !important;
+    width: 60%;
+    border-top: 4px solid #006cac;
+    margin: @p3XL auto;
+
+}
