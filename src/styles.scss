@@ -1,15 +1,19 @@
+@import "assets/variables";
+
 /* Global Styles */
 
 * {
-  font-family: 'Roboto', Arial, sans-serif;
-  color: #616161;
+  font-family: 'Quicksand', Arial, sans-serif;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 1.1rem;
 }
 
 body {
   margin: 0;
+  background: $c-bg;
+  color: $c-text;
 }
 
 .container {
@@ -18,8 +22,20 @@ body {
 }
 
 router-outlet + *  {
-  padding: 0 16px;
+  padding: 0;
 }
+
+app-menu{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  background: rgb(0,20,39);
+  background: linear-gradient(0deg, rgba(255,255,255,0) 47%, rgba(0,20,39,0.9009978991596639) 100%);
+
+}
+app-main{}
 
 /* Text */
 
@@ -43,7 +59,6 @@ p {
 
 a {
   cursor: pointer;
-  color: #1976d2;
   text-decoration: none;
 }
 
@@ -143,3 +158,5 @@ Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at http://angular.io/license
 */
+
+html, body { height: 100%; }

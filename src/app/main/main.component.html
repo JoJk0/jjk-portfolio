@@ -1,0 +1,37 @@
+<section id="hi" (mousemove)="moveBackground($event)" [ngStyle]="bgPos">
+  <div class="cnt">
+    <img src="../assets/logo.png" alt="Logo" id="logo" />
+    <div class="intro"><span>Hi!</span>I’m</div>
+    <div class="my-name">Jacob Janisz</div>
+    <div class="desc">A Computer Science graduate</div>
+  </div>
+  <img src="../assets/me.png" alt="me" id="me" />
+</section>
+<section id="what-i-do">
+  <div class="cnt">
+    <div class="title">What I do?</div>
+    <div class="skills">
+      <div class="skill angular">
+        <img src="../assets/angular.png" />
+        <mat-chip-list>
+          <mat-chip>Angular9</mat-chip>
+        </mat-chip-list>
+        <div class="bg"></div>
+      </div>
+      <div class="skill nodejs">
+        <img src="../assets/nodejs.png" />
+        <mat-chip-list>
+          <mat-chip>NodeJS</mat-chip>
+        </mat-chip-list>
+        <div class="bg"></div>
+      </div>
+      <div class="skill php">
+        <img src="../assets/php.png" />
+        <mat-chip-list>
+          <mat-chip>PHP</mat-chip>
+        </mat-chip-list>
+        <div class="bg"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,145 @@
+@import "../../assets/variables";
+
+#hi{
+  background: url("../../assets/hi-bg.jpg") no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background-size: 200%;
+  background-position: center bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 0;
+  //transition: all 0.4s ease;
+  .cnt{
+    padding: 1em;
+    width: 50%;
+    height: 70vh;
+  }
+  #me{
+    width: 27em;
+    align-self: flex-end;
+  }
+  #logo{
+    width: 7em;
+    margin-bottom: 3em;
+    position: sticky;
+    position: -webkit-sticky;
+    top: -1em;
+    background-attachment: fixed;
+  }
+  .intro{
+    font-size: 2.5em;
+    line-height: 150%;
+    span{
+      font-size: 1em;
+      font-weight: 800;
+      &:after{
+        content: " ";
+      }
+    }
+  }
+  .my-name{
+    font-family: 'Shadows Into Light';
+    color: $c-base-dark;
+    font-size: 5em;
+    line-height: 150%;
+  }
+  .desc{
+    font-size: 1.5em;
+  }
+}
+#what-i-do{
+  height: 100vh;
+  margin-top: 100vh;
+  padding-top: 100vh;
+  width: 100vw;
+  background: rgb(0,20,39);
+  background: linear-gradient(0deg, rgba(0,20,39,1) 18%, rgba(255,255,255,0) 100%);
+  position: relative;
+  .cnt{
+    background: $c-bg;
+    .title{
+      color: $c-base-light;
+      text-align: center;
+      padding: 1em;
+      font-size: 3em;
+      font-weight: 800;
+    }
+    .skills{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      margin: 2em;
+      .skill{
+        position: relative;
+        text-align: center;
+        &.angular{
+          .bg{
+            clip-path:polygon(20% 0, 100% 30%, 100% 80%, 10% 100%, 0 30%);
+          }
+          &:hover{
+            img{
+              transform: scale(1.1);
+            }
+            .bg{
+              clip-path:polygon(30% 0, 100% 20%, 100% 90%, 0% 100%, 0 40%);
+            }
+          }
+        }
+        &.nodejs{
+          .bg{
+            clip-path:polygon(30% 15%, 95% 30%, 75% 100%, 30% 95%, 0 50%);
+          }
+          &:hover{
+            img{
+              transform: scale(1.1);
+            }
+            .bg{
+              clip-path:polygon(40% 15%, 95% 20%, 75% 90%, 20% 95%, 0 60%);
+            }
+          }
+        }
+        &.php{
+          .bg{
+            clip-path:polygon(20% 35%, 75% 20%, 80% 85%, 40% 95%, 10% 80%);
+          }
+          &:hover{
+            img{
+              transform: scale(1.1);
+            }
+            .bg{
+              clip-path:polygon(30% 35%, 75% 10%, 80% 75%, 30% 95%, 10% 90%);
+            }
+          }
+        }
+        .bg{
+          background: rgba(255,255,255,0.1);
+          transition: all 1s ease;
+          position: absolute;
+          top: 0;
+          left: 10%;
+          width: 80%;
+          height: 45%;
+          z-index: 0;
+        }
+        img{
+          width: 6em;
+          z-index: 2;
+          position: relative;
+          margin: 1em;
+          transition: all 0.2s ease;
+        }
+        mat-chip-list mat-chip{
+          transform: scale(1.5);
+          padding: 1em;
+          z-index: 1;
+          margin: 4em;
+          font-weight: 800;
+          background: $c-text;
+        }
+      }
+    }
+  }
+}
