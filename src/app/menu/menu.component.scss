@@ -10,6 +10,8 @@
   width: 40%;
   margin-bottom: 1em;
   z-index: 2;
+  transition: all 0.2s ease;
+  border-bottom-right-radius: 10px;
 }
 .menu-container{
   display: flex;

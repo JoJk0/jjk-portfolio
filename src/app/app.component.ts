@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent  {
 
+  @HostListener('window:scroll', ['$event.target'])
+  onScroll(targetElement: string) {
+    this.progressbarUpdate(targetElement);
+  }
+
   progressbarUpdate(e){
-    alert("updated!");
+    let progressbar = document.getElementById('progressbar');
+    let currentPos = window.pageYOffset || document.documentElement.scrollTop;
+    let pageHeight = document.body.firstElementChild.getBoundingClientRect().height;
+    currentPos = currentPos+(document.body.clientHeight*(currentPos/(pageHeight-document.body.clientHeight)));
+    let progress = (currentPos/pageHeight)*100;
+    progressbar.style.width = progress+"%";
   }
 
 }

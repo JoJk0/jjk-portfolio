@@ -1,11 +1,20 @@
 @import "../../assets/variables";
 
+mat-chip-list mat-chip{
+  transform: scale(1.2);
+  padding: 1em;
+  z-index: 1;
+  margin: 2em;
+  font-weight: 800;
+  background: $c-text;
+}
 #hi{
   background: url("../../assets/hi-bg.jpg") no-repeat;
   width: 100vw;
   height: 100vh;
   background-size: 200%;
   background-position: center bottom;
+  transition: all 0.1s ease-out;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,14 +58,19 @@
   .desc{
     font-size: 1.5em;
   }
+  #scroll-icon{
+    width: 5em;
+    position: absolute;
+    bottom: 2em;
+    left: 47%;
+  }
 }
-#what-i-do{
-  height: 100vh;
+#what-i-do, #what-i-did{
   margin-top: 100vh;
-  padding-top: 100vh;
+  padding-top: 3em;
   width: 100vw;
   background: rgb(0,20,39);
-  background: linear-gradient(0deg, rgba(0,20,39,1) 18%, rgba(255,255,255,0) 100%);
+  clip-path:polygon(0% 4em, 25% 0em, 50% 2em, 75% 0em, 100% 4em, 100% 100%, 0 100%);
   position: relative;
   .cnt{
     background: $c-bg;
@@ -138,6 +152,51 @@
           margin: 4em;
           font-weight: 800;
           background: $c-text;
+        }
+      }
+    }
+    .other-skills{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  }
+}
+#what-i-did{
+  background: rgb(0,20,39);
+  margin-top: 0;
+  padding-top: 0;
+  height: auto;
+  clip-path: none;
+  .cnt{
+    .what-i-did-list{
+      display: flex;
+      justify-content: center;
+      .art{
+        position: relative;
+        margin: 2em;
+        img{
+          width: 30em;
+        }
+        .desc-cnt{
+          background: $c-base-dark;
+          position: absolute;
+          bottom: -1em;
+          right: -1em;
+          padding: 0em 2em;
+          clip-path:polygon(10% 10%, 100% 0, 90% 100%, 0% 95%);
+          text-align: center;
+          .art-title{
+            color: $c-bg;
+            font-weight: 800;
+            font-size: 1.2em;
+            padding-top: 1em;
+          }
+          mat-chip-list mat-chip{
+            font-size: 0.6em;
+            margin: 2em 1em;
+          }
         }
       }
     }

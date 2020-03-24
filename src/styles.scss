@@ -29,13 +29,16 @@ app-menu{
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 1;
+  z-index: 1101;
   width: 100vw;
   background: rgb(0,20,39);
   background: linear-gradient(0deg, rgba(255,255,255,0) 47%, rgba(0,20,39,0.9009978991596639) 100%);
 
 }
-app-main{}
+app-main{
+  display: flex;
+  flex-direction: column;
+}
 
 /* Text */
 
