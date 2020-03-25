@@ -48,12 +48,12 @@ export class MainComponent implements OnInit {
     if((currentPosY-newChangeY) >= -boundTop && newChangeY <= 0 || (currentPosY-newChangeY) <= window.innerHeight-this.bgHeight/1.5+boundBottom && newChangeY >= 0){
       newChangeY = 0;
     } else{
-      newChangeY = newChangeY/3;
+      newChangeY = newChangeY/10;
     }
     if((currentPosX-newChangeX) >= -boundLeft && newChangeX <= 0 || (currentPosX-newChangeX) <= window.innerWidth-this.bgWidth/1.5+boundRight && newChangeX >= 0){
       newChangeX = 0;
     } else{
-      newChangeX = newChangeX/3;
+      newChangeX = newChangeX/10;
     }
     // if(newChangeX >= 0){
     //   newChangeX = change;
