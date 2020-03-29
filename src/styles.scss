@@ -8,11 +8,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.1rem;
+  cursor: $cur;
 }
 
 body {
   margin: 0;
   background: $c-bg;
+  cursor: $cur;
   color: $c-text;
 }
 
@@ -33,11 +35,12 @@ app-menu{
   width: 100vw;
   background: rgb(0,20,39);
   background: linear-gradient(0deg, rgba(255,255,255,0) 47%, rgba(0,20,39,0.9009978991596639) 100%);
-
+  cursor: $cur;
 }
 app-main{
   display: flex;
   flex-direction: column;
+  cursor: $cur;
 }
 
 /* Text */
