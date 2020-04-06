@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+
+declare var ScrollMagic: any;
 
 @Component({
   selector: 'app-main',
@@ -19,13 +21,85 @@ export class MainComponent implements OnInit {
 
     let bgPosX = window.innerWidth/2;
     let bgPosY = window.innerHeight-this.bgHeight/2;
-    console.log(bgPosY);
+
     this.bgPos = {
       'background-position': `-${(bgPosX)}px -${(bgPosY)}px`
     }
   }
 
   ngOnInit(): void {
+
+    var controller = new ScrollMagic.Controller();
+
+    // Hi - out
+    new ScrollMagic.Scene({
+      duration: 500,
+      offset: 0 
+    })
+    .setTween("#hi", {opacity: 0})
+    .addTo(controller);
+
+    // What I do - in
+    new ScrollMagic.Scene({
+      duration: '50%',
+      offset: 0,
+      triggerElement: "#what-i-do"
+    })
+    .setTween("#what-i-do", {opacity: 1})
+    .addTo(controller);
+
+    // What I do - out
+    new ScrollMagic.Scene({
+      duration: '50%',
+      //offset: '200',
+      triggerElement: "#what-i-do",
+      triggerHook: 0.2
+    })
+    .setTween("#what-i-do", {opacity: 0})
+    .addTo(controller);
+
+    // What I've made - in
+    new ScrollMagic.Scene({
+      duration: '50%',
+      offset: 0,
+      triggerElement: "#what-i-did"
+    })
+    .setTween("#what-i-did", {opacity: 1})
+    .addTo(controller);
+
+    // What I've made - out
+    new ScrollMagic.Scene({
+      duration: '50%',
+      //offset: '200',
+      triggerElement: "#what-i-did",
+      triggerHook: 0.2
+    })
+    .setTween("#what-i-did", {opacity: 0})
+    .addTo(controller);
+
+    // Get in touch - in
+    new ScrollMagic.Scene({
+      duration: '50%',
+      offset: 0,
+      triggerElement: "#get-in-touch"
+    })
+    .setTween("#get-in-touch", {opacity: 1})
+    .addTo(controller);
+
+    // Get in touch - out
+    new ScrollMagic.Scene({
+      duration: '50%',
+      //offset: '200',
+      triggerElement: "#get-in-touch",
+      triggerHook: 0.2
+    })
+    .setTween("#get-in-touch", {opacity: 0})
+    .addTo(controller);
+  
+  }
+
+  public activate(): void {
+    //TweenLite.to("app-main", {duration: 2, y: 100});
   }
 
   moveBackground(e){

@@ -1,4 +1,4 @@
-import { Component, HostBinding, HostListener } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ export class AppComponent  {
   onScroll(targetElement: string) {
     this.progressbarUpdate(targetElement);
   }
-
+  
   progressbarUpdate(e){
     let progressbar = document.getElementById('progressbar');
     let currentPos = window.pageYOffset || document.documentElement.scrollTop;

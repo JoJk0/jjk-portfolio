@@ -18,6 +18,9 @@ body {
   color: $c-text;
 }
 
+.mat-typography{
+  font-family: "Quicksand";
+}
 .container {
   display: flex;
   flex-direction: row;
@@ -27,6 +30,11 @@ router-outlet + *  {
   padding: 0;
 }
 
+section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 app-menu{
   display: flex;
   flex-direction: column;
