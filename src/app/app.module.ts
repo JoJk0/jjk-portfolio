@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
+import { AnimatedDirective } from './animated.directive';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import { MainComponent } from './main/main.component';
     CartComponent,
     ShippingComponent,
     MenuComponent,
-    MainComponent
+    MainComponent,
+    AnimatedDirective
   ],
   bootstrap: [ AppComponent ],
   providers: [CartService]

@@ -1,4 +1,4 @@
-<section id="hi" (mousemove)="moveBackground($event)" [ngStyle]="bgPos">
+<section id="hi" (mousemove)="moveBackground($event)" [ngStyle]="bgPos" animated>
   <div class="cnt">
     <div class="intro"><span>Hi!</span>I’m</div>
     <div class="my-name"><span>Jacob</span>Janisz</div>
@@ -60,13 +60,14 @@
   </div>
 </section>
 <section id="what-i-did">
+  <div class="bg-text">Portfolio</div>
   <div class="cnt">
     <div class="title">What I've made?</div>
     <div class="what-i-did-list">
       <div class="art">
         <img src="../assets/arts/1.png" alt="JJK Portfolio" />
+        <div class="art-title">JJK Portfolio 8.0</div>
         <div class="desc-cnt">
-          <div class="art-title">JJK Portfolio 8.0</div>
           <mat-chip-list>
             <mat-chip>Angular9</mat-chip>
             <mat-chip>NodeJS</mat-chip>
@@ -74,6 +75,7 @@
           </mat-chip-list>
         </div>
       </div>
+      <div class="hungry">Still hungry? See my less fancy work...</div>
     </div>
   </div>
 </section>

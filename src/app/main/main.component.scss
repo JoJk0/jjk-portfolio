@@ -278,30 +278,30 @@ mat-chip-list mat-chip{
       .art{
         position: relative;
         margin: 2em;
+        width: 70%;
         img{
           width: 30em;
+        }
+        .art-title{
+          color: $c-base-light;
+          font-family: 'Londrina Outline';
+          text-transform: uppercase;
+          font-weight: 400;
+          font-size: 5em;
+          padding-top: 1em;
+          position: absolute;
+          top: 0.3em;
+          right: 0;
+          mix-blend-mode: color-dodge;
         }
         .desc-cnt{
           background: $c-base-dark;
           position: absolute;
-          bottom: -1em;
-          right: -1em;
+          bottom: 3em;
+          right: 20%;
           padding: 0em 2em;
-          //clip-path:polygon(10% 10%, 100% 0, 90% 100%, 0% 95%);
+          clip-path:polygon(10% 10%, 100% 0, 90% 100%, 0% 95%);
           text-align: center;
-          .art-title{
-            color: $c-base-light;
-            font-family: 'Londrina Outline';
-            width: 300%;
-            text-transform: uppercase;
-            font-weight: 400;
-            font-size: 5em;
-            padding-top: 1em;
-            position: absolute;
-            top: -1em;
-            right: 0;
-            mix-blend-mode: difference;
-          }
           mat-chip-list mat-chip{
             font-size: 0.6em;
             margin: 2em 1em;

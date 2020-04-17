@@ -1,11 +1,37 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-
-declare var ScrollMagic: any;
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+        height: '200px',
+        opacity: 1,
+        backgroundColor: 'yellow'
+      })),
+      state('closed', style({
+        height: '100px',
+        opacity: 0.5,
+        backgroundColor: 'green'
+      })),
+      transition('open => closed', [
+        animate('1s')
+      ]),
+      transition('closed => open', [
+        animate('0.5s')
+      ]),
+    ])
+  ]
 })
 
 export class MainComponent implements OnInit {
@@ -29,77 +55,88 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var controller = new ScrollMagic.Controller();
+    // Hi - IR
+    
 
-    // Hi - out
-    new ScrollMagic.Scene({
-      duration: 500,
-      offset: 0 
-    })
-    .setTween("#hi", {opacity: 0})
-    .addTo(controller);
 
-    // What I do - in
-    new ScrollMagic.Scene({
-      duration: '50%',
-      offset: 0,
-      triggerElement: "#what-i-do"
-    })
-    .setTween("#what-i-do", {opacity: 1})
-    .addTo(controller);
+    // // Hi - out
+    // var tl = new TimelineMax();
+    // tl.to("#hi .cnt", 1, {y: "-10%", opacity: 0})
+    //   .to("#hi .jojko", 1, {y: "-10%", opacity: 0}, 0)
+    //   .to("#hi #me", 1, {y: "-10%", opacity: 0}, 0);
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   offset: 0 
+    // })
+    // .setPin("#hi")
+    // .setTween(tl)
+    // .addTo(this.controller);
 
-    // What I do - out
-    new ScrollMagic.Scene({
-      duration: '50%',
-      //offset: '200',
-      triggerElement: "#what-i-do",
-      triggerHook: 0.2
-    })
-    .setTween("#what-i-do", {opacity: 0})
-    .addTo(controller);
+    // // What I do - in
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   offset: 0,
+    //   triggerElement: "#what-i-do"
+    // })
+    // .setPin("#what-i-do")
+    // .setTween("#what-i-do", {opacity: 1})
+    // .addTo(this.controller);
 
-    // What I've made - in
-    new ScrollMagic.Scene({
-      duration: '50%',
-      offset: 0,
-      triggerElement: "#what-i-did"
-    })
-    .setTween("#what-i-did", {opacity: 1})
-    .addTo(controller);
+    // // What I do - out
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   //offset: '200',
+    //   triggerElement: "#what-i-do",
+    //   triggerHook: 0.2
+    // })
+    // .setTween("#what-i-do", {opacity: 0})
+    // .addTo(this.controller);
 
-    // What I've made - out
-    new ScrollMagic.Scene({
-      duration: '50%',
-      //offset: '200',
-      triggerElement: "#what-i-did",
-      triggerHook: 0.2
-    })
-    .setTween("#what-i-did", {opacity: 0})
-    .addTo(controller);
+    // // What I've made - in
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   offset: 0,
+    //   triggerElement: "#what-i-did"
+    // })
+    // .setTween("#what-i-did", {opacity: 1})
+    // .addTo(this.controller);
 
-    // Get in touch - in
-    new ScrollMagic.Scene({
-      duration: '50%',
-      offset: 0,
-      triggerElement: "#get-in-touch"
-    })
-    .setTween("#get-in-touch", {opacity: 1})
-    .addTo(controller);
+    // // What I've made - out
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   //offset: '200',
+    //   triggerElement: "#what-i-did",
+    //   triggerHook: 0.2
+    // })
+    // .setTween("#what-i-did", {opacity: 0})
+    // .addTo(this.controller);
 
-    // Get in touch - out
-    new ScrollMagic.Scene({
-      duration: '50%',
-      //offset: '200',
-      triggerElement: "#get-in-touch",
-      triggerHook: 0.2
-    })
-    .setTween("#get-in-touch", {opacity: 0})
-    .addTo(controller);
+    // // Get in touch - in
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   offset: 0,
+    //   triggerElement: "#get-in-touch"
+    // })
+    // .setTween("#get-in-touch", {opacity: 1})
+    // .addTo(this.controller);
+
+    // // Get in touch - out
+    // new ScrollMagic.Scene({
+    //   duration: '50%',
+    //   //offset: '200',
+    //   triggerElement: "#get-in-touch",
+    //   triggerHook: 0.2
+    // })
+    // .setTween("#get-in-touch", {opacity: 0})
+    // .addTo(this.controller);
   
   }
 
-  public activate(): void {
-    //TweenLite.to("app-main", {duration: 2, y: 100});
+  @HostListener("window:scroll", []) trackScroll() {
+    // States: Case 1
+    // if(this.controller.scrollPos() > 0){
+    //   this.controller.scrollTo("#what-i-do");
+    // }
   }
 
   moveBackground(e){
