@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
 import { AnimatedDirective } from './animated.directive';
+import { SectionHiComponent } from './section-hi/section-hi.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import { AnimatedDirective } from './animated.directive';
     ShippingComponent,
     MenuComponent,
     MainComponent,
-    AnimatedDirective
+    AnimatedDirective,
+    SectionHiComponent
   ],
   bootstrap: [ AppComponent ],
   providers: [CartService]
