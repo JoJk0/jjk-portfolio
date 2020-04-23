@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { gsap } from 'gsap';
+import { ScrollGSAPService } from '../scroll-gsap.service';
 
 @Component({
   selector: 'app-section-hi',
@@ -15,7 +16,7 @@ export class SectionHiComponent implements AfterViewInit {
   @ViewChild('hi')
 	private _sectionHi: ElementRef;
 
-	private get sectionHi(): HTMLElement {
+	private get sectionHi(): any {
 		return this._sectionHi.nativeElement;
   }
   
@@ -33,6 +34,9 @@ export class SectionHiComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     
+    let tween = gsap.to(this.sectionHi, { filter: 'contrast(1.5)', ease: 'power2.out' });
+    ScrollGSAPService.animate(this.sectionHi, tween, window.innerHeight/2, 0);
+
     // const observerOptions = {
     //   root: null,
     //   rootMargin: '0px 0px',

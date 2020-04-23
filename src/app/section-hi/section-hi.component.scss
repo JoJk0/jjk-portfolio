@@ -10,6 +10,7 @@ mat-chip-list mat-chip{
 }
 #hi{
     background: url("../../assets/hi-bg4.jpg") no-repeat;
+    filter: contrast(1);
     width: 100vw;
     height: 100vh;
     background-size: 200%;
@@ -19,6 +20,9 @@ mat-chip-list mat-chip{
     justify-content: center;
     align-items: center;
     z-index: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     //transition: all 0.4s ease;
     .jojko{
       position: absolute;

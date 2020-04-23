@@ -14,15 +14,21 @@ import { CartComponent } from './cart/cart.component';
 import { ShippingComponent } from './shipping/shipping.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { DataJsonService } from './data-json.service';
+import { ScrollGSAPService } from './scroll-gsap.service';
+
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
 import { AnimatedDirective } from './animated.directive';
 import { SectionHiComponent } from './section-hi/section-hi.component';
+import { MySkillsComponent } from './my-skills/my-skills.component';
+import { DialogNavComponent } from './dialog-nav/dialog-nav.component';
 
 @NgModule({
   imports: [
@@ -39,7 +45,8 @@ import { SectionHiComponent } from './section-hi/section-hi.component';
     MatSliderModule,
     MatCardModule,
     MatChipsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule
   ],
   declarations: [
     AppComponent,
@@ -52,10 +59,17 @@ import { SectionHiComponent } from './section-hi/section-hi.component';
     MenuComponent,
     MainComponent,
     AnimatedDirective,
-    SectionHiComponent
+    SectionHiComponent,
+    MySkillsComponent,
+    DialogNavComponent
   ],
   bootstrap: [ AppComponent ],
-  providers: [CartService]
+  entryComponents: [MySkillsComponent],
+  providers: [
+    CartService,
+    DataJsonService,
+    ScrollGSAPService
+  ]
 })
 export class AppModule { }
 

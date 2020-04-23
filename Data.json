@@ -1,0 +1,66 @@
+{
+    "Skills": [
+    {
+        "title": "Front-end development",
+		"SubSkills": ["AJAX", "Angular", "Canvas (HTML)", "CSS3", "HTML5", "JavaScript", "jQuery", "LESS", "pixiJS", "SASS", "TypeScript"]
+    },    
+    {
+        "title": "Back-end development",
+		"SubSkills": ["Angular CLI", "Node.js", "PHP", "RESTful apps"]
+    },
+    {
+        "title": "Design",
+		"SubSkills": ["Illustrator", "Logo design", "Photoshop", "Posters", "Website mockups"]
+    },
+    {
+        "title": "Databases",
+		"SubSkills": ["JSON", "MySQL", "PHPMyAdmin"]
+    },
+    {
+        "title": "Multi-purpose programming",
+		"SubSkills": ["Assembly", "C/C++", "Eclipse", "Git", "Java", "Python"]
+    },
+    {
+        "title": "Big data",
+		"SubSkills": ["Hadoop", "Storm"]
+    },
+    {
+        "title": "Operating systems proficiency",
+		"SubSkills": ["Ubuntu", "macOS", "Windows"]
+    }
+    ],
+    "Projects": [],
+    "UniModules": [
+        "Advanced Object-Oriented Programming",
+        "Algorithmic Foundations",
+        "Applied Algorithmics",
+        "Artificial Intelligence",
+        "Big Data Analysis",
+        "Complex information and Social Networks",
+        "Complexity of Algorithms",
+        "Computer Systems",
+        "Computer-Aided Software Development",
+        "Database Development",
+        "Decision, Computation and Language",
+        "Efficient Sequential Algorithms",
+        "Foundations Of Computer Science",
+        "Group Software Project",
+        "Honours Year Computer Science Project",
+        "Human-Centric Computing",
+        "Introduction to Databases",
+        "Introduction To Programming In Java",
+        "Knowledge Representation and Reasoning",
+        "Logic in Computer Science",
+        "MEng Group Project",
+        "Meng Individual Project",
+        "Multi-Agent Systems",
+        "Operating System Concepts",
+        "Principles of C and Memory Management",
+        "Privacy and Security",
+        "Professional Skills in Computer Science",
+        "Safety and Dependability",
+        "Software Engineering I",
+        "Software Engineering II",
+        "Technologies for E-Commerce"
+    ]
+}

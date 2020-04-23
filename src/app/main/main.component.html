@@ -1,3 +1,5 @@
+<div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
+<div id="my-skills-container" #mySkillsContainer [ngStyle]="mySkillsContainerStyle"><ng-template #mySkills></ng-template></div>
 <app-section-hi animated></app-section-hi>
 <section id="what-i-do" animated>
   <div class="bg-text">Skills</div>
@@ -45,7 +47,7 @@
         <mat-chip>SASS</mat-chip>
         <mat-chip>jQuery</mat-chip>
       </mat-chip-list>
-      <button mat-flat-button color="primary">See them<span>all!</span></button>
+      <button mat-flat-button color="primary" #mySkillsButton><div class="button-text" (click)="openMySkills()">See them<span>all!</span></div></button>
     </div>
   </div>
 </section>
@@ -54,7 +56,7 @@
   <div class="cnt">
     <div class="title">What I've made?</div>
     <div class="what-i-did-list">
-      <div class="art">
+      <div class="art" *ngFor="let n of [0,1,2,3,4,5]">
         <img src="../assets/arts/1.png" alt="JJK Portfolio" />
         <div class="art-title">JJK Portfolio 8.0</div>
         <div class="desc-cnt">

@@ -8,14 +8,34 @@ mat-chip-list mat-chip{
   font-weight: 800;
   background: $c-text;
 }
-
+#my-skills-background{
+  background: $c-base-dark;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: fixed;
+  z-index: 16;
+}
+#my-skills-container{
+  background: $c-base-dark;
+  overflow: hidden;
+  z-index: 17;
+  transform-origin: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: $c-bg;
+}
 #what-i-do, #what-i-did, #get-in-touch{
   width: 100vw;
   background: $c-bg;
-  min-height: 50vh;
   //clip-path:polygon(0% 4em, 25% 0em, 50% 2em, 75% 0em, 100% 4em, 100% 100%, 0 100%);
   position: relative;
-  //opacity: 0;
+  opacity: 0;
   .bg-text{
     position: absolute;
     top: 0%;
@@ -186,6 +206,7 @@ mat-chip-list mat-chip{
     .what-i-did-list{
       display: flex;
       justify-content: center;
+      flex-direction: column;
       .art{
         position: relative;
         margin: 2em;
