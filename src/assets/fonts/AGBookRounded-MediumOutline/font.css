@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'AGBookRounded-MediumOutline';
+  src: url('AGBookRounded-MediumOutline.eot');
+  src: url('AGBookRounded-MediumOutline.eot?#iefix') format('embedded-opentype'),
+       url('AGBookRounded-MediumOutline.svg#AGBookRounded-MediumOutline') format('svg'),
+       url('AGBookRounded-MediumOutline.ttf') format('truetype'),
+       url('AGBookRounded-MediumOutline.woff') format('woff'),
+       url('AGBookRounded-MediumOutline.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

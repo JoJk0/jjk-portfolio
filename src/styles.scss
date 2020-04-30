@@ -193,3 +193,102 @@ can be found in the LICENSE file at http://angular.io/license
 */
 
 html, body { height: 100%; }
+
+/* MAT DIALOG CONTAINERS */
+
+.dialogBackdrop{
+  display: none;
+}
+#my-skills-container{
+  background: transparent;
+  overflow: hidden;
+  z-index: 17;
+  color: $c-bg;
+  box-shadow: none;
+}
+#art-view-container{
+  background: $c-bg;
+  overflow: hidden;
+  z-index: 17;
+  color: $c-base-light;
+  box-shadow: none;
+  padding: 0;
+}
+app-my-skills{
+  width: 100%;
+}
+app-art-view{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ScrollGSAP Debug */
+.debug-trigger-hook{
+  border-top: 1px solid blue;
+  height: 1px;
+  width: 100vw;
+  position: absolute;
+  z-index: 9999;
+  font-weight: bold;
+  font-size: 1em;
+  padding-left: 5.5em;
+  &:after{
+    content: 'Trigger hook';
+    background: blue;
+    padding: 0.3em 0.7em;
+    position: absolute;
+    left: -1px;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: white;
+    font-family: sans-serif;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}
+.debug-animation-start{
+  border-top: 1px solid green;
+  height: 1px;
+  width: 100vw;
+  position: absolute;
+  z-index: 9999;
+  font-weight: bold;
+  font-size: 1em;
+  padding-left: 3em;
+  &:after{
+    content: 'Start';
+    background: green;
+    padding: 0.3em 0.7em;
+    position: absolute;
+    left: -1px;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: white;
+    font-family: sans-serif;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}
+.debug-animation-end{
+    border-top: 1px solid red;
+    height: 1px;
+    width: 100vw;
+    position: absolute;
+    z-index: 9999;
+    font-weight: bold;
+    font-size: 1em;
+    padding-left: 2.5em;
+    &:after{
+      content: 'End';
+      background: red;
+      padding: 0.3em 0.7em;
+      position: absolute;
+      left: -1px;
+      font-size: 0.7em;
+      font-weight: bold;
+      color: white;
+      font-family: sans-serif;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+}

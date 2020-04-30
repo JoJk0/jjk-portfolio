@@ -22,13 +22,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
 import { AnimatedDirective } from './animated.directive';
 import { SectionHiComponent } from './section-hi/section-hi.component';
 import { MySkillsComponent } from './my-skills/my-skills.component';
-import { DialogNavComponent } from './dialog-nav/dialog-nav.component';
+import { ArtViewComponent } from './art-view/art-view.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import { DialogNavComponent } from './dialog-nav/dialog-nav.component';
     MatCardModule,
     MatChipsModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -61,7 +63,7 @@ import { DialogNavComponent } from './dialog-nav/dialog-nav.component';
     AnimatedDirective,
     SectionHiComponent,
     MySkillsComponent,
-    DialogNavComponent
+    ArtViewComponent
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [MySkillsComponent],

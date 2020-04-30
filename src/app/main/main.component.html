@@ -1,6 +1,7 @@
 <div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
-<div id="my-skills-container" #mySkillsContainer [ngStyle]="mySkillsContainerStyle"><ng-template #mySkills></ng-template></div>
-<app-section-hi animated></app-section-hi>
+<div id="art-background" #artBackground [ngStyle]="artPos"></div>
+<!-- <div id="my-skills-container" #mySkillsContainer [ngStyle]="mySkillsContainerStyle"><ng-template #mySkills></ng-template></div> -->
+<app-section-hi></app-section-hi>
 <section id="what-i-do" animated>
   <div class="bg-text">Skills</div>
   <div class="cnt">
@@ -56,16 +57,19 @@
   <div class="cnt">
     <div class="title">What I've made?</div>
     <div class="what-i-did-list">
-      <div class="art" *ngFor="let n of [0,1,2,3,4,5]">
-        <img src="../assets/arts/1.png" alt="JJK Portfolio" />
+      <div class="art" *ngFor="let n of [0,1,2,3,4,5]" (click)="openArt(n)" #art>
+        <div class="img-container">
+          <div class="inside-title">JJK Portfolio 8.0</div>
+          <img src="../assets/arts/1.png" alt="JJK Portfolio" />
+        </div>
         <div class="art-title">JJK Portfolio 8.0</div>
-        <div class="desc-cnt">
+        <!-- <div class="desc-cnt">
           <mat-chip-list>
             <mat-chip>Angular9</mat-chip>
             <mat-chip>NodeJS</mat-chip>
             <mat-chip>CSS3</mat-chip>
           </mat-chip-list>
-        </div>
+        </div> -->
       </div>
       <div class="hungry">Still hungry? See my less fancy work...</div>
     </div>

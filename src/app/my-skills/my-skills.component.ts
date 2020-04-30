@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataJsonService } from '../data-json.service';
 import { Skills } from '../skills';
 import { UniModules } from '../uni-modules';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-my-skills',
@@ -13,7 +14,7 @@ export class MySkillsComponent implements OnInit {
   skills: Skills[] = [];
   uniModules: UniModules[] = [];
 
-  constructor(private jsonData: DataJsonService) { }
+  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<MySkillsComponent>) { }
 
   ngOnInit(): void {
   
@@ -31,6 +32,10 @@ export class MySkillsComponent implements OnInit {
       error => console.log(error)
     );
 
+  }
+
+  close(): void{
+    this.dialogRef.close();
   }
 
 }

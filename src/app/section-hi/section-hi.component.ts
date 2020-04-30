@@ -34,8 +34,8 @@ export class SectionHiComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     
-    let tween = gsap.to(this.sectionHi, { filter: 'contrast(1.5)', ease: 'power2.out' });
-    ScrollGSAPService.animate(this.sectionHi, tween, window.innerHeight/2, 0);
+    let tween = gsap.to(this.sectionHi, { opacity: 0, ease: 'power2.out' });
+    ScrollGSAPService.animate(this.sectionHi, tween, window.innerHeight/2, "center", 0);
 
     // const observerOptions = {
     //   root: null,

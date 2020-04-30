@@ -11,11 +11,16 @@ export class AnimatedDirective implements AfterViewInit {
 
   ngAfterViewInit(){ 
 
-    let tween = gsap.to(this.element.nativeElement, { opacity: 0, ease: 'power2.out' });
-    ScrollGSAPService.animate(this.element.nativeElement, tween, window.innerHeight/2, 0);
+    let el = this.element.nativeElement;
+    let duration = window.innerHeight/2;
 
-    let tween2 = gsap.to(this.element.nativeElement, { opacity: 1, ease: 'power2.in' });
-    ScrollGSAPService.animate(this.element.nativeElement, tween2, window.innerHeight/2, window.innerHeight/2);
+    // In
+    let tween2 = gsap.to(el, { opacity: 1 ,ease: 'power2.in'});
+    ScrollGSAPService.animate(el, tween2, duration, "center", -duration/2, false, 'top');
+
+     // Out
+    let tween = gsap.to(el, { opacity: 0, ease: 'power2.out' });
+    ScrollGSAPService.animate(el, tween, duration, "center", 0, false);
 
     // const el = this.element.nativeElement;
 

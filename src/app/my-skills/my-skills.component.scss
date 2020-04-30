@@ -1,5 +1,11 @@
 @import "../../assets/variables";
 
+.dialog-close{
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    transform: scale(2);
+}
 .bg-title{
     position: absolute;
     top: 0.2em;
@@ -12,14 +18,14 @@
     letter-spacing: -0.07em;
     font-weight: 800;
     text-shadow:
-    -2px -2px 0 #000,  
-    2px -2px 0 #000,
-    -2px 2px 0 #000,
-     2px 2px 0 #000,
-    -1px -1px 0 #000,  
-     1px -1px 0 #000,
-     -1px 1px 0 #000,
-      1px 1px 0 #000;
+    -2px -2px 0 $c-bg,  
+    2px -2px 0 $c-bg,
+    -2px 2px 0 $c-bg,
+     2px 2px 0 $c-bg,
+    -1px -1px 0 $c-bg,  
+     1px -1px 0 $c-bg,
+     -1px 1px 0 $c-bg,
+      1px 1px 0 $c-bg;
 }
 mat-chip-list mat-chip{
     background: $c-base-light;
@@ -28,6 +34,8 @@ mat-chip-list mat-chip{
 }
 .container{
     display: flex;
+    justify-content: center;
+    align-items: center;
     .skills-list-all{
         display: flex;
         flex-direction: column;

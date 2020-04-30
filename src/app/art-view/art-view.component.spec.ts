@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogNavComponent } from './dialog-nav.component';
+import { ArtViewComponent } from './art-view.component';
 
-describe('DialogNavComponent', () => {
-  let component: DialogNavComponent;
-  let fixture: ComponentFixture<DialogNavComponent>;
+describe('ArtViewComponent', () => {
+  let component: ArtViewComponent;
+  let fixture: ComponentFixture<ArtViewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DialogNavComponent ]
+      declarations: [ ArtViewComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DialogNavComponent);
+    fixture = TestBed.createComponent(ArtViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Hikou-Outline';
+  src: url('Hikou-Outline.eot');
+  src: url('Hikou-Outline.eot?#iefix') format('embedded-opentype'),
+       url('Hikou-Outline.svg#Hikou-Outline') format('svg'),
+       url('Hikou-Outline.ttf') format('truetype'),
+       url('Hikou-Outline.woff') format('woff'),
+       url('Hikou-Outline.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Hikou-Regular';
+  src: url('Hikou-Regular.eot');
+  src: url('Hikou-Regular.eot?#iefix') format('embedded-opentype'),
+       url('Hikou-Regular.svg#Hikou-Regular') format('svg'),
+       url('Hikou-Regular.ttf') format('truetype'),
+       url('Hikou-Regular.woff') format('woff'),
+       url('Hikou-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
