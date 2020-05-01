@@ -57,21 +57,14 @@
   <div class="cnt">
     <div class="title">What I've made?</div>
     <div class="what-i-did-list">
-      <div class="art" *ngFor="let n of [0,1,2,3,4,5]" (click)="openArt(n)" #art>
+      <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i)" #art>
         <div class="img-container">
-          <div class="inside-title">JJK Portfolio 8.0</div>
-          <img src="../assets/arts/1.png" alt="JJK Portfolio" />
+          <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
+          <div class="art-title-container"><div class="art-title">{{ project.title }}</div></div>
+          <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')"><div class="inside-title">{{ project.title }}</div></div>
         </div>
-        <div class="art-title">JJK Portfolio 8.0</div>
-        <!-- <div class="desc-cnt">
-          <mat-chip-list>
-            <mat-chip>Angular9</mat-chip>
-            <mat-chip>NodeJS</mat-chip>
-            <mat-chip>CSS3</mat-chip>
-          </mat-chip-list>
-        </div> -->
       </div>
-      <div class="hungry">Still hungry? See my less fancy work...</div>
+      <div class="hungry" [routerLink]="['/projects']">Still hungry? See my less fancy work...</div>
     </div>
   </div>
 </section>

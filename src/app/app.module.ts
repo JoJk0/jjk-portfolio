@@ -23,6 +23,8 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
@@ -30,6 +32,9 @@ import { AnimatedDirective } from './animated.directive';
 import { SectionHiComponent } from './section-hi/section-hi.component';
 import { MySkillsComponent } from './my-skills/my-skills.component';
 import { ArtViewComponent } from './art-view/art-view.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ProjectOpenerComponent } from './project-opener/project-opener.component';
 
 @NgModule({
   imports: [
@@ -40,7 +45,17 @@ import { ArtViewComponent } from './art-view/art-view.component';
       { path: '', component: MainComponent },
       { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
-      { path: 'shipping', component: ShippingComponent }
+      { 
+        path: 'projects', 
+        component: PortfolioComponent,
+        children: [
+          {
+            path: ':id',
+            component: ProjectOpenerComponent
+          }
+        ] 
+      },
+      { path: '**', component: PageNotFoundComponent }
     ]),
     BrowserAnimationsModule,
     MatSliderModule,
@@ -48,7 +63,9 @@ import { ArtViewComponent } from './art-view/art-view.component';
     MatChipsModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatAutocompleteModule
   ],
   declarations: [
     AppComponent,
@@ -63,7 +80,10 @@ import { ArtViewComponent } from './art-view/art-view.component';
     AnimatedDirective,
     SectionHiComponent,
     MySkillsComponent,
-    ArtViewComponent
+    ArtViewComponent,
+    PortfolioComponent,
+    PageNotFoundComponent,
+    ProjectOpenerComponent
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [MySkillsComponent],

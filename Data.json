@@ -29,7 +29,97 @@
 		"SubSkills": ["Ubuntu", "macOS", "Windows"]
     }
     ],
-    "Projects": [],
+    "Projects": [
+        {
+            "id": 0,
+            "title": "JJK Portfolio 8.0",
+            "date": "1/5/2020",
+            "coAuthors": [],
+            "images": ["1.png"],
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
+            "typography":[
+                {
+                    "name": "Quicksand",
+                    "displayName": "Quicksand",
+                    "style": ""
+                },
+                {
+                    "name": "Londrina Outline",
+                    "displayName": "Londrina Outline",
+                    "style": "font-family: 'Londrina Outline'; font-weight: bold; text-transform: uppercase"
+                }
+            ],
+            "colourPalette":[
+                {
+                    "code": "#001427",
+                    "name": "Kuretake black manga"
+                },
+                {
+                    "code": "#5dd9c1",
+                    "name": "Sweet garden"
+                },
+                {
+                    "code": "#acfdd9",
+                    "name": "Pale turquoise"
+                },
+                {
+                    "code": "#c4fffe",
+                    "name": "Vic 20 blue"
+                }
+            ],
+            "colours":{
+                "background": "#001427",
+                "panelBg": "#5dd9c1",
+                "text": "#001427",
+                "topTitleLeft": "#5dd9c1",
+                "topTitleRight": "#001427"
+            },
+            "keywords":["HTML5", "CSS3", "JavaScript"]
+
+        },
+        {
+            "id": 1,
+            "title": "Motorway Traffic Simulator",
+            "date": "1/5/2019",
+            "coAuthors": [],
+            "images": ["mts-1.png"],
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
+            "typography":[
+                {
+                    "name": "Roboto",
+                    "displayName": "Roboto",
+                    "style": ""
+                }
+            ],
+            "colourPalette":[
+                {
+                    "code": "#373640",
+                    "name": "Revolver"
+                },
+                {
+                    "code": "#424150",
+                    "name": "Smoked purple"
+                },
+                {
+                    "code": "#1db980",
+                    "name": "April Fool's red"
+                },
+                {
+                    "code": "#37efb9",
+                    "name": "Aquamarine"
+                }
+            ],
+            "colours":{
+                "background": "#373640",
+                "panelBg": "#1db980",
+                "text": "#373640",
+                "topTitleLeft": "#1db980",
+                "topTitleRight": "#373640"
+            },
+            "keywords":["HTML5", "CSS3", "PixiJS"]
+
+        }
+    ],
     "UniModules": [
         "Advanced Object-Oriented Programming",
         "Algorithmic Foundations",

@@ -1,4 +1,5 @@
 import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router'; // <-- do not forget to import
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,21 @@ import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
+
+  private fragment: string;
+
+  constructor(private route: ActivatedRoute) { }
+
+  ngOnInit() {
+    this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
+  }
+
+  ngAfterViewInit(): void {
+    try {
+      console.log(this.fragment);
+      document.querySelector('#' + this.fragment).scrollIntoView();
+    } catch (e) { console.log(e);}
+  }
 
   @HostListener('window:scroll', ['$event.target'])
   onScroll(targetElement: string) {

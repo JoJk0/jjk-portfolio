@@ -12,9 +12,9 @@
 }
 
 html{
-  scroll-snap-type: mandatory;
+  scroll-snap-type: proximity;
   scroll-snap-points-y: repeat(100vh);
-  scroll-snap-type: y mandatory;
+  scroll-snap-type: y proximity;
   scroll-snap-stop: always;
   scroll-behavior: smooth;
 }
@@ -69,7 +69,14 @@ app-main{
   flex-direction: column;
   cursor: $cur;
 }
-
+app-portfolio{
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  flex-direction: column;
+  padding-top: 10em;
+}
+/* I appreciate that you want to contact me again but my inbox is busy and I will need to ask you to wait 5mins */
 /* Text */
 
 h1 {
@@ -194,6 +201,16 @@ can be found in the LICENSE file at http://angular.io/license
 
 html, body { height: 100%; }
 
+/* MAT CHANGES */
+mat-form-field{
+  color: $c-base-light !important;
+  margin-top: 20em;
+  margin-left: 2em;
+  .mat-form-field.mat-focused .mat-form-field-label{
+    caret-color: $c-base-light !important;
+  }
+}
+
 /* MAT DIALOG CONTAINERS */
 
 .dialogBackdrop{
@@ -218,8 +235,8 @@ app-my-skills{
   width: 100%;
 }
 app-art-view{
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
 }
 
 /* ScrollGSAP Debug */

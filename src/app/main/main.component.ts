@@ -4,6 +4,8 @@ import { MySkillsComponent } from '../my-skills/my-skills.component';
 import { gsap } from 'gsap';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ArtViewComponent } from '../art-view/art-view.component';
+import { Projects } from '../projects';
+import { DataJsonService } from '../data-json.service';
 
 @Component({
   selector: 'app-main',
@@ -49,12 +51,23 @@ export class MainComponent implements AfterViewInit {
     'display': 'none'
   };
 
+  projects: Projects[] = [];
+
   private componentRef: ComponentRef<any>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, public dialog: MatDialog) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, public dialog: MatDialog, private jsonData: DataJsonService) { }
 
   ngAfterViewInit(): void { 
-    //console.log(this.target);
+    this.jsonData.getProjects().subscribe(
+      response => {
+          this.projects = response;
+      },
+      error => console.log(error)
+    );
+  }
+
+  getProjectsNo(): number{
+    return this.arts.length;
   }
 
   openMySkills(): void{

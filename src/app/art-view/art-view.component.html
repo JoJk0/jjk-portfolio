@@ -1,14 +1,58 @@
-<div class="left-panel">
-    <div class="main-viewer">
-        <img src="../assets/arts/1.png" />
+<div class="main-container" [ngStyle]="{'background-color': project.colours.background }">
+    <div class="left-panel" [ngStyle]="{'background-color': project.colours.background }">
+        <div class="left-title" [ngStyle]="{'color': project.colours.background, 'text-shadow': '-2px -2px 0 '+project.colours.topTitleLeft+',  
+        2px -2px 0 '+project.colours.topTitleLeft+',
+        -2px 2px 0 '+project.colours.topTitleLeft+',
+         2px 2px 0 '+project.colours.topTitleLeft+',
+       -1px -1px 0 '+project.colours.topTitleLeft+',  
+        1px -1px 0 '+project.colours.topTitleLeft+',
+        -1px 1px 0 '+project.colours.topTitleLeft+',
+         1px 1px 0 '+project.colours.topTitleLeft+''}">{{ project.title }}</div>
     </div>
-    <div class="other-photos">
-        <img src="../assets/arts/1.png" />
-        <img src="../assets/arts/1.png" />
-        <img src="../assets/arts/1.png" />
+    <div class="right-panel" [ngStyle]="{'background-color': project.colours.panelBg }">
+        <div class="dialog-close" (click)="close()" [routerLink]="['/projects']"><button mat-icon-button><mat-icon>close</mat-icon></button></div>
+        <div class="title" [ngStyle]="{'color': project.colours.panelBg, 'text-shadow': '
+       -2px -2px 0 '+project.colours.topTitleRight+',  
+        2px -2px 0 '+project.colours.topTitleRight+',
+        -2px 2px 0 '+project.colours.topTitleRight+',
+         2px 2px 0 '+project.colours.topTitleRight+',
+       -1px -1px 0 '+project.colours.topTitleRight+',  
+        1px -1px 0 '+project.colours.topTitleRight+',
+        -1px 1px 0 '+project.colours.topTitleRight+',
+         1px 1px 0 '+project.colours.topTitleRight+'' }">{{ project.title }}</div>
     </div>
-</div>
-<div class="right-panel">
-    <div class="close"></div>
-    <div class="title">JJK Portfolio 8.0</div>
+    <div class="content">
+        <div class="left">
+            <div class="box-viewer">    
+                <div class="main-viewer">
+                    <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.images[0] }}"/>
+                </div>
+                <div class="other-photos">
+                    <img src="../assets/arts/1.png" />
+                    <img src="../assets/arts/1.png" />
+                    <img src="../assets/arts/1.png" />
+                </div>
+            </div>
+        </div>
+        <div class="right" [ngStyle]="{ 'color': project.colours.text }">
+            <div class="details">
+                <div class="main-desc">{{ project.description }}</div>
+                <div class="typography">
+                    <div class="title">Typography</div>
+                    <div class="font" *ngFor="let font of project.typography" [ngStyle]="font.style">{{ font.displayName }}</div>
+                </div>
+                <div class="color-palette">
+                    <div class="title">Colour palette</div>
+                    <div class="palette-container">
+                    <div class="palette" *ngFor="let palette of project.colourPalette" [ngStyle]="{'background': palette.code, 'border': '1px solid '+project.colours.background}"></div>
+                    </div>
+                </div>
+                <div class="skills-keywords">
+                    <mat-chip-list>
+                        <mat-chip *ngFor="let skill of project.keywords"  [ngStyle]="{ 'color': project.colours.text, 'border': '1px solid '+project.colours.text }">{{ skill }}</mat-chip>
+                    </mat-chip-list>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

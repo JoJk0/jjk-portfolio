@@ -1,10 +1,10 @@
 <div class="progressbar" id="progressbar"></div>
 <div class="menu-container">
   <nav>
-    <img src="../assets/logo-2.png" alt="Logo" id="logo" />
-    <div class="menu-item"><a href="#start">Hi!</a></div>
-    <div class="menu-item"><a href="#what-i-do">What I do?</a></div>
-    <div class="menu-item"><a href="#what-i-did">What I've made?</a></div>
-    <div class="menu-item"><a href="#get-in-touch">Say Hi! 👋</a></div>
+    <img src="../assets/logo-4.png" alt="Logo" id="logo" />
+    <div class="menu-item" [routerLink]="['/']"><a>Hi!</a></div>
+    <div class="menu-item" [routerLink]="['/']" fragment="what-i-do"><a>What I do?</a></div>
+    <div class="menu-item" [routerLink]="['/']" fragment="what-i-did"><a>What I've made?</a></div>
+    <div class="menu-item" [routerLink]="['/']" fragment="get-in-touch"><a>Say Hi! 👋</a></div>
   </nav>
 </div>
