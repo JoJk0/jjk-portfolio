@@ -9,12 +9,12 @@ mat-chip-list mat-chip{
   background: $c-text;
 }
 #hi{
-    background: url("../../assets/hi-bg4.jpg") no-repeat;
     filter: contrast(1);
+    background: url('../../assets/hi.jpg');
     width: 100vw;
     height: 100vh;
-    background-size: 200%;
-    background-position: center bottom;
+    background-size: 240%; 
+    background-position: 55% bottom;
     transition: all 0.1s ease-out;
     display: flex;
     justify-content: center;
@@ -24,79 +24,32 @@ mat-chip-list mat-chip{
     top: 0;
     left: 0;
     //transition: all 0.4s ease;
-    .jojko{
-      position: absolute;
-      bottom: 70%;
-      right: 27%;
-      font-family: 'Londrina Outline';
-      font-size: 7em;
-      color: mix(#f5a9b7, $c-accent1, 80%);
-      text-shadow: 3px 3px 15px $c-base-dark;
-      transform: rotate(15deg);
-    }
     .cnt{
       padding: 1em;
-      width: 50%;
-      height: 50vh;
+      width: 80%;
     }
-    #me{
-      width: 27em;
-      align-self: flex-end;
-      z-index: 5;
-    }
-    #logo{
-      width: 7em;
-      margin-bottom: 3em;
-      position: sticky;
-      position: -webkit-sticky;
-      top: -1em;
-      background-attachment: fixed;
+    svg.logo{
+      width: 9em;
+      height: 12em;
+      image{
+        width: 7em;
+        height: 12em;
+      }
     }
     .intro{
-      font-size: 2.5em;
-      line-height: 150%;
-      padding-bottom: 1em;
-      text-transform: uppercase;
-      span{
-        font-size: 2em;
-        font-weight: 800;
-        &:after{
-          content: " ";
-        }
-      }
-    }
-    .my-name{
+      font-size: 5em;
+      line-height: 200%;
       color: $c-base-dark;
-      font-size: 10em;
-      line-height: 80%;
-      //text-transform: uppercase;
       font-weight: 800;
-      font-family: 'Shadows into Light';
-      mix-blend-mode: difference;
-      span{
-        font-size: 1em;
-        display: block;
-        line-height: 50%;
-        font-family: 'Shadows into Light';
-        mix-blend-mode: difference;
-      }
     }
-    .desc{
-      font-size: 2em;
-      text-transform: uppercase;
+    .desc p{
+      font-size: 2.5em;
       line-height: 110%;
-      padding-top: 1em;
-      span{
-        font-weight: 800;
-        font-size: 1em;
-      }
-    }
-    .desc2{
-      font-size: 1.5em;
-      text-transform: uppercase;
+      color: $c-base-light;
+      font-weight: 800;
     }
     #scroll-icon{
-      width: 5em;
+      width: 7em;
       position: absolute;
       bottom: 2em;
       left: 47%;

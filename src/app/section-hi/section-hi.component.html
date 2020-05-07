@@ -1,12 +1,11 @@
 <section id="start"></section>
-<section id="hi" (mousemove)="moveBackground($event)" [ngStyle]="bgPos" #hi>
+<section id="hi" #hi>
     <div class="cnt">
-      <div class="intro"><span>Hi!</span>I’m</div>
-      <div class="my-name"><span>Jacob</span>Janisz</div>
-      <div class="desc">A <span>Computer Science</span></div>
-      <div class="desc2">graduate</div>
+      <svg class="logo">       
+        <image xlink:href="../assets/logo-raw.svg" />    
+      </svg>
+      <div class="intro">Hey! I’m Jacob.</div>
+      <div class="desc"><p>a full-stack developer</p><p>and web designer.</p></div>
     </div>
-    <div class="jojko">~JOJKO ></div>
-    <img src="../assets/me.png" alt="me" id="me" />
     <img src="../assets/scroll.png" alt="scroll" id="scroll-icon" />
 </section>
