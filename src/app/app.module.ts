@@ -24,7 +24,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
@@ -35,6 +38,8 @@ import { ArtViewComponent } from './art-view/art-view.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProjectOpenerComponent } from './project-opener/project-opener.component';
+import { SkillsOpenerComponent } from './skills-opener/skills-opener.component';
+import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
 
 @NgModule({
   imports: [
@@ -42,7 +47,14 @@ import { ProjectOpenerComponent } from './project-opener/project-opener.componen
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: MainComponent },
+      { path: '', component: MainComponent,        
+      children: [
+        {
+          path: 'skills',
+          component: SkillsOpenerComponent
+        }
+      ] 
+      },
       { path: 'products/:productId', component: ProductDetailsComponent },
       { path: 'cart', component: CartComponent },
       { 
@@ -65,7 +77,10 @@ import { ProjectOpenerComponent } from './project-opener/project-opener.componen
     MatIconModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatInputModule,
+    MatSelectModule,
+    MatTooltipModule
   ],
   declarations: [
     AppComponent,
@@ -83,7 +98,9 @@ import { ProjectOpenerComponent } from './project-opener/project-opener.componen
     ArtViewComponent,
     PortfolioComponent,
     PageNotFoundComponent,
-    ProjectOpenerComponent
+    ProjectOpenerComponent,
+    SkillsOpenerComponent,
+    GetInTouchComponent
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [MySkillsComponent],

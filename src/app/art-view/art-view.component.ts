@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Projects } from '../projects';
 import { DataJsonService } from '../data-json.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-art-view',
@@ -11,13 +12,15 @@ import { DataJsonService } from '../data-json.service';
 export class ArtViewComponent implements OnInit {
 
   projectID: number;
+  origin: string;
   found: boolean = false;
 
   projects: Projects[];
   public project: Projects;
   
-  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<ArtViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<ArtViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private location: Location) {
     this.projectID = data.projectID;
+    this.origin = data.origin;
    }
 
   ngOnInit(): void {
@@ -42,6 +45,7 @@ export class ArtViewComponent implements OnInit {
   }
 
   close(): void{
+    this.location.go("/"+this.origin);
     this.dialogRef.close();
   }
 

@@ -28,7 +28,7 @@ export class ProjectOpenerComponent implements OnInit {
       backdropClass: 'dialogBackdrop',
       panelClass: 'art-view-container',
       id: 'art-view-container',
-      data: { projectID: this.projectID }
+      data: { projectID: this.projectID, origin: 'projects' }
     });
 
     dialogRef.afterClosed().subscribe(result => {

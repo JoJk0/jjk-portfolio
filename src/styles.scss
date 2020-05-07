@@ -216,6 +216,9 @@ mat-form-field{
 .dialogBackdrop{
   display: none;
 }
+.skills-opener{
+  background: $c-base-dark; 
+}
 #my-skills-container{
   background: transparent;
   overflow: hidden;
@@ -308,4 +311,12 @@ app-art-view{
       border-bottom-left-radius: 2px;
       border-bottom-right-radius: 2px;
     }
+}
+.contact-tooltip{
+  background: $c-text;
+  border-radius: 5em !important;
+  color: $c-bg !important;
+  font-size: 1.1em;
+  font-weight: 800;
+  padding: 0.5em 1em !important;
 }

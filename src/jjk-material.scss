@@ -251,3 +251,13 @@ $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 .mat-option-text{
     font-weight: 500;
 }
+
+.mat-select-value{
+  color:  #acfdd9;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+  color: $dark-text;
+}
+mat-hint{
+  font-size: 0.6em;
+}

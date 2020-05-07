@@ -1,8 +1,9 @@
+<router-outlet></router-outlet>
 <div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
 <div id="art-background" #artBackground [ngStyle]="artPos"></div>
 <!-- <div id="my-skills-container" #mySkillsContainer [ngStyle]="mySkillsContainerStyle"><ng-template #mySkills></ng-template></div> -->
-<app-section-hi></app-section-hi>
-<section id="what-i-do" animated>
+<app-section-hi #scrollable id="start"></app-section-hi>
+<section id="what-i-do" animated #scrollable>
   <div class="bg-text">Skills</div>
   <div class="cnt">
     <div class="title">What I do?</div>
@@ -52,12 +53,12 @@
     </div>
   </div>
 </section>
-<section id="what-i-did" animated>
+<section id="what-i-did" animated #scrollable>
   <div class="bg-text">Portfolio</div>
   <div class="cnt">
     <div class="title">What I've made?</div>
     <div class="what-i-did-list">
-      <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i)" #art>
+      <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art>
         <div class="img-container">
           <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
           <div class="art-title-container"><div class="art-title">{{ project.title }}</div></div>
@@ -68,8 +69,5 @@
     </div>
   </div>
 </section>
-<section id="get-in-touch" animated>
-  <div class="cnt">
-    <div class="title">Get in touch</div>
-  </div>
-</section>
+<app-get-in-touch id="get-in-touch" animated #scrollable>
+</app-get-in-touch>

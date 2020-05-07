@@ -1,27 +1,23 @@
-import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'; // <-- do not forget to import
+import { MainComponent } from './main/main.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
 
-  private fragment: string;
+export class AppComponent implements AfterViewInit {
+  
 
-  constructor(private route: ActivatedRoute) { }
 
-  ngOnInit() {
-    this.route.fragment.subscribe(fragment => { this.fragment = fragment; });
+  constructor() { }
+
+  ngAfterViewInit() {
+
   }
 
-  ngAfterViewInit(): void {
-    try {
-      console.log(this.fragment);
-      document.querySelector('#' + this.fragment).scrollIntoView();
-    } catch (e) { console.log(e);}
-  }
 
   @HostListener('window:scroll', ['$event.target'])
   onScroll(targetElement: string) {

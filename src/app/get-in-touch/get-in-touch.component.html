@@ -1,0 +1,60 @@
+<div class="bg-text">Contact</div>
+<div class="cnt">
+    <div class="title">Say Hi! 👋</div>
+    <div class="contact-box">
+        <div class="left">
+            <div class="contact-form">
+                <form [formGroup]="options">
+                    <div class="top">
+                        <span class="filler-text">Hi! I'm</span>
+                        <mat-form-field appearance="standard" [ngStyle]="{'width': inputWidth['cname']+'px'}">
+                            <input matInput maxlength="32" placeholder="John Smith" required autocomplete="off" (keydown)="presizeInput($event)" (paste)="presizeInputPaste($event)" (keyup)="resizeInput($event)" id="cname" />
+                            <!-- <input matInput maxlength="32" placeholder="John Smith" required autocomplete="off" (keydown)="presizeTextarea($event)" (keyup)="resizeInput($event)" id="cname" /> -->
+                        </mat-form-field>
+                        <span class="filler-text">and I want to talk about</span>
+                        <mat-form-field appearance="standard" [ngStyle]="{'width': 25+inputWidth['ctopic']+'px'}">
+                            <mat-select required placeholder="❤️ coffee" id="ctopic" (selectionChange)="resizeInput($event); changeTopic($event)"> 
+                                <mat-option [value]="topic.name" *ngFor="let topic of topics">{{ topic.name }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <span class="filler-text">.</span>
+                    </div>
+                    <mat-form-field appearance="standard" class="contact-textarea">
+                        <textarea maxlength="2048" matInput [placeholder]="textareaPlaceholder" [ngStyle]="{'height': inputHeight+'px'}" id="ctextarea" #ctextarea (keydown)="presizeInput($event)" (paste)="presizeInputPaste($event)" (keyup)="resizeInput($event)"></textarea>
+                        <mat-hint align="end">{{ctextarea.value?.length || 0}}/2048</mat-hint>
+                    </mat-form-field>
+                    <div class="bottom">
+                        <span class="filler-text">Reach me at</span>
+                        <mat-form-field appearance="standard" [ngStyle]="{'width': inputWidth['cemail']+'px'}">
+                            <input type="email" maxlength="64" matInput placeholder="john.smith@example.com" required autocomplete="off" (keydown)="presizeInput($event)" (paste)="presizeInputPaste($event)" (keyup)="resizeInput($event)" id="cemail" />
+                        </mat-form-field>
+                        <button mat-flat-button color="primary" #mySkillsButton><div class="button-text">OK, i'm done</div></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="right">
+            <!-- <div class="sub-title">Let's get connected</div> -->
+            <div class="socials">
+                <div class="social" matTooltip="jjk.io" matTooltipClass="contact-tooltip" matTooltipPosition="after">
+                    <img src="../assets/fb.png" alt="" class="layer1" />
+                    <img src="../assets/fb.png" alt="" class="layer2" />
+                </div>
+                <div class="social" matTooltip="in/jojko" matTooltipClass="contact-tooltip" matTooltipPosition="after">
+                    <img src="../assets/in.png" alt="" class="layer1" />
+                    <img src="../assets/in.png" alt="" class="layer2" />
+                </div>
+                <div class="social" matTooltip="jojk0" matTooltipClass="contact-tooltip" matTooltipPosition="after">
+                    <img src="../assets/ig.png" alt="" class="layer1" />
+                    <img src="../assets/ig.png" alt="" class="layer2" />
+                </div>
+                <div class="social" matTooltip="jojk0" matTooltipClass="contact-tooltip" matTooltipPosition="after">
+                    <img src="../assets/gh.png" alt="" class="layer1" />
+                    <img src="../assets/gh.png" alt="" class="layer2" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="input-tester" #inputTester>{{ inputTesterValue }}</div>
+<div class="textarea-tester" #textareaTester [ngStyle]="{'width': testerWidth+'px'}">{{ textareaTesterValue }}</div>

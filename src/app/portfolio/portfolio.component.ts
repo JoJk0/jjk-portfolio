@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {OnInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {OnInit, Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -7,13 +7,15 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Projects } from '../projects';
 import { DataJsonService } from '../data-json.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-portfolio',
   templateUrl: './portfolio.component.html',
   styleUrls: ['./portfolio.component.scss']
 })
-export class PortfolioComponent implements OnInit {
+export class PortfolioComponent implements OnInit, AfterViewInit {
 
   projects: Projects[] = [];
   availableProjects: Projects[] = [];
@@ -28,23 +30,25 @@ export class PortfolioComponent implements OnInit {
   allKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP'];
   availableKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP'];
 
+  searchKeywords: any;
+  sub: any;
+
   @ViewChild('keywordInput') keywordInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(private jsonData: DataJsonService) {
+  constructor(private jsonData: DataJsonService, private route: ActivatedRoute, private location: Location) {
     this.filterMap();
     this.sortKeywords();
   }
 
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
+  add(value: string, event?: MatChipInputEvent): void {
     let lowercaseKeywords = this.keywords.map(function(x){ return x.toLowerCase() })
 
     // Add our keyword
     if ((value || '').trim()) {
       if(!lowercaseKeywords.includes(value.trim().toLowerCase())){
         this.keywords.push(value.trim());
+        this.location.go("/projects;keywords="+this.keywords.join());
         this.updateSearch();
       }
       if(this.availableKeywords.indexOf(value.trim())){
@@ -57,11 +61,15 @@ export class PortfolioComponent implements OnInit {
     }
 
     // Reset the input value
-    if (input) {
-      input.value = '';
+    if(event){
+      const input = event.input;
+      if (input) {
+        input.value = '';
+      }
+  
+      this.keywordFormCtrl.setValue(null);
     }
 
-    this.keywordFormCtrl.setValue(null);
   }
 
   remove(keyword: string): void {
@@ -73,6 +81,12 @@ export class PortfolioComponent implements OnInit {
         this.sortKeywords();
       }
       this.keywords.splice(index, 1);
+      if(this.keywords.length > 0){
+        this.location.go("/projects;keywords="+this.keywords.join());
+      } else{
+        this.location.go("/projects");
+      }
+      
       this.updateSearch();
     }
   }
@@ -80,6 +94,7 @@ export class PortfolioComponent implements OnInit {
   selected(event: MatAutocompleteSelectedEvent): void {
     if(!this.keywords.includes(event.option.viewValue)){
       this.keywords.push(event.option.viewValue);
+      this.location.go("/projects;keywords="+this.keywords.join());
       this.updateSearch();
     }
     if(this.availableKeywords.indexOf(event.option.viewValue)){
@@ -105,9 +120,21 @@ export class PortfolioComponent implements OnInit {
       response => {
           this.projects = response;
           this.availableProjects = response;
+          let queryKeywordsStr = this.route.snapshot.paramMap.get('keywords');
+          let queryKeywords: string[];
+          if(!queryKeywordsStr){
+            queryKeywordsStr = '';
+          }
+          queryKeywords = queryKeywordsStr.split(",")
+          queryKeywords.forEach((keyword) => {
+            this.add(keyword);
+          });
       },
       error => console.log(error)
     );
+
+  }
+  ngAfterViewInit(): void{
 
   }
 

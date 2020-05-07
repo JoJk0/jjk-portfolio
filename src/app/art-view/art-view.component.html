@@ -10,7 +10,7 @@
          1px 1px 0 '+project.colours.topTitleLeft+''}">{{ project.title }}</div>
     </div>
     <div class="right-panel" [ngStyle]="{'background-color': project.colours.panelBg }">
-        <div class="dialog-close" (click)="close()" [routerLink]="['/projects']"><button mat-icon-button><mat-icon>close</mat-icon></button></div>
+        <div class="dialog-close" (click)="close()" [routerLink]="['/'+origin]" queryParamsHandling="preserve"><button mat-icon-button><mat-icon>close</mat-icon></button></div> 
         <div class="title" [ngStyle]="{'color': project.colours.panelBg, 'text-shadow': '
        -2px -2px 0 '+project.colours.topTitleRight+',  
         2px -2px 0 '+project.colours.topTitleRight+',
@@ -28,9 +28,7 @@
                     <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.images[0] }}"/>
                 </div>
                 <div class="other-photos">
-                    <img src="../assets/arts/1.png" />
-                    <img src="../assets/arts/1.png" />
-                    <img src="../assets/arts/1.png" />
+                    <img src="../assets/arts/{{image}}" *ngFor="let image of project.images"/>
                 </div>
             </div>
         </div>

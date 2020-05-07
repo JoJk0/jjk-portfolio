@@ -14,7 +14,7 @@
     },
     {
         "title": "Databases",
-		"SubSkills": ["JSON", "MySQL", "PHPMyAdmin"]
+		"SubSkills": ["JSON", "MySQL", "PHPMyAdmin", "XML"]
     },
     {
         "title": "Multi-purpose programming",
@@ -35,7 +35,7 @@
             "title": "JJK Portfolio 8.0",
             "date": "1/5/2020",
             "coAuthors": [],
-            "images": ["1.png"],
+            "images": ["1.png", "jjk-2.png", "jjk-3.png", "jjk-4.png"],
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
             "typography":[
                 {
@@ -152,5 +152,37 @@
         "Software Engineering I",
         "Software Engineering II",
         "Technologies for E-Commerce"
+    ],
+    "Topics": [
+        {
+            "name": "❤️ coffee",
+            "draftText": "Did you know I love coffee from Guatemala?...",
+            "sentText": "You're a boss! Thanks for your interest about me. I would love to talk to you or meet for a coffee ❤️."
+        },
+        {
+            "name": "👔 hiring me",
+            "draftText": "By hiring me you will get a young and talented team member ...",
+            "sentText": "You're a boss! Thanks for choosing me as a potential candidate. I would love to speak to you soon!"
+        },
+        {
+            "name": "🤝 cooperation",
+            "draftText": "I'm more than happy to co-work on projects ...",
+            "sentText": "Nice to meet you! I will write to you soon."
+        },
+        {
+            "name": "📑 freelance projects",
+            "draftText": "Did you know I've started freelancing in 2011? ...",
+            "sentText": "You're a boss! Thanks for asking about freelancing, I will send you a reply soon."
+        },
+        {
+            "name": "🐞 bugs",
+            "draftText": "This site is still in early development stages ...",
+            "sentText": "You're a star! Cheers 🍻 for reporting a bug. I will have a look at it and will reply soon."
+        },
+        {
+            "name": "👩‍💻 social media",
+            "draftText": "My Facebook site has been created in 2011 ...",
+            "sentText": "All done! Thanks for asking about social media, I will send you a reply soon."
+        }
     ]
 }

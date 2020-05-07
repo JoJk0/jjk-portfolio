@@ -8,6 +8,12 @@ mat-chip-list mat-chip{
   font-weight: 800;
   background: $c-text;
 }
+app-get-in-touch{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
 #my-skills-background{
   background: $c-base-dark;
   width: 100px;

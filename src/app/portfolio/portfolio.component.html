@@ -18,7 +18,7 @@
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)">
+        (matChipInputTokenEnd)="add($event.value, $event)">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-option *ngFor="let keyword of filteredKeywords | async" [value]="keyword">
@@ -27,7 +27,7 @@
     </mat-autocomplete>
 </mat-form-field>
 <div class="portfolio-list">
-    <div class="art" *ngFor="let project of availableProjects" [routerLink]="['/projects/'+project.id]" #art>
+    <div class="art" *ngFor="let project of availableProjects" [routerLink]="['/projects/'+project.id]" queryParamsHandling="preserve" #art>
         <div class="img-container">
           <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
           <div class="art-title-container"><div class="art-title">{{ project.title }}</div></div>

@@ -3,6 +3,7 @@ import { DataJsonService } from '../data-json.service';
 import { Skills } from '../skills';
 import { UniModules } from '../uni-modules';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-my-skills',
@@ -14,7 +15,7 @@ export class MySkillsComponent implements OnInit {
   skills: Skills[] = [];
   uniModules: UniModules[] = [];
 
-  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<MySkillsComponent>) { }
+  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<MySkillsComponent>, private location: Location) { }
 
   ngOnInit(): void {
   
@@ -35,6 +36,7 @@ export class MySkillsComponent implements OnInit {
   }
 
   close(): void{
+    this.location.go("/");
     this.dialogRef.close();
   }
 

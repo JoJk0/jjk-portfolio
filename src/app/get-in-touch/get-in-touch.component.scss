@@ -1,0 +1,119 @@
+@import "../../assets/variables";
+
+mat-form-field{
+    margin: 0 0.5em;
+    width: auto;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-align: left;
+}
+.bg-text{
+  position: absolute;
+  top: 0.2em;
+  left: -0.1em;
+  font-weight: bold;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+  //font-family: 'Londrina Outline';
+  font-size: 12em;
+  color: $c-base-dark;
+  //transform: rotate(-10deg);
+  opacity: 0.1;
+  z-index: 2;
+  color: $c-bg;
+  text-shadow:
+  -2px -2px 0 $c-base-light,  
+   2px -2px 0 $c-base-light,
+   -2px 2px 0 $c-base-light,
+    2px 2px 0 $c-base-light,
+  -1px -1px 0 $c-base-light,  
+   1px -1px 0 $c-base-light,
+   -1px 1px 0 $c-base-light,
+    1px 1px 0 $c-base-light;
+}
+.cnt{
+  position: relative;
+  width: 100%;
+  .title{
+    color: $c-base-light;
+    text-align: center;
+    padding: 1em;
+    padding-top: 2em;
+    font-size: 3em;
+    font-weight: 800;
+  }
+  .contact-box{
+    width: 100%;
+    height: stretch;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(1.2);
+    .left{
+        .filler-text{
+        }
+        .contact-textarea{
+            width: 100%;
+            margin: 0;
+            margin-top: -2em;
+            text-align: left;
+            resize: none;
+            #ctextarea{
+                min-height: 1.3em;
+                line-height: 150%;
+                max-height: 20em;
+            }
+        }
+    }
+    .right{
+        padding: 1em;
+        .sub-title{
+            padding: 1em;
+        }
+        .socials{
+            display: flex;
+            flex-direction: column;
+            .social{
+                position: relative;
+                width: 2em;
+                height: 2em;
+                margin: 1em;
+                filter: sepia(100%) brightness(75%) hue-rotate(97deg) saturate(800%);
+                transition: all 0.2s ease;
+                .layer1{
+                    position: absolute;
+                    width: 100%;
+                    filter: grayscale(100%);
+                }
+                .layer2{
+                    position: absolute;
+                    width: 100%;
+                    filter: invert(100%) grayscale(100%);
+                    mix-blend-mode: color-dodge;
+                }
+                &:hover{
+                    filter: sepia(0%) brightness(100%) hue-rotate(0deg) saturate(100%);
+                    .layer1{
+                        filter: grayscale(0%);
+                    }
+                    .layer2{
+                        opacity: 0;
+                        mix-blend-mode: none;
+                    }
+                }
+            }
+        }
+    }
+  }
+}
+.input-tester, .textarea-tester{
+    position: absolute;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 2px 0;
+    z-index: -10;
+    opacity: 0;
+    top: -5em;
+    left: -5em;
+    line-height: 150%;
+}

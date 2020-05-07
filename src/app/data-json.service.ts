@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Skills } from './skills';
 import { Projects } from './projects';
 import { UniModules } from './uni-modules';
+import { Topic } from './topic';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class DataJsonService {
   private skillsUrl: string = this.url+"Skills";
   private projectsUrl: string = this.url+"Projects";
   private uniModulesUrl: string = this.url+"UniModules";
+  private topicsUrl: string = this.url+"Topics";
 
   constructor(private http: HttpClient) { }
 
@@ -26,6 +28,10 @@ export class DataJsonService {
 
   getUniModules(){
     return this.http.get<UniModules[]>(this.uniModulesUrl);
+  }
+
+  getTopics(){
+    return this.http.get<Topic[]>(this.topicsUrl);
   }
 
 }

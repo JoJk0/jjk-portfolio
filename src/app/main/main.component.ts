@@ -6,6 +6,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ArtViewComponent } from '../art-view/art-view.component';
 import { Projects } from '../projects';
 import { DataJsonService } from '../data-json.service';
+import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -14,6 +16,10 @@ import { DataJsonService } from '../data-json.service';
 })
 
 export class MainComponent implements AfterViewInit {
+
+  // Section refs
+  @ViewChildren('scrollable', {read: ElementRef})
+  sections: QueryList<ElementRef>;
 
   @ViewChild('mySkillsButton', {read: ElementRef})
   mySkillsButton: ElementRef;
@@ -55,7 +61,9 @@ export class MainComponent implements AfterViewInit {
 
   private componentRef: ComponentRef<any>;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, public dialog: MatDialog, private jsonData: DataJsonService) { }
+  private fragment: string;
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, public dialog: MatDialog, private jsonData: DataJsonService, private location: Location, private route: ActivatedRoute) { }
 
   ngAfterViewInit(): void { 
     this.jsonData.getProjects().subscribe(
@@ -64,6 +72,19 @@ export class MainComponent implements AfterViewInit {
       },
       error => console.log(error)
     );
+    this.route.fragment.subscribe(fragment => { 
+      this.fragment = fragment; 
+      let hash = '#';
+      let fullFragment = hash.concat(fragment);
+      if(!fragment){
+        fragment = '';
+      }
+      try {
+        let el = this.getElement(fragment);
+        el.nativeElement.scrollIntoView();
+      } catch (e) { console.log(e);}
+
+    });
   }
 
   getProjectsNo(): number{
@@ -104,9 +125,11 @@ export class MainComponent implements AfterViewInit {
           panelClass: 'my-skills-container',
           id: 'my-skills-container'
       });
+      this.location.go("/skills");
 
       dialogRef.afterClosed().subscribe(result => {
         gsap.to(this.mySkillsBackground.nativeElement, transformOptionsOut);
+        this.location.go("/");
       });
       
     }, 200);
@@ -118,7 +141,7 @@ export class MainComponent implements AfterViewInit {
 
   }
 
-  openArt(id: number): void{
+  openArt(id: number, projectIDDb: number): void{
     // Get boundedrect
     let el = this.arts.toArray()[id].nativeElement;
     let coords = el.getBoundingClientRect();
@@ -138,13 +161,27 @@ export class MainComponent implements AfterViewInit {
         maxWidth: '100vw',
         backdropClass: 'dialogBackdrop',
         panelClass: 'art-view-container',
-        id: 'art-view-container'
+        id: 'art-view-container',
+        data: { projectID: projectIDDb, origin: '' }
       });
+      this.location.go("/projects/"+projectIDDb);
 
       dialogRef.afterClosed().subscribe(result => {
         //gsap.to(this.mySkillsBackground.nativeElement, transformOptionsOut);
       });
     });
+  }
+
+  getElement(name: string = ''): ElementRef{
+    let el: ElementRef;
+    this.sections.toArray().forEach((section) => {
+      if(section.nativeElement.id == "start" && name == ''){
+        el = section
+      } else if(section.nativeElement.id == name){
+        el = section;
+      }
+    });
+    return el;
   }
 
 }
