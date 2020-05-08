@@ -55,3 +55,54 @@ mat-chip-list mat-chip{
       left: 47%;
     }
   }
+  #left-nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    svg.logo-top{
+      width: 3em;
+      height: 3em;
+      margin: 1em;
+      image{
+        width: 3em;
+        height: 3em;
+      }
+    }
+    svg.scroll-mouse{
+      margin: 2em;
+      width: 1.4em;
+      height: 15em;
+      image{
+        width: 1.4em;
+        height: 15em;
+      }
+    }
+    .socials{
+      display: flex;
+      flex-direction: column;
+      margin: 1em;
+      .social{
+          position: relative;
+          width: 1.7em;
+          height: 1.7em;
+          margin: 1em;
+          filter: brightness(0) saturate(100%) invert(99%) sepia(99%) saturate(413%) hue-rotate(81deg) brightness(106%) contrast(106%);
+          transition: all 0.2s ease;
+          .layer1{
+              position: absolute;
+              width: 100%;
+          }
+          &:hover{
+              filter: none;
+              .layer1{
+                  filter: none;
+              }
+          }
+      }
+  }
+  }

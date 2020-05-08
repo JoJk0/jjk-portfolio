@@ -25,6 +25,9 @@ body {
   cursor: $cur;
   color: $c-text;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 .mat-typography{
   font-family: "Quicksand";

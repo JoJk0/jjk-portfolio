@@ -1,10 +1,12 @@
-<div class="progressbar" id="progressbar"></div>
+<div class="progressbar" id="progressbar" #progressbar [ngStyle]="{'height': progressbarHeight+'vh'}"></div>
 <div class="menu-container">
+  <svg class="hamburger-menu">       
+    <image xlink:href="../assets/menu.svg" />    
+  </svg>
   <nav>
-    <img src="../assets/logo-4.png" alt="Logo" id="logo" />
-    <div class="menu-item" [routerLink]="['/']"><a>Hi!</a></div>
-    <div class="menu-item" [routerLink]="['/']" fragment="what-i-do"><a>What I do?</a></div>
-    <div class="menu-item" [routerLink]="['/']" fragment="what-i-did"><a>What I've made?</a></div>
-    <div class="menu-item" [routerLink]="['/']" fragment="get-in-touch"><a>Say Hi! 👋</a></div>
+    <div class="menu-item" [routerLink]="['/']"></div>
+    <div class="menu-item" [routerLink]="['/']" fragment="what-i-do"></div>
+    <div class="menu-item" [routerLink]="['/']" fragment="what-i-did"></div>
+    <div class="menu-item" [routerLink]="['/']" fragment="get-in-touch"></div>
   </nav>
 </div>
