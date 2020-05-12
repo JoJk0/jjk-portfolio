@@ -1,0 +1,156 @@
+@import "../../assets/variables";
+
+.cnt{
+    .top{
+        width: 100%;
+        position: sticky;
+        top: 2em;
+        .title{
+          color: $c-base-dark;
+          font-size: 5em;
+          font-weight: 800;
+          line-height: 1.5em;
+          text-align: center;
+        }
+        .desc{
+          color: $c-base-light;
+          font-weight: 800;
+          font-size: 2.5em;
+          line-height: 1.5em;
+        }
+      }
+    .what-i-did-list{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      .art{
+        position: relative;
+        margin: 15vh;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .img-container{
+          width: 50em;
+          z-index: 20;
+          position: relative;
+          .art-title-container{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: inherit;
+            height: fill-available;
+            .art-title{
+              color: $c-base-dark;
+              text-transform: uppercase;
+              font-weight: 800;
+              font-size: 8em;
+              white-space: nowrap;
+              letter-spacing: -0.07em;
+              width: inherit;
+              text-align: center;
+              padding-top: 50%;
+              margin-left: -15%;
+              text-shadow:
+              -2px -2px 0 $c-base-dark,  
+               2px -2px 0 $c-base-dark,
+               -2px 2px 0 $c-base-dark,
+                2px 2px 0 $c-base-dark,
+              -1px -1px 0 $c-base-dark,  
+               1px -1px 0 $c-base-dark,
+               -1px 1px 0 $c-base-dark,
+                1px 1px 0 $c-base-dark;
+            }
+          }
+          .inside-title-container{
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url('../../assets/arts/1.png');
+            background-position: center;
+            background-size: 100%;
+            background-clip: text;
+            width: inherit;
+            height: fill-available;
+            clip-path: polygon(2% 0%, 98% 2%, 100% 100%, 0% 96%);
+            .inside-title{
+              color: transparent;
+              text-transform: uppercase;
+              font-weight: 800;
+              font-size: 8em;
+              margin-left: -15%;
+              white-space: nowrap;
+              letter-spacing: -0.07em;
+              text-align: center;
+              padding-top: 50%;
+            }
+          }
+          img{
+            width: 100%;
+            clip-path: polygon(2% 0%, 98% 2%, 100% 100%, 0% 96%);
+          }
+        }
+        .desc-cnt{
+          background: $c-base-dark;
+          position: absolute;
+          bottom: 3em;
+          right: 20%;
+          padding: 0em 2em;
+          clip-path:polygon(10% 10%, 100% 0, 90% 100%, 0% 95%);
+          text-align: center;
+          mat-chip-list mat-chip{
+            font-size: 0.6em;
+            margin: 2em 1em;
+          }
+        }
+      }
+    }
+    .hungry{
+        text-align: center;
+        .text{
+            color: $c-base-light;
+            font-weight: 800;
+            font-size: 2.5em;
+            line-height: 1.5em;
+        }
+        button{
+            color: $c-bg;
+            font-weight: 800;
+            background: transparent;
+            width: 18rem;
+            height: 6rem;
+            padding: 0;
+            display: block;
+            position: relative;
+            *{
+              font-size: 1.1rem;
+            }
+            .button-text{
+              margin: 0;
+              padding: 0;
+              .main{
+                clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
+                background: $c-base-light;
+                width: 18rem;
+                line-height: 6rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+                font-size: 1.3em;
+              }
+              &:before{
+                content: "";
+                clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
+                background: $c-base-dark;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 18rem;
+                height: 6rem;
+              }
+            }
+          }
+    }
+  }

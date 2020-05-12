@@ -1,5 +1,17 @@
 @import "../../assets/variables";
 
+svg.logo-top-floating{
+  width: 3em;
+  height: 3em;
+  margin: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0.5rem;
+  image{
+    width: 3em;
+    height: 3em;
+  }
+}
 #logo{
   width: 2em;
   margin: 0.5em 1em;
@@ -40,22 +52,111 @@
   //   z-index: 8;
   // }
 }
+.backdrop{
+  background: transparent;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  &.opened{
+    display: block;
+  }
+}
 .menu-container{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   z-index: 1;
   margin-top: 5px;
   position: absolute;
   top: 0;
   right: 0;
+  height: 100vh;
   svg.hamburger-menu{
     height: 2rem;
     width: 2.5rem;
-    position: absolute;
-    top: 2.5em;
-    right: 2.5em;
+    margin: 1.5em;
     image{
       height: 2rem;
+    }
+    &:hover{
+      filter: brightness(0) saturate(100%) invert(88%) sepia(9%) saturate(1765%) hue-rotate(107deg) brightness(96%) contrast(87%);
+    }
+  }
+  .bullets{
+    .bullet-cnt{
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      .bullet{
+        //margin: 0.5em;
+        //padding: 1px;
+        padding: 0.5em;
+        width: 1rem;
+        border: 3px solid transparent;
+        box-sizing: content-box;
+        text-align: center;
+        font-weight: 800;
+        font-size: 1.5em;
+        transition: all 0.2s ease;
+        &.active{
+          //border: 3px solid rgba(255,255,255,0.33);
+          &:before{
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            border: 3px solid rgba(255,255,255,0.33);
+            position: absolute;
+            border-radius: 100%;
+            margin-left: -0.29em;
+            margin-top: -0.1em;
+          }
+        }
+        line-height: 1rem;
+        &:before{
+            content: '';
+            width: 1rem;
+            height: 1rem;
+            border: 3px solid transparent;
+            position: absolute;
+            border-radius: 100%;
+            margin-left: -0.29em;
+            margin-top: -0.1em;
+            transition: border 0.4s ease;
+        }
+    }
+      .tooltip{
+        position: absolute;
+        top: 0.2em;
+        right: 3em;
+        opacity: 0;
+        background: $c-text;
+        border-radius: 2em;
+        padding: 0.5em 1em;
+        color: $c-bg;
+        font-weight: 800;
+        font-size: 1.2em;
+        width: max-content;
+        transition: all 0.2s ease;
+        &.show{
+          display: block;
+        }
+        &.opened{
+          opacity: 1;
+        }
+      }
+      &:hover{
+        overflow: initial;
+        .bullet{
+          transform: scale(1.5);
+        }
+        .tooltip{
+          opacity: 1;
+        }
+      }
     }
   }
   nav{
@@ -176,4 +277,25 @@
       }
     }
   }
+  &.opened{
+    .bullets{
+      .bullet-cnt{
+        overflow: initial;
+        .bullet{
+          padding: 1em 0.5em;
+        }
+        .tooltip{
+          top: 0.8em;
+        }
+      }
+    }
+  }
+}
+.animating-line{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 1em;
+  background: $c-text;
 }

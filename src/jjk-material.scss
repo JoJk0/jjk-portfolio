@@ -261,3 +261,23 @@ $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 mat-hint{
   font-size: 0.6em;
 }
+.mat-form-field-appearance-standard .mat-form-field-underline{
+  height: 0px !important;
+}
+.mat-form-field-appearance-standard .mat-form-field-flex{
+  padding: 0 !important;
+}
+.mat-form-field-infix{
+  padding: 0;
+  padding-bottom: 0.5em;
+  border: 0;
+}
+.mat-form-field-wrapper{
+  padding-bottom: 1em;
+}
+mat-form-field{
+  margin: 0 0.3em !important;
+}
+mat-form-field.contact-textarea{
+  margin: 0 !important;
+}

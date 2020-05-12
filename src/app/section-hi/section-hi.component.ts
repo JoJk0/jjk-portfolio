@@ -14,7 +14,10 @@ export class SectionHiComponent implements AfterViewInit {
   public bgHeight;
 
   @ViewChild('hi')
-	private _sectionHi: ElementRef;
+  private _sectionHi: ElementRef;
+
+  // Animated elements
+  @ViewChild('scrollMouseSvg') scrollMouseSvg: ElementRef;
 
 	private get sectionHi(): any {
 		return this._sectionHi.nativeElement;
@@ -36,40 +39,8 @@ export class SectionHiComponent implements AfterViewInit {
     
     let tween = gsap.to(this.sectionHi, { opacity: 0, ease: 'power2.out' });
     ScrollGSAPService.animate(this.sectionHi, tween, window.innerHeight/2, "center", 0);
-
-    // const observerOptions = {
-    //   root: null,
-    //   rootMargin: '0px 0px',
-    //   threshold: 0
-    // };
-
-    // let timeline = gsap.timeline({ paused: true });
-    // timeline
-    //   .to(this.sectionHi, { opacity: 1, ease: 'power2.inOut' })
-    //   .to(this.sectionHi, { opacity: 0, ease: 'power1.inOut' });
-
-    // let observer = new IntersectionObserver(entry => {
-    //     if (entry[0].intersectionRatio > 0) {
-    //         gsap.ticker.add(progressTween)
-    //     } else {
-    //         gsap.ticker.remove(progressTween)
-    //     }
-    // }, observerOptions);
-
-    // let progressTween = () => {
-    //     // Get scroll distance to bottom of viewport.
-    //     const scrollPosition = (window.scrollY + window.innerHeight);
-    //     // Get element's position relative to bottom of viewport.
-    //     const elPosition = (scrollPosition - this.sectionHi.offsetTop);
-    //     // Set desired duration.
-    //     const durationDistance = (window.innerHeight + this.sectionHi.offsetHeight);
-    //     // Calculate tween progresss.
-    //     const currentProgress = (elPosition / durationDistance);
-    //     // Set progress of gsap timeline.     
-    //     timeline.progress(currentProgress);
-    // }
-
-    // observer.observe(this.sectionHi);
+    this.animateSection();
+    this.animateJ();
 
   }
 
@@ -122,4 +93,37 @@ export class SectionHiComponent implements AfterViewInit {
     //console.log(this.bgPos);
   }
 
+  animateSection(): void{
+    console.log(this.scrollMouseSvg);
+    this.animateScrollMouse();
+  }
+
+  // Scroll Mouse entry animation
+  private animateScrollMouse(){
+
+    let line = this.scrollMouseSvg.nativeElement.children[1].children[2].children[0];
+    let arrow = this.scrollMouseSvg.nativeElement.children[1].children[1];
+
+    let timeline = gsap.timeline({repeat: -1, delay: 2});
+
+    // Pre-set opacity
+    timeline
+    // Appear
+    .fromTo(line,                 {opacity: 0 }, { duration: 1, opacity: 0.33, ease: "expo.inOut" }, 0)
+    .fromTo(arrow.children[0],    {opacity: 0 }, { duration: 1, opacity: 1, ease: "expo.inOut" }, 0)
+    .fromTo(arrow.children[1],    {opacity: 0 }, { duration: 1, opacity: 1, ease: "expo.inOut" }, 0)
+    // Move down
+    .fromTo(line,                 {attr: { y2: 293.2 } }, { duration: 3, attr: { y2: 1060.6 }, ease: "expo.inOut" }, 0)
+    .fromTo(arrow.children[0],    {attr: { y1: 293.2, y2: 324.6 } }, { duration: 3, attr: { y1: 1146.3, y2: 1177.7 }, ease: "expo.inOut" }, 0)
+    .fromTo(arrow.children[1],    {attr: { y1: 293.2, y2: 324.6 } }, { duration: 3, attr: { y1: 1146.3, y2: 1177.7 }, ease: "expo.inOut" }, 0)
+    // Disappear
+    .fromTo(line,                 {opacity: 0.33 }, { duration: 3, opacity: 0, ease: "expo.inOut" }, 2)
+    .fromTo(arrow.children[0],    {opacity: 1 }, { duration: 3, opacity: 0, ease: "expo.inOut" }, 2)
+    .fromTo(arrow.children[1],    {opacity: 1 }, { duration: 3, opacity: 0, ease: "expo.inOut" }, 2);
+    
+  }
+
+  private animateJ(){
+
+  }
 }

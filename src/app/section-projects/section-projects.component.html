@@ -1,0 +1,18 @@
+<div class="cnt">
+  <div class="top">
+    <div class="title">What I've made?</div>
+  </div>
+  <div class="what-i-did-list">
+    <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art>
+      <div class="img-container">
+        <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
+        <div class="art-title-container"><div class="art-title">{{ project.title }}</div></div>
+        <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')"><div class="inside-title">{{ project.title }}</div></div>
+      </div>
+    </div>
+    <div class="hungry" [routerLink]="['/projects']">
+        <div class="text">Still hungry?</div>
+        <button #projectsLink><div class="button-text"><div class="main">See my less fancy work...</div></div></button>
+    </div>
+  </div>
+</div>

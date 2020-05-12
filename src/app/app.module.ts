@@ -40,6 +40,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ProjectOpenerComponent } from './project-opener/project-opener.component';
 import { SkillsOpenerComponent } from './skills-opener/skills-opener.component';
 import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
+import { SectionSkillsComponent } from './section-skills/section-skills.component';
+import { SectionProjectsComponent } from './section-projects/section-projects.component';
 
 @NgModule({
   imports: [
@@ -100,7 +102,9 @@ import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
     PageNotFoundComponent,
     ProjectOpenerComponent,
     SkillsOpenerComponent,
-    GetInTouchComponent
+    GetInTouchComponent,
+    SectionSkillsComponent,
+    SectionProjectsComponent
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [MySkillsComponent],

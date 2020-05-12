@@ -1,73 +1,7 @@
 <router-outlet></router-outlet>
-<div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
 <div id="art-background" #artBackground [ngStyle]="artPos"></div>
 <!-- <div id="my-skills-container" #mySkillsContainer [ngStyle]="mySkillsContainerStyle"><ng-template #mySkills></ng-template></div> -->
 <app-section-hi #scrollable id="start"></app-section-hi>
-<section id="what-i-do" animated #scrollable>
-  <div class="bg-text">Skills</div>
-  <div class="cnt">
-    <div class="title">What I do?</div>
-    <div class="skills">
-      <div class="skill angular">
-        <img src="../assets/angular.png" />
-        <mat-chip-list>
-          <mat-chip>Angular9</mat-chip>
-        </mat-chip-list>
-        <div class="bg"></div>
-        <div class="bg2"></div>
-        <div class="bg3"></div>
-      </div>
-      <div class="skill nodejs">
-        <img src="../assets/nodejs.png" />
-        <mat-chip-list>
-          <mat-chip>NodeJS</mat-chip>
-        </mat-chip-list>
-        <div class="bg"></div>
-        <div class="bg2"></div>
-        <div class="bg3"></div>
-      </div>
-      <div class="skill php">
-        <img src="../assets/php.png" />
-        <mat-chip-list>
-          <mat-chip>PHP</mat-chip>
-        </mat-chip-list>
-        <div class="bg"></div>
-        <div class="bg2"></div>
-        <div class="bg3"></div>
-      </div>
-    </div>
-    <div class="other-skills">
-      <mat-chip-list>
-        <mat-chip>HTML5</mat-chip>
-        <mat-chip>CSS3</mat-chip>
-        <mat-chip>TypeScript</mat-chip>
-        <mat-chip>Adobe Photoshop</mat-chip>
-        <mat-chip>Git</mat-chip>
-        <mat-chip>Java</mat-chip>
-        <mat-chip>C++</mat-chip>
-        <mat-chip>SQL</mat-chip>
-        <mat-chip>SASS</mat-chip>
-        <mat-chip>jQuery</mat-chip>
-      </mat-chip-list>
-      <button mat-flat-button color="primary" #mySkillsButton><div class="button-text" (click)="openMySkills()">See them<span>all!</span></div></button>
-    </div>
-  </div>
-</section>
-<section id="what-i-did" animated #scrollable>
-  <div class="bg-text">Portfolio</div>
-  <div class="cnt">
-    <div class="title">What I've made?</div>
-    <div class="what-i-did-list">
-      <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art>
-        <div class="img-container">
-          <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
-          <div class="art-title-container"><div class="art-title">{{ project.title }}</div></div>
-          <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')"><div class="inside-title">{{ project.title }}</div></div>
-        </div>
-      </div>
-      <div class="hungry" [routerLink]="['/projects']">Still hungry? See my less fancy work...</div>
-    </div>
-  </div>
-</section>
-<app-get-in-touch id="get-in-touch" animated #scrollable>
-</app-get-in-touch>
+<app-section-skills id="what-i-do" animated #scrollable></app-section-skills>
+<app-section-projects id="what-i-did" animated #scrollable></app-section-projects>
+<app-get-in-touch id="get-in-touch" animated #scrollable></app-get-in-touch>

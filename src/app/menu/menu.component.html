@@ -1,8 +1,31 @@
 <div class="progressbar" id="progressbar" #progressbar [ngStyle]="{'height': progressbarHeight+'vh'}"></div>
-<div class="menu-container">
-  <svg class="hamburger-menu">       
+<svg class="logo-top-floating">
+  <image xlink:href="../assets/logo.svg" />
+</svg>
+<div class="backdrop" (click)="opened && toggleMenu()" [ngClass]="{ 'opened': opened }"></div>
+<div class="animating-line" [ngStyle]="{'display': animating ? 'block' : 'none', 'top': lineTop+'px', 'left': lineLeft+'px'}" #animatingLine></div>
+<div class="menu-container" [ngClass]="{ 'opened': opened }">
+  <svg class="hamburger-menu" (click)="toggleMenu()" #hamburger>
     <image xlink:href="../assets/menu.svg" />    
   </svg>
+  <div class="bullets" #bullets>
+    <div class="bullet-cnt" [routerLink]="['/']" (click)="opened && toggleMenu() || navigateTo('start')" #bullet>
+      <div class="bullet" [ngClass]="{'active': currentSection == 'start'}">•</div>
+      <div class="tooltip" [ngClass]="{ 'opened': openedB[0], 'show': openedBShow[0] }">Hey!</div>
+    </div>
+    <div class="bullet-cnt" [routerLink]="['/']" (click)="opened && toggleMenu() || navigateTo('what-i-do')" #bullet>
+      <div class="bullet" [ngClass]="{'active': currentSection == 'what-i-do'}">•</div>
+      <div class="tooltip" [ngClass]="{ 'opened': openedB[1], 'show': openedBShow[1] }">What I do?</div>
+    </div>
+    <div class="bullet-cnt" [routerLink]="['/']" (click)="opened && toggleMenu() || navigateTo('what-i-did')" #bullet>
+      <div class="bullet" [ngClass]="{'active': currentSection == 'what-i-did'}">•</div>
+      <div class="tooltip" [ngClass]="{ 'opened': openedB[2], 'show': openedBShow[2] }">What I've made?</div>
+    </div>
+    <div class="bullet-cnt" [routerLink]="['/']" (click)="opened && toggleMenu() || navigateTo('get-in-touch')" #bullet>
+      <div class="bullet" [ngClass]="{'active': currentSection == 'get-in-touch'}">•</div>
+      <div class="tooltip" [ngClass]="{ 'opened': openedB[3], 'show': openedBShow[3] }">Say hi! 👋🏻</div>
+    </div>
+  </div>
   <nav>
     <div class="menu-item" [routerLink]="['/']"></div>
     <div class="menu-item" [routerLink]="['/']" fragment="what-i-do"></div>

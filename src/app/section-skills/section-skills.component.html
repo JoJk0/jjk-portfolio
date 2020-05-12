@@ -1,0 +1,52 @@
+<div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
+<div class="bg-text">Skills</div>
+  <div class="cnt">
+    <div class="top">
+      <div class="title">What I do?</div>
+      <div class="desc">literally everything, from web design to databases.</div>
+    </div>
+    <div class="skills">
+      <div class="skill angular">
+        <img src="../assets/angular.png" />
+        <mat-chip-list>
+          <mat-chip>Angular</mat-chip>
+        </mat-chip-list>
+        <div class="bg"></div>
+        <div class="bg2"></div>
+        <div class="bg3"></div>
+      </div>
+      <div class="skill nodejs">
+        <img src="../assets/nodejs.png" />
+        <mat-chip-list>
+          <mat-chip>NodeJS</mat-chip>
+        </mat-chip-list>
+        <div class="bg"></div>
+        <div class="bg2"></div>
+        <div class="bg3"></div>
+      </div>
+      <div class="skill php">
+        <img src="../assets/php.png" />
+        <mat-chip-list>
+          <mat-chip>PHP</mat-chip>
+        </mat-chip-list>
+        <div class="bg"></div>
+        <div class="bg2"></div>
+        <div class="bg3"></div>
+      </div>
+    </div>
+    <div class="other-skills">
+      <mat-chip-list>
+        <mat-chip>HTML5</mat-chip>
+        <mat-chip>CSS3</mat-chip>
+        <mat-chip>TypeScript</mat-chip>
+        <mat-chip>Adobe Photoshop</mat-chip>
+        <mat-chip>Git</mat-chip>
+        <mat-chip>Java</mat-chip>
+        <mat-chip>C++</mat-chip>
+        <mat-chip>SQL</mat-chip>
+        <mat-chip>SASS</mat-chip>
+        <mat-chip>jQuery</mat-chip>
+      </mat-chip-list>
+      <button #mySkillsButton><div class="button-text" (click)="openMySkills()"><div class="main">See them all!</div></div></button>
+    </div>
+  </div>

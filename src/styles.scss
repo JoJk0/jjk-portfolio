@@ -7,8 +7,9 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: $cur;
+  outline: none;
 }
 
 html{
@@ -239,10 +240,6 @@ mat-form-field{
 }
 app-my-skills{
   width: 100%;
-}
-app-art-view{
-  // display: flex;
-  // justify-content: space-between;
 }
 
 /* ScrollGSAP Debug */

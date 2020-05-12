@@ -1,1 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 86.52 150.99"><defs><style>.cls-1,.cls-3,.cls-6{fill:none;}.cls-2,.cls-4{fill:#cffdfc;}.cls-2,.cls-3{opacity:0.33;isolation:isolate;}.cls-3,.cls-6{stroke:#cffdfc;stroke-miterlimit:10;}.cls-3{stroke-width:6px;}.cls-5{clip-path:url(#clip-path);}.cls-6{stroke-width:24px;}</style><clipPath id="clip-path" transform="translate(0.02)"><rect class="cls-1" y="106.73" width="86.47" height="44.66"/></clipPath></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><g id="Logo"><g id="Secondary_j" data-name="Secondary j"><rect class="cls-2" x="71.22" y="23.47" width="5.81" height="24.43"/><circle class="cls-3" cx="42.65" cy="105.67" r="30.09"/><circle class="cls-2" cx="42.65" cy="103" r="8.24"/></g><g id="Main_j" data-name="Main j"><circle id="Dot3" class="cls-4" cx="74.51" cy="11.97" r="11.97"/><circle id="Dot2" class="cls-4" cx="74.53" cy="59.62" r="11.97"/><circle id="Dot" class="cls-4" cx="12" cy="106.73" r="11.97"/><g id="SquareCircle"><g class="cls-5"><circle id="Circle" class="cls-6" cx="43.26" cy="107.73" r="31.26"/></g></g><rect class="cls-4" x="62.55" y="59.74" width="23.95" height="46.99"/></g></g></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 86.5 151" style="enable-background:new 0 0 86.5 151;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;}
+	.st1{display:inline;fill:#B53030;stroke:#000000;stroke-miterlimit:10;}
+	.st2{opacity:0.33;fill:#CFFDFC;enable-background:new    ;}
+	.st3{opacity:0.33;fill:none;stroke:#CFFDFC;stroke-width:6;stroke-miterlimit:10;enable-background:new    ;}
+	.st4{fill:#CFFDFC;}
+	.st5{clip-path:url(#SVGID_2_);fill:none;stroke:#CFFDFC;stroke-width:24;stroke-miterlimit:10;}
+</style>
+<g id="Bg" class="st0">
+	<rect class="st1" width="86.5" height="151.4"/>
+</g>
+<g id="Logo_1_">
+	<g id="Secondary_j">
+		<rect id="Rect" x="71.2" y="23.5" class="st2" width="5.8" height="24.4"/>
+		<circle id="Circle_1_" class="st3" cx="42.7" cy="105.7" r="30.1"/>
+		<circle id="Dot" class="st2" cx="42.7" cy="103" r="8.2"/>
+	</g>
+	<g id="Main_j">
+		<circle id="Dot3" class="st4" cx="74.5" cy="12" r="12"/>
+		<circle id="Dot2" class="st4" cx="74.5" cy="59.6" r="12"/>
+		<circle id="Dot1" class="st4" cx="12" cy="106.7" r="12"/>
+		<g id="SquareCircle">
+			<g>
+				<defs>
+					<rect id="SVGID_1_" y="106.7" width="86.5" height="44.7"/>
+				</defs>
+				<clipPath id="SVGID_2_">
+					<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+				</clipPath>
+				<circle id="Circle" class="st5" cx="43.3" cy="107.7" r="31.3"/>
+			</g>
+		</g>
+		<rect id="Square" x="62.6" y="59.7" class="st4" width="23.9" height="48"/>
+	</g>
+</g>
+</svg>

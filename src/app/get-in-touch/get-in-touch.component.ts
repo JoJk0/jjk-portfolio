@@ -30,8 +30,8 @@ export class GetInTouchComponent implements OnInit {
   private shrinkFactor = 1;
 
   inputWidth: Object = {
-    cname: 110,
-    ctopic: 85,
+    cname: 85,
+    ctopic: 75,
     cemail: 230
   };
   inputHeight: number = 32;
