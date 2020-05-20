@@ -8,8 +8,8 @@ export class ScrollGSAPService {
 
   constructor() { }
 
-  static animate(el: HTMLElement, tween: GSAPTween, duration: number, triggerHookStr: string, offset: number, debug = false, origin: string = 'bottom'): void{
-
+  static animate(el: HTMLElement, tween: any, duration: number, triggerHookStr: string, offset: number, debug = false, origin: string = 'bottom'): void{
+    
     const observerOptions = {
       root: null,
       rootMargin: '0px 0px',
@@ -22,6 +22,8 @@ export class ScrollGSAPService {
     timeline
       //.from(el, { opacity: 0, ease: 'none' })
       .add(tween);
+
+      console.log(timeline);
 
     let observer = new IntersectionObserver(entry => {
         if (entry[0].intersectionRatio >= 0) {
@@ -72,10 +74,11 @@ export class ScrollGSAPService {
             break;
           case "bottom":
             triggerHook = window.scrollY + window.innerHeight;
+            break;
           default:
             triggerHook = window.scrollY;
+            break;
         }
-
         const elementPosTop = el.offsetTop;
         const elementPosBottom = elementPosTop+el.offsetHeight;
 

@@ -1,35 +1,16 @@
 <section id="start"></section>
+<div class="background" #hiBackground></div>
 <section id="hi" #hi>
-    <div id="left-nav">
+    <div id="left-nav" #leftNav>
       <svg class="logo-top">       
         <image xlink:href="../assets/logo.svg" />    
       </svg>
-      <svg class="scroll-mouse" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-      viewBox="0 0 120.9 1183.7" style="enable-background:new 0 0 120.9 1183.7;" xml:space="preserve" #scrollMouseSvg>       
-        <style type="text/css">
-          .st0{fill:none;stroke:#C5FFFE;stroke-width:12;stroke-miterlimit:10;}
-          .st1{fill:#C5FFFE;stroke:#C5FFFE;stroke-width:3;stroke-miterlimit:10;}
-          .st2{fill:none;stroke:#C5FFFE;stroke-width:12;stroke-linecap:round;stroke-linejoin:round; opacity: 0;}
-          
-            .st3{opacity:0;fill:none;stroke:#C5FFFE;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;enable-background:new    ;}
-        </style>
-        <g id="scroll">
-          <g id="rect">
-            <path class="st0" d="M60.5,6L60.5,6C90.6,6,115,30.4,115,60.5v96.7c0,30.1-24.4,54.5-54.5,54.5l0,0C30.4,211.6,6,187.2,6,157.2
-              V60.5C6,30.4,30.4,6,60.5,6z"/>
-            <path class="st1" d="M60.9,32.6L60.9,32.6c2.8,0,5.1,2.3,5.1,5.1v20.7c0,2.8-2.3,5.1-5.1,5.1l0,0c-2.8,0-5.1-2.3-5.1-5.1V37.7
-              C55.8,34.9,58.1,32.6,60.9,32.6z"/>
-          </g>
-          <g id="arrow-down">
-            <line class="st2" x1="92.3" y1="1146.3" x2="60.9" y2="1177.7"/>
-            <line class="st2" x1="28.8" y1="1146.3" x2="60.1" y2="1177.7"/>
-          </g>
-          <g id="line">
-            <line class="st3" x1="60.9" y1="293.2" x2="60.9" y2="1060.6"/>
-          </g>
-        </g>
-      </svg>
-      <div class="socials">
+      <div class="scroll-mouse" #scrollMouseSvg>
+        <svg class="rect"><image xlink:href="../assets/scroll-mouse.svg/rect.svg" /></svg>
+        <div class="line"></div>
+        <svg class="arrow-down"><image xlink:href="../assets/scroll-mouse.svg/arrow-down.svg" /></svg>
+      </div>
+      <div class="socials" #leftNavSocials>
         <div class="social" matTooltip="jjk.io" matTooltipClass="contact-tooltip" matTooltipPosition="after">
             <img src="../assets/fb.png" alt="" class="layer1" />
         </div>
@@ -45,10 +26,35 @@
     </div>
     </div>
     <div class="cnt">
-      <svg class="logo">       
-        <image xlink:href="../assets/logo-raw.svg" />    
-      </svg>
-      <div class="intro">Hey! I’m Jacob.</div>
-      <div class="desc"><p>a full-stack developer</p><p>and web designer.</p></div>
+      <div class="logo-skeleton" #logoSkeleton></div>
+      <div class="logo" [ngStyle]="{'left': logoPos+'px', 'height': logoHeight+'px'}" #logoAnimated id="logo-animated">
+        <div class="cnt">
+          <div class="mainRect">
+            <div class="rect" [ngStyle]="{ 'height': logoHeight+'px'}"></div>
+            <div class="round"></div>
+          </div>
+          <div class="mainJUpper"></div>
+          <svg class="mainJLower" viewBox="0 0 86.67 103.43">
+            <defs>
+              <style>
+                .cls-1{fill:none;stroke:#cffdfc;stroke-linecap:round;stroke-miterlimit:10;stroke-width:24px;}
+              </style>
+            </defs>
+            <path class="cls-1" d="M12,59.14C12.05,61,12.74,77.28,25.44,86a32.79,32.79,0,0,0,15.31,5.33,31.34,31.34,0,0,0,13-1.7A30.84,30.84,0,0,0,63.48,84a32.8,32.8,0,0,0,9.08-13.47,36.15,36.15,0,0,0,2.09-12.9c0-11,.08-26.51-.06-45.67" />
+          </svg>
+          <div class="secondaryRect"></div>
+          <div class="secondaryPoint"></div>
+          <svg class="secondaryCircle" viewBox="0 0 66.2 66.2">
+            <defs>
+              <style>
+                .svgCircle{fill:none;stroke:#cffdfc;stroke-linecap:round;stroke-linejoin:round;stroke-width:6px;opacity:0.33;isolation:isolate;}
+              </style>
+            </defs>
+            <circle id="Circle" class="svgCircle" cx="33.1" cy="33.1" r="30.1" />
+          </svg>
+        </div>
+      </div>
+      <div class="intro" #intro>Hey! I’m {{ currentNameVal }}<span class="head" #head>|</span></div>
+      <div class="desc" #introDesc><p>a full-stack developer</p><p>and web designer.</p></div>
     </div>
 </section>

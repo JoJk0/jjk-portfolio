@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ComponentFactoryResolver, ComponentRef, ViewContainerRef, ComponentFactory, ViewChildren, QueryList, HostListener, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ComponentFactoryResolver, ComponentRef, ViewContainerRef, ComponentFactory, ViewChildren, QueryList, HostListener, Input, ChangeDetectorRef } from '@angular/core';
 import { SectionHiComponent } from '../section-hi/section-hi.component';
 import { MySkillsComponent } from '../my-skills/my-skills.component';
 import { gsap } from 'gsap';
@@ -10,6 +10,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CallService } from '../call.service';
 import { Subscription } from 'rxjs';
+import { ScrollGSAPService } from '../scroll-gsap.service';
 
 @Component({
   selector: 'app-main',
@@ -20,17 +21,17 @@ import { Subscription } from 'rxjs';
 export class MainComponent implements AfterViewInit, OnInit {
   
   // Section refs
-  @ViewChildren('scrollable', {read: ElementRef})
-  sections: QueryList<ElementRef>;
+  @ViewChildren('scrollable', {read: ElementRef}) sections: QueryList<ElementRef>;
+  @ViewChildren('skeleton', {read: ElementRef}) skeletons: QueryList<ElementRef>;
 
-  private componentRef: ComponentRef<any>;
-
+  // Global vars
   public currentSection: string;
+  public sectionHeights: number[] = [0,0,0,0];
 
   // Subscriptions
   navToSub: Subscription;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, public dialog: MatDialog, private jsonData: DataJsonService, private location: Location, private route: ActivatedRoute, private router: Router, private callService: CallService) { }
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, public dialog: MatDialog, private jsonData: DataJsonService, private location: Location, private route: ActivatedRoute, private router: Router, private callService: CallService, private detector: ChangeDetectorRef) { }
 
   @HostListener('window:scroll', ['$event.target'])
   onScroll(targetElement: string) {
@@ -45,7 +46,14 @@ export class MainComponent implements AfterViewInit, OnInit {
   
   ngAfterViewInit(): void { 
 
-    this.updateCurrentSection();
+    setTimeout(() => {
+      this.updateCurrentSection();
+    }, 0);
+
+    // Set skeleton heights
+    this.updateSkeleton();
+
+    this.animateScrollTransitions();
 
   }
 
@@ -70,16 +78,58 @@ export class MainComponent implements AfterViewInit, OnInit {
   }
 
   updateCurrentSection(){
-    let currentSectionEl: ElementRef;
-    let currentPos = window.pageYOffset || document.documentElement.scrollTop;
-    this.sections.forEach((section) => {
-      let sectionPos = section.nativeElement.getBoundingClientRect();
-      if(currentPos >= sectionPos.top && currentPos < sectionPos.bottom){
-        currentSectionEl = section;
-      }
+    // let currentSectionEl: ElementRef;
+    // let currentPos = window.pageYOffset || document.documentElement.scrollTop;
+    // this.skeletons.forEach((section) => {
+    //   let sectionPos = section.nativeElement.getBoundingClientRect();
+    //   if(currentPos >= sectionPos.top && currentPos < sectionPos.bottom){
+    //     currentSectionEl = section;
+    //   }
+    // });
+    // setTimeout(() => {
+    //   this.currentSection = currentSectionEl.nativeElement.id;
+    //   this.callService.sendCurrentSection(this.currentSection);
+    // }, 0);
+  }
+
+  private updateSkeleton(): void{
+    this.sections.forEach((section, i=0) => {
+      setTimeout(() => {
+        let height = section.nativeElement.offsetHeight;
+        this.sectionHeights[i] = height;
+        console.log(this.sectionHeights);
+        this.detector.detectChanges();
+      }, 0);
     });
-    this.currentSection = currentSectionEl.nativeElement.id;
-    this.callService.sendCurrentSection(this.currentSection);
+  }
+
+  animateScrollTransitions(): void{
+
+    let duration = window.innerHeight/2;
+
+    this.skeletons.forEach((skeleton, i=0) => {
+
+      this.sections.forEach((section, j=0) => {
+        if(i == j){
+          // Show
+          let tween = gsap.to(section.nativeElement, { zIndex: 0 });
+          ScrollGSAPService.animate(skeleton.nativeElement, tween, 0, "bottom", duration, false, 'top');
+          // Hide
+          let tween2 = gsap.to(section.nativeElement, { zIndex: -1 });
+          ScrollGSAPService.animate(skeleton.nativeElement, tween2, 0, "bottom", duration, false, 'bottom');
+        }
+      });
+
+    });
+
+    // // In
+    // let tween2 = gsap.to(el, { opacity: 1 ,ease: 'power2.in'});
+    // ScrollGSAPService.animate(el, tween2, duration, "center", -duration/2, false, 'top');
+
+    //  // Out
+    // let tween = gsap.to(el, { opacity: 0, ease: 'power2.out' });
+    // ScrollGSAPService.animate(el, tween, duration, "center", 0, false);
+    
   }
 
 }

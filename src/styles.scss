@@ -13,10 +13,10 @@
 }
 
 html{
-  scroll-snap-type: proximity;
-  scroll-snap-points-y: repeat(100vh);
-  scroll-snap-type: y proximity;
-  scroll-snap-stop: always;
+  // scroll-snap-type: proximity;
+  // scroll-snap-points-y: repeat(100vh);
+  // scroll-snap-type: y proximity;
+  // scroll-snap-stop: always;
   scroll-behavior: smooth;
 }
 
@@ -81,6 +81,7 @@ app-portfolio{
   padding-top: 10em;
 }
 /* I appreciate that you want to contact me again but my inbox is busy and I will need to ask you to wait 5mins */
+
 /* Text */
 
 h1 {

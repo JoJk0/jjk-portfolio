@@ -6,12 +6,14 @@ app-get-in-touch{
   justify-content: center;
   min-height: 100vh;
 }
-#what-i-do, #what-i-did, #get-in-touch{
+#start, #what-i-do, #what-i-did, #get-in-touch{
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-height: 100vh;
   width: 100vw;
   background: $c-bg;
-  //clip-path:polygon(0% 4em, 25% 0em, 50% 2em, 75% 0em, 100% 4em, 100% 100%, 0 100%);
-  position: relative;
-  opacity: 0;
+  z-index: -1;
 }
 #what-i-did{
   background: $c-bg;
@@ -19,4 +21,13 @@ app-get-in-touch{
   padding-top: 0;
   height: auto;
   clip-path: none;
+}
+#main-skeleton{
+  z-index: -2;
+  position: relative;
+  div{
+    width: 100vw;
+    //border: 3px solid yellow;
+    border-style: inset;
+  }
 }

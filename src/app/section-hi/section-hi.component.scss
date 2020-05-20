@@ -1,6 +1,6 @@
 @import "../../assets/variables";
 
-mat-chip-list mat-chip{
+mat-chip-list mat-chip {
   transform: scale(1.2);
   padding: 1em;
   z-index: 1;
@@ -8,102 +8,241 @@ mat-chip-list mat-chip{
   font-weight: 800;
   background: $c-text;
 }
-#hi{
-    filter: contrast(1);
-    background: url('../../assets/hi.jpg');
-    width: 100vw;
-    height: 100vh;
-    background-size: 240%; 
-    background-position: 58% bottom;
-    transition: all 0.1s ease-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    //transition: all 0.4s ease;
-    .cnt{
-      padding: 1em;
-      width: 80%;
-    }
-    svg.logo{
-      width: 9em;
-      height: 12em;
-      image{
-        width: 7em;
-        height: 12em;
-      }
-    }
-    .intro{
-      font-size: 5em;
-      line-height: 200%;
-      color: $c-base-dark;
-      font-weight: 800;
-    }
-    .desc p{
-      font-size: 2.5em;
-      line-height: 110%;
-      color: $c-base-light;
-      font-weight: 800;
-    }
-    #scroll-icon{
-      width: 7em;
-      position: absolute;
-      bottom: 2em;
-      left: 47%;
-    }
+.background{
+  content: '';
+  background: url("../../assets/hi.jpg");
+  background-size: 240%;
+  background-position: 58% bottom;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: -1;   
+}
+#hi {
+  filter: contrast(1);
+  background: transparentize($c-bg, $amount: 0);
+  width: 100vw;
+  height: 100vh;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  //transition: all 0.4s ease;
+  .cnt {
+    padding: 1em;
+    width: 80%;
   }
-  #left-nav{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  .logo-skeleton {
+    width: 9em;
+    height: 12em;
+  }
+  .logo {
+    width: 7em;
+    height: 12em;
     position: absolute;
     top: 0;
     left: 0;
-    height: 100vh;
-    svg.logo-top{
+    transform-origin: 0% 60%;
+    transform: scale(3);
+    .cnt{
+      position: relative;
+      width: inherit;
+      height: inherit;
+      padding: 0;
+      div.mainRect{
+        position: absolute;
+        right: 0;
+        width: 1.96em;
+        overflow: hidden;
+        border-radius: 1.96em;
+        .rect{
+          background: $c-text;
+          width: 1.96em;
+          height: 4em;
+          border-top-left-radius: 1.96em;
+          border-top-right-radius: 1.96em;
+          // opacity: 0;
+        }
+        .round{
+          border-bottom-left-radius: 100%;
+          border-bottom-right-radius: 100%;
+          background: $c-text;
+          width: 1.96em;
+          height: 1.96em;
+          margin-top: -1px;
+        }
+      }
+      div.mainJUpper{
+        width: 1.96em;
+        height: 1.96em;
+        background: $c-text;
+        position: absolute;
+        bottom: 10.5em;
+        right: 0;
+        border-radius: 100%;
+      }
+      svg.mainJLower{
+        position: absolute;
+        bottom: 0;
+        width: 7em;
+        height: 9em;
+        image{
+          width: 7em;
+          height: 9em;
+        }
+        path{
+          stroke-dasharray: 230;
+          stroke-dashoffset: -148;
+        }
+      }
+      div.secondaryRect{
+        background: transparentize($c-text, $amount: 0.66);
+        width: 0.45em;
+        height: 3em;
+        position: absolute;
+        bottom: 8em;
+        right: 0.8em;
+      }
+      div.secondaryPoint{
+        width: 1.3em;
+        height: 1.3em;
+        background: transparentize($c-text, $amount: 0.66);
+        border-radius: 100%;
+        position: absolute;
+        bottom: 3.5em;
+        left: 2.8em;
+      }
+      svg.secondaryCircle{
+        position: absolute;
+        bottom: 1.5em;
+        width: 5em;
+        left: 1em;
+        opacity: 0;
+        circle{
+          stroke-dasharray: 132;
+          stroke-dashoffset: 32;
+        }
+      }
+    }
+  }
+  .intro {
+    font-size: 5em;
+    line-height: 200%;
+    color: $c-base-dark;
+    font-weight: 800;
+    transform-origin: left center;
+    overflow: hidden;
+    white-space: nowrap;
+    .head{
+      font-size: 1.2em;
+      font-weight: 100;
       opacity: 0;
+    }
+  }
+  .desc{
+    transform-origin: left center;
+  }
+  .desc p {
+    font-size: 2.5em;
+    line-height: 110%;
+    color: $c-base-light;
+    font-weight: 800;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  #scroll-icon {
+    width: 7em;
+    position: absolute;
+    bottom: 2em;
+    left: 47%;
+  }
+}
+#left-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  opacity: 0;
+  svg.logo-top {
+    opacity: 0;
+    width: 3em;
+    height: 3em;
+    margin: 1em;
+    image {
       width: 3em;
       height: 3em;
-      margin: 1em;
+    }
+  }
+  .scroll-mouse {
+    margin: 2em;
+    width: 1.4em;
+    height: 15em;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    // image {
+    //   width: 1.4em;
+    //   height: 15em;
+    // }
+    svg.rect{
+      width: 1.5em;
+      height: 3em;
       image{
-        width: 3em;
+        width: inherit;
         height: 3em;
       }
     }
-    svg.scroll-mouse{
-      margin: 2em;
-      width: 1.4em;
-      height: 15em;
+    div.line{
+      width: 0.1em;
+      height: 8em;
+      margin: 1em 0;
+      background: #FFF;
+      opacity: 0.33;
+    }
+    svg.arrow-down{
+      width: 1em;
+      height: 1em;
       image{
-        width: 1.4em;
-        height: 15em;
+        width: inherit;
+        height: 1em;
       }
     }
-    .socials{
-      display: flex;
-      flex-direction: column;
+  }
+  .socials {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    .social {
+      position: relative;
+      width: 1.7em;
+      height: 1.7em;
       margin: 1em;
-      .social{
-          position: relative;
-          width: 1.7em;
-          height: 1.7em;
-          margin: 1em;
-          filter: brightness(0) saturate(100%) invert(99%) sepia(99%) saturate(413%) hue-rotate(81deg) brightness(106%) contrast(106%);
-          transition: all 0.2s ease;
-          .layer1{
-              position: absolute;
-              width: 100%;
-          }
-          &:hover{
-              filter: none;
-              .layer1{
-                  filter: none;
-              }
-          }
+      filter: brightness(0) saturate(100%) invert(99%) sepia(99%) saturate(413%) hue-rotate(81deg) brightness(106%)
+        contrast(106%);
+      transition: all 0.2s ease;
+      .layer1 {
+        position: absolute;
+        width: 100%;
       }
+      &:hover {
+        filter: none;
+        .layer1 {
+          filter: none;
+        }
+      }
+    }
   }
-  }
+}

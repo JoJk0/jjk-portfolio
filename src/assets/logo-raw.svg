@@ -6,16 +6,18 @@
 	.st0{display:none;}
 	.st1{display:inline;fill:#B53030;stroke:#000000;stroke-miterlimit:10;}
 	.st2{opacity:0.33;fill:#CFFDFC;enable-background:new    ;}
-	.st3{opacity:0.33;fill:none;stroke:#CFFDFC;stroke-width:6;stroke-miterlimit:10;enable-background:new    ;}
+	
+		.st3{opacity:0.33;fill:none;stroke:#CFFDFC;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;enable-background:new    ;}
 	.st4{fill:#CFFDFC;}
 	.st5{clip-path:url(#SVGID_2_);fill:none;stroke:#CFFDFC;stroke-width:24;stroke-miterlimit:10;}
+	.st6{display:none;fill:none;stroke:#CFFDFC;stroke-width:24;stroke-linecap:round;stroke-miterlimit:10;}
 </style>
 <g id="Bg" class="st0">
 	<rect class="st1" width="86.5" height="151.4"/>
 </g>
 <g id="Logo_1_">
 	<g id="Secondary_j">
-		<rect id="Rect" x="71.2" y="23.5" class="st2" width="5.8" height="24.4"/>
+		<rect id="Rect" x="71.2" y="23.5" class="st2" width="5.8" height="79.5"/>
 		<circle id="Circle_1_" class="st3" cx="42.7" cy="105.7" r="30.1"/>
 		<circle id="Dot" class="st2" cx="42.7" cy="103" r="8.2"/>
 	</g>
@@ -37,4 +39,6 @@
 		<rect id="Square" x="62.6" y="59.7" class="st4" width="23.9" height="48"/>
 	</g>
 </g>
+<path class="st6" d="M12,106.7c0.1,1.9,0.7,18.1,13.4,26.9c6.6,4.5,13.8,5.2,15.3,5.3c2.7,0.2,7.5,0.3,13-1.7c5-1.8,8.3-4.4,9.7-5.6
+	c1-0.9,6.1-5.4,9.1-13.5c2.1-5.8,2.1-10.6,2.1-12.9c0-11,0.1-26.5-0.1-45.7"/>
 </svg>
