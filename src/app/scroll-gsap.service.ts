@@ -23,7 +23,7 @@ export class ScrollGSAPService {
       //.from(el, { opacity: 0, ease: 'none' })
       .add(tween);
 
-      console.log(timeline);
+      //console.log(timeline);
 
     let observer = new IntersectionObserver(entry => {
         if (entry[0].intersectionRatio >= 0) {
@@ -55,7 +55,7 @@ export class ScrollGSAPService {
       document.body.prepend(animationStartDOM); 
       document.body.prepend(animationEndDOM); 
 
-      console.log(true);
+      //console.log(true);
 
     }
 

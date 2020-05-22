@@ -135,11 +135,14 @@ mat-chip-list mat-chip {
   .intro {
     font-size: 5em;
     line-height: 200%;
-    color: $c-base-dark;
+    color: transparent;
     font-weight: 800;
     transform-origin: left center;
     overflow: hidden;
     white-space: nowrap;
+    background: linear-gradient(5deg, rgba(121,126,247,1) 26%, rgba(0,255,206,1) 59%);
+    background-clip: text;
+    display: inline-block;
     .head{
       font-size: 1.2em;
       font-weight: 100;

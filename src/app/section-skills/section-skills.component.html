@@ -1,12 +1,12 @@
 <div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
 <div class="bg-text">Skills</div>
-  <div class="cnt">
+  <div class="cnt" #mySkills>
     <div class="top">
-      <div class="title">What I do?</div>
-      <div class="desc">literally everything, from web design to databases.</div>
+      <div class="title" #skillsTitle>What I do?</div>
+      <div class="desc" #skillsText>literally everything, from web design to databases.</div>
     </div>
     <div class="skills">
-      <div class="skill angular">
+      <div class="skill angular" #skill>
         <img src="../assets/angular.png" />
         <mat-chip-list>
           <mat-chip>Angular</mat-chip>
@@ -15,7 +15,7 @@
         <div class="bg2"></div>
         <div class="bg3"></div>
       </div>
-      <div class="skill nodejs">
+      <div class="skill nodejs" #skill>
         <img src="../assets/nodejs.png" />
         <mat-chip-list>
           <mat-chip>NodeJS</mat-chip>
@@ -24,7 +24,7 @@
         <div class="bg2"></div>
         <div class="bg3"></div>
       </div>
-      <div class="skill php">
+      <div class="skill php" #skill>
         <img src="../assets/php.png" />
         <mat-chip-list>
           <mat-chip>PHP</mat-chip>
@@ -34,18 +34,18 @@
         <div class="bg3"></div>
       </div>
     </div>
-    <div class="other-skills">
-      <mat-chip-list #skillsClouds>
-        <mat-chip>HTML5</mat-chip>
-        <mat-chip>CSS3</mat-chip>
-        <mat-chip>TypeScript</mat-chip>
-        <mat-chip>Photoshop</mat-chip>
-        <mat-chip>Git</mat-chip>
-        <mat-chip>Java</mat-chip>
-        <mat-chip>C++</mat-chip>
-        <mat-chip>SQL</mat-chip>
-        <mat-chip>SASS</mat-chip>
-        <mat-chip>jQuery</mat-chip>
+    <div class="other-skills" #otherSkills>
+      <mat-chip-list >
+        <mat-chip #skillCloud>HTML5</mat-chip>
+        <mat-chip #skillCloud>CSS3</mat-chip>
+        <mat-chip #skillCloud>TypeScript</mat-chip>
+        <mat-chip #skillCloud>Photoshop</mat-chip>
+        <mat-chip #skillCloud>Git</mat-chip>
+        <mat-chip #skillCloud>Java</mat-chip>
+        <mat-chip #skillCloud>C++</mat-chip>
+        <mat-chip #skillCloud>SQL</mat-chip>
+        <mat-chip #skillCloud>SASS</mat-chip>
+        <mat-chip #skillCloud>jQuery</mat-chip>
       </mat-chip-list>
       <button #mySkillsButton><div class="button-text" (click)="openMySkills()"><div class="main">See them all!</div></div></button>
     </div>

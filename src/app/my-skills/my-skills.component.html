@@ -1,18 +1,18 @@
-<div class="dialog-close" (click)="close()"><button mat-icon-button><mat-icon>close</mat-icon></button></div>
-<div class="bg-title">All skills</div>
+<div class="dialog-close" (click)="close()" #closeDialogButton><button mat-icon-button><mat-icon>close</mat-icon></button></div>
+<div class="bg-title" #bgTitle>All skills</div>
 <div class="container">
     <div class="skills-list-all">
         <div class="skills-list-cat" *ngFor="let category of skills">
-            <div class="skills-cat-title">{{category.title}}</div>
+            <div class="skills-cat-title" #catTitle>{{category.title}}</div>
             <mat-chip-list>
-                <mat-chip *ngFor="let skill of category.SubSkills">{{skill}}</mat-chip>
+                <mat-chip *ngFor="let skill of category.SubSkills" #skill>{{skill}}</mat-chip>
             </mat-chip-list>
         </div>
     </div>
-    <div class="uni-modules">
-        <div class="title">Uni Modules</div>
+    <div class="uni-modules" #uniModulesContainer>
+        <div class="title" #uniModulesTitle>Uni Modules</div>
         <div class="modules-list">
-            <div class="module" *ngFor="let uniModule of uniModules">{{uniModule}}</div>
+            <div class="module" *ngFor="let uniModule of uniModules" #module>{{uniModule}}</div>
         </div>
         <mat-icon>expand_more</mat-icon>
     </div>

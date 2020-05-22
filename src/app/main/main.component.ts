@@ -97,7 +97,7 @@ export class MainComponent implements AfterViewInit, OnInit {
       setTimeout(() => {
         let height = section.nativeElement.offsetHeight;
         this.sectionHeights[i] = height;
-        console.log(this.sectionHeights);
+        //console.log(this.sectionHeights);
         this.detector.detectChanges();
       }, 0);
     });

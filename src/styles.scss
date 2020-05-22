@@ -224,8 +224,9 @@ mat-form-field{
 .skills-opener{
   background: $c-base-dark; 
 }
+.mat-dialog { transition: none; }
 #my-skills-container{
-  background: transparent;
+  background: $c-base-dark;
   overflow: hidden;
   z-index: 17;
   color: $c-bg;
