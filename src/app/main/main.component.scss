@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../assets/variables";
 
 app-get-in-touch{
@@ -15,6 +16,9 @@ app-get-in-touch{
   background: $c-bg;
   z-index: -1;
 }
+#start{
+  z-index: 5;
+}
 #what-i-did{
   background: $c-bg;
   margin-top: 0;
@@ -29,5 +33,28 @@ app-get-in-touch{
     width: 100vw;
     //border: 3px solid yellow;
     border-style: inset;
+  }
+}
+
+// Mobile portrait
+@media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
+  .outer-bg{
+    background: $c-button-gradient;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1em;
+    app-section-hi{
+      position: relative;
+      width: stretch !important;
+      height: stretch;
+      min-width: calc(100vw - 2em) !important;
+      min-height: calc(100vh - 2em) !important;
+      border-radius: 2em;
+      margin: 1em;
+      overflow: hidden;
+    }
   }
 }

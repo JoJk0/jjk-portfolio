@@ -1,3 +1,16 @@
+<svg height="0" width="0" viewBox="0 0 645.44 601.53">
+  <defs>
+    <clipPath id="skillBgPath">
+      <path transform="scale(0.247)" class="skillBgPath" d="M0,201.47c-1.1,96.24,108.8,177.15,108.8,177.15L193.68,439l115.06,85.44L352,556.34S449.44,637.8,532,582,644.82,232.23,644.82,232.23s7.83-111.89-32-160S550.36,14.18,494,2,214.16,36.85,214.16,36.85,1.52,69.18,0,201.47Z" />
+    </clipPath>
+    <clipPath id="buttonBg1">
+      <path transform="scale(1.14)" class="buttonBg1" d="M1,66.07s-4.81,12.75,7.09,13,205.5,4.53,205.5,4.53,13,2,15-8.79,23-66,23-66S253.23-.54,240.48,0,36.11,7.11,36.11,7.11,25.06,8,20,18.17Z" />
+    </clipPath>
+    <clipPath id="buttonBg2">
+      <path transform="scale(1.14)" class="buttonBg2" d="M.12,31.81s-1.7-9.64,7.65-10.2S209.87.06,209.87.06s12.19-1.41,14.46,9.07,15.59,64.63,15.59,64.63S244.73,84,231.7,85.1,23.93,93.88,23.93,93.88,11.18,95.59,9.47,82.55.12,31.81.12,31.81Z" />
+    </clipPath>
+  </defs>
+</svg>
 <div id="my-skills-background" #mySkillsBackground [ngStyle]="mySkillsPos"></div>
 <div class="bg-text">Skills</div>
   <div class="cnt" #mySkills>
@@ -7,31 +20,37 @@
     </div>
     <div class="skills">
       <div class="skill angular" #skill>
-        <img src="../assets/angular.png" />
+        <div class="skill-top">
+          <img src="../assets/angular.png" />
+          <div class="bg"></div>
+          <div class="bg2"></div>
+          <div class="bg3"></div>
+        </div>
         <mat-chip-list>
           <mat-chip>Angular</mat-chip>
         </mat-chip-list>
-        <div class="bg"></div>
-        <div class="bg2"></div>
-        <div class="bg3"></div>
       </div>
       <div class="skill nodejs" #skill>
-        <img src="../assets/nodejs.png" />
+        <div class="skill-top">
+          <img src="../assets/nodejs.png" />
+          <div class="bg"></div>
+          <div class="bg2"></div>
+          <div class="bg3"></div>
+        </div>
         <mat-chip-list>
           <mat-chip>NodeJS</mat-chip>
         </mat-chip-list>
-        <div class="bg"></div>
-        <div class="bg2"></div>
-        <div class="bg3"></div>
       </div>
       <div class="skill php" #skill>
-        <img src="../assets/php.png" />
+        <div class="skill-top">
+          <img src="../assets/php.png" />
+          <div class="bg"></div>
+          <div class="bg2"></div>
+          <div class="bg3"></div>
+        </div>
         <mat-chip-list>
           <mat-chip>PHP</mat-chip>
         </mat-chip-list>
-        <div class="bg"></div>
-        <div class="bg2"></div>
-        <div class="bg3"></div>
       </div>
     </div>
     <div class="other-skills" #otherSkills>

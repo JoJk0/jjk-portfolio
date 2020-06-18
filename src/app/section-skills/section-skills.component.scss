@@ -51,6 +51,7 @@ mat-chip-list mat-chip{
     min-height: 100vh;
     .top{
       width: 80%;
+      margin-top: -3em;
       .title{
         color: transparent;
         font-size: 4em;
@@ -85,94 +86,80 @@ mat-chip-list mat-chip{
       .skill{
         position: relative;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         transform: scale(1.3);
         z-index: 20;
         &.angular{
           .bg, .bg2, .bg3{
-            clip-path:polygon(20% 10%, 90% 30%, 90% 80%, 30% 100%, 10% 30%);
+            // clip-path:polygon(20% 10%, 90% 30%, 90% 80%, 30% 100%, 10% 30%);
+            clip-path: url(#skillBgPath);
+            top: 10%;
+            left: 0%;
           }
-          &:hover{
-            img{
-              transform: scale(1.1);
-              transition: all 0.2s ease;
-            }
-            .bg, .bg2, .bg3{
-              clip-path:polygon(30% 0, 90% 20%, 90% 90%, 20% 100%, 0 40%);
-              transition: all 1s ease;
-            }
-          }
+          .bg { background: linear-gradient(5deg, rgba(0,204,187,1) 0%, rgba(0,255,234,1) 100%); }
+          .bg2{ background: linear-gradient(5deg, rgba(223,26,255,1) 0%, rgba(227,54,255,1) 100%); transform: rotate(-10deg); }
+          .bg3{ background: linear-gradient(5deg, rgba(255,211,144,1) 0%, rgba(255,211,144,1) 100%); transform: rotate(-20deg); }
         }
         &.nodejs{
           .bg, .bg2, .bg3{
-            clip-path:polygon(30% 15%, 95% 30%, 75% 100%, 30% 95%, 0 50%);
+            // clip-path:polygon(30% 15%, 95% 30%, 75% 100%, 30% 95%, 0 50%);
+            clip-path: url(#skillBgPath);
+            top: -5%;
+            left: -10%;
           }
-          &:hover{
-            img{
-              transform: scale(1.1);
-              transition: all 0.2s ease;
-            }
-            .bg, .bg2, .bg3{
-              clip-path:polygon(35% 10%, 100% 15%, 80% 95%, 15% 100%, 0 65%);
-              transition: all 1s ease;
-            }
-          }
+          .bg { background: linear-gradient(-85deg, rgba(0,204,187,1) 0%, rgba(0,255,234,1) 100%); transform: rotate(100deg); }
+          .bg2{ background: linear-gradient(-85deg, rgba(223,26,255,1) 0%, rgba(227,54,255,1) 100%); transform: rotate(90deg); }
+          .bg3{ background: linear-gradient(-85deg, rgba(255,211,144,1) 0%, rgba(255,211,144,1) 100%); transform: rotate(80deg); }
         }
         &.php{
           .bg, .bg2, .bg3{
-            clip-path:polygon(10% 25%, 90% 10%, 90% 85%, 40% 95%, 10% 80%);
+            // clip-path:polygon(10% 25%, 90% 10%, 90% 85%, 40% 95%, 10% 80%);
+            clip-path: url(#skillBgPath);
+            top: 10%;
+            left: 5%;
           }
-          &:hover{
-            img{
-              transform: scale(1.1);
-              transition: all 0.2s ease;
-            }
-            .bg, .bg2, .bg3{
-              clip-path:polygon(5% 20%, 85% 5%, 85% 90%, 45% 100%, 5% 85%);
-              transition: all 1s ease;
-            }
-          }
+          .bg { background: linear-gradient(65deg, rgba(0,204,187,1) 0%, rgba(0,255,234,1) 100%); transform: rotate(-50deg); }
+          .bg2{ background: linear-gradient(65deg, rgba(223,26,255,1) 0%, rgba(227,54,255,1) 100%); transform: rotate(-60deg); }
+          .bg3{ background: linear-gradient(65deg, rgba(255,211,144,1) 0%, rgba(255,211,144,1) 100%); transform: rotate(-70deg); }
         }
-        .bg{
-          background: linear-gradient(5deg, rgba(0,204,187,0.5) 0%, rgba(0,255,234,1) 100%);
-          mix-blend-mode: hard-light;
-          //transition: all 1s ease;
-          position: absolute;
-          top: 0;
-          left: 10%;
-          width: 80%;
-          height: 45%;
-          z-index: 3;
-        }
-        .bg2{
-          background: linear-gradient(5deg, rgba(223,26,255,0.5) 0%, rgba(227,54,255,1) 100%);
-          mix-blend-mode: screen;
-          //transition: all 1s ease;
-          position: absolute;
-          top: 0;
-          left: 10%;
-          width: 80%;
-          height: 45%;
-          z-index: 2;
-          transform: rotate(-30deg);
-        }
-        .bg3{
-          background: linear-gradient(5deg, rgba(255,211,144,0.5) 0%, rgba(255,211,144,1) 100%);
-          mix-blend-mode: screen;
-          //transition: all 1s ease;
-          position: absolute;
-          top: 0;
-          left: 10%;
-          width: 80%;
-          height: 45%;
-          z-index: 1;
-          transform: rotate(-60deg);
-        }
-        img{
-          width: 8em;
-          z-index: 4;
+        .skill-top{
           position: relative;
-          margin: 1em;
-          //transition: all 0.2s ease;
+          width: min-content;
+          height: min-content;
+          .bg{
+            mix-blend-mode: hard-light;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+          }
+          .bg2{
+            mix-blend-mode: screen;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+          }
+          .bg3{
+            mix-blend-mode: screen;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+          }
+          img{
+            width: 8em;
+            z-index: 4;
+            position: relative;
+            margin: 1em;
+            transition: all 0.2s ease;
+            &:hover{
+              transform: scale(1.1);
+            }
+          }
         }
         mat-chip-list mat-chip{
           transform: scale(1.1);
@@ -233,17 +220,14 @@ mat-chip-list mat-chip{
         position: relative;
         transition: transform 0.2s ease;
         *{
-          font-size: 1.1rem;
+          font-size: 1.2rem;
         }
         &:hover{
-          transform: scale(0.9);
+          transform: scale(1.1);
           opacity: 1;
           .button-text{
-            .main{
-              clip-path: polygon(15% 15%, 85% 15%, 85% 85%, 15% 85%);
-            }
             &:before{
-              clip-path: polygon(20% 25%, 90% 25%, 90% 95%, 20% 95%);
+              transform: rotate(-5deg);
             }
           }
         }
@@ -251,26 +235,28 @@ mat-chip-list mat-chip{
           margin: 0;
           padding: 0;
           .main{
-            clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
+            // clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
+            clip-path: url(#buttonBg1);
             background: $c-button-gradient;
             width: 18rem;
             line-height: 6rem;
             position: absolute;
-            top: 0;
+            top: 0%;
             left: 0;
             font-size: 1.3em;
             transition: clip-path 0.2s ease;
           }
           &:before{
             content: "";
-            clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
+            // clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
+            clip-path: url(#buttonBg2);
             background: $c-button-gradient-inverted;
             position: absolute;
-            top: 0;
+            top: -7%;
             left: 0;
             width: 18rem;
-            height: 6rem;
-            transition: clip-path 0.2s ease;
+            height: 7rem;
+            transition: transform 0.2s ease;
           }
         }
       }

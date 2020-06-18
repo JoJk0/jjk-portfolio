@@ -1,59 +1,92 @@
 import { Injectable } from '@angular/core';
 import { gsap } from 'gsap';
+import { animation } from '@angular/animations';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class ScrollGSAPService {
 
-  constructor() { }
+  public animationID: any;
+  public intersectionRatio: number;
+  public triggerHookDOM: HTMLElement;
+  public animationStartDOM: HTMLElement;
+  public animationEndDOM: HTMLElement;
+  public debugBoxDOM: HTMLElement;
 
-  static animate(el: HTMLElement, tween: any, duration: number, triggerHookStr: string, offset: number, debug = false, origin: string = 'bottom'): void{
+  private el: HTMLElement;
+  private tween: any;
+  private duration: number;
+  private triggerHookStr: string;
+  private offset: number;
+  private debug: boolean;
+  private origin: string;
+  private timeline: any;
+  private observer: IntersectionObserver;
+
+  constructor(settings: any) { 
+    this.el = settings.el;
+    this.tween = settings.tween;
+    this.duration = settings.duration;
+    this.triggerHookStr = settings.triggerHook;
+    this.offset = settings.offset;
+    this.debug = settings.debug;
+    this.origin = settings.origin;
+  }
+
+  animate(): void{
     
     const observerOptions = {
       root: null,
       rootMargin: '0px 0px',
-      threshold: 0
+      threshold: this.generateTresholds(100)
     };
 
-    let timeline = gsap.timeline({ paused: true });
-    let animationID = el.id;
+    this.timeline = gsap.timeline({ paused: true });
+    this.animationID = this.el.id;
 
-    timeline
+    this.timeline
       //.from(el, { opacity: 0, ease: 'none' })
-      .add(tween);
+      .add(this.tween);
 
       //console.log(timeline);
 
-    let observer = new IntersectionObserver(entry => {
-        if (entry[0].intersectionRatio >= 0) {
+    this.observer = new IntersectionObserver(entry => {
+      if(this.debug == true){
+        this.intersectionRatio = entry[0].intersectionRatio;
+      }
+        if (entry[0].intersectionRatio > 0) {
             gsap.ticker.add(progressTween)
         } else {
             gsap.ticker.remove(progressTween)
         }
     }, observerOptions);
     
-    if(debug == true){
+    if(this.debug == true){
       
-      var triggerHookDOM = document.createElement("div");
-      var animationStartDOM = document.createElement("div");
-      var animationEndDOM = document.createElement("div");
+      this.triggerHookDOM = document.createElement("div");
+      this.animationStartDOM = document.createElement("div");
+      this.animationEndDOM = document.createElement("div");
 
-      triggerHookDOM.id = "debug-trigger-hook-"+animationID;
-      animationStartDOM.id = "animation-start-"+animationID;
-      animationEndDOM.id = "animation-end-"+animationID;
+      this.debugBoxDOM = document.createElement("div");
 
-      triggerHookDOM.className = "debug-trigger-hook";
-      animationStartDOM.className = "debug-animation-start";
-      animationEndDOM.className = "debug-animation-end";
+      this.triggerHookDOM.id = "debug-trigger-hook-"+this.animationID;
+      this.animationStartDOM.id = "animation-start-"+this.animationID;
+      this.animationEndDOM.id = "animation-end-"+this.animationID;
 
-      triggerHookDOM.innerHTML = "#"+animationID;
-      animationStartDOM.innerHTML = "#"+animationID;
-      animationEndDOM.innerHTML = "#"+animationID;
+      this.debugBoxDOM.id = "debug-box-"+this.animationID;
 
-      document.body.prepend(triggerHookDOM); 
-      document.body.prepend(animationStartDOM); 
-      document.body.prepend(animationEndDOM); 
+      this.triggerHookDOM.className = "debug-trigger-hook";
+      this.animationStartDOM.className = "debug-animation-start";
+      this.animationEndDOM.className = "debug-animation-end";
+      this.debugBoxDOM.className = "debug-box";
+
+      this.triggerHookDOM.innerHTML = "#"+this.animationID;
+      this.animationStartDOM.innerHTML = "#"+this.animationID;
+      this.animationEndDOM.innerHTML = "#"+this.animationID;
+
+      document.body.prepend(this.triggerHookDOM); 
+      document.body.prepend(this.animationStartDOM); 
+      document.body.prepend(this.animationEndDOM); 
+
+      document.body.prepend(this.debugBoxDOM); 
 
       //console.log(true);
 
@@ -65,7 +98,7 @@ export class ScrollGSAPService {
         // Get scroll distance to bottom of viewport.
         // const scrollPosition = (window.scrollY + window.innerHeight);
         var triggerHook;
-        switch(triggerHookStr){
+        switch(this.triggerHookStr){
           case "top":
             triggerHook = window.scrollY;
             break;
@@ -79,20 +112,20 @@ export class ScrollGSAPService {
             triggerHook = window.scrollY;
             break;
         }
-        const elementPosTop = el.offsetTop;
-        const elementPosBottom = elementPosTop+el.offsetHeight;
+        const elementPosTop = this.el.offsetTop;
+        const elementPosBottom = elementPosTop+this.el.offsetHeight;
 
         let animationStart;
         let animationEnd;
 
-        switch(origin){
+        switch(this.origin){
           case 'top':
-            animationStart = elementPosTop+offset;
-            animationEnd = animationStart+duration;
+            animationStart = elementPosTop+this.offset;
+            animationEnd = animationStart+this.duration;
             break;
           default:
-            animationEnd = elementPosBottom+offset;
-            animationStart = animationEnd-duration;
+            animationEnd = elementPosBottom+this.offset;
+            animationStart = animationEnd-this.duration;
             break;
         }
 
@@ -100,27 +133,79 @@ export class ScrollGSAPService {
         const elRelativePositionTop = (triggerHook - animationStart);
         // Set desired duration.
         // const durationDistance = (window.innerHeight + el.offsetHeight);
-        const durationDistance = duration;
+        const durationDistance = this.duration;
         // Calculate tween progresss.
-        const currentProgress = (elRelativePositionTop / durationDistance);
+        const currentProgress = 
+          this.duration == 0 ? 
+            (triggerHook >= animationStart ? 1 : 0) : 
+            ((elRelativePositionTop / durationDistance) > 1 ? 1 : (elRelativePositionTop / durationDistance < 0 ? 0 : elRelativePositionTop / durationDistance));
         // Set progress of gsap timeline.     
         // console.log("triggerHook: "+triggerHook);
         //console.log("elementPosTop: "+elementPosTop);
         // console.log("elementPosBottom: "+elementPosBottom);
         // console.log("animationStart: "+animationStart);
-        // console.log("currentProgress: "+currentProgress);
-        if(debug == true){
 
-          triggerHookDOM.style.top = triggerHook+"px";
-          animationStartDOM.style.top = animationStart+"px";
-          animationEndDOM.style.top = animationEnd+"px";
+        if(this.debug == true){
+          // console.log({
+          //   ID: this.animationID,
+          //   triggerHook: triggerHook,
+          //   elementPosTop: elementPosTop,
+          //   animationStart: animationStart,
+          //   animationEnd: animationEnd,
+          //   duration: this.duration,
+          //   offset: this.offset,
+          //   elRelativePositionTop: elRelativePositionTop,
+          //   currentProgress: currentProgress
+          // });
+
+          this.debugBoxDOM.innerHTML = '<div class="container">\
+            <div class="property"><div class="name">ID</div><div class="value">'+this.tween.targets()[0].nodeName+this.tween.targets()[0].id+'</div></div>\
+            <div class="property"><div class="name">scrollContainer</div><div class="value">#'+this.animationID+'</div></div>\
+            <div class="property"><div class="name">triggerHook</div><div class="value">'+triggerHook+'</div></div>\
+            <div class="property"><div class="name">elementPosTop</div><div class="value">'+elementPosTop+'</div></div>\
+            <div class="property"><div class="name">elementPosBottom</div><div class="value">'+elementPosBottom+'</div></div>\
+            <div class="property"><div class="name">animationStart</div><div class="value">'+animationStart+'</div></div>\
+            <div class="property"><div class="name">animationEnd</div><div class="value">'+animationEnd+'</div></div>\
+            <div class="property"><div class="name">duration</div><div class="value">'+this.duration+'</div></div>\
+            <div class="property"><div class="name">offset</div><div class="value">'+this.offset+'</div></div>\
+            <div class="property"><div class="name">elRelativePosTop</div><div class="value">'+elRelativePositionTop+'</div></div>\
+            <div class="property"><div class="name">currentProgress</div><div class="value">'+currentProgress+'</div></div>\
+            <div class="property"><div class="name">intersectionRatio</div><div class="value">'+this.intersectionRatio+'</div></div>\
+          </div>';
+          this.triggerHookDOM.style.top = triggerHook+"px";
+          this.animationStartDOM.style.top = animationStart+"px";
+          this.animationEndDOM.style.top = animationEnd+"px";
           
         }
-        timeline.progress(currentProgress);
+        this.timeline.progress(currentProgress);
     }
 
-    observer.observe(el);
+    progressTween();
+    this.observer.observe(this.el);
 
+  }
+
+  public kill(){
+    if(this.debug == true){
+      document.body.removeChild(this.debugBoxDOM);
+      document.body.removeChild(this.triggerHookDOM);
+      document.body.removeChild(this.animationStartDOM);
+      document.body.removeChild(this.animationEndDOM);
+    }
+    gsap.killTweensOf(this.tween.targets()[0]);
+    this.timeline.kill();
+    this.observer.unobserve(this.el);
+  }
+
+  private generateTresholds(numSteps): number[]{
+    let thresholds = [];
+  
+    for (let i=0.0; i<=numSteps; i++) {
+      let ratio = i/numSteps;
+      thresholds.push(ratio);
+    }
+
+    return thresholds;
   }
 
 }

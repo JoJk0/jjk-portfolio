@@ -2,11 +2,15 @@
     "Skills": [
     {
         "title": "Front-end development",
-		"SubSkills": ["AJAX", "Angular", "Canvas (HTML)", "CSS3", "HTML5", "JavaScript", "jQuery", "LESS", "pixiJS", "SASS", "TypeScript"]
+		"SubSkills": ["AJAX", "Angular", "Canvas (HTML)", "CSS3", "HTML5", "JavaScript", "jQuery", "LESS", "pixiJS", "SASS", "TypeScript", "GSAP"]
     },    
     {
         "title": "Back-end development",
 		"SubSkills": ["Angular CLI", "Node.js", "PHP", "RESTful apps"]
+    },
+    {
+        "title": "Software testing",
+		"SubSkills": ["Angular Protractor", "Jasmine", "Karma", "JUnit"]
     },
     {
         "title": "Design",
@@ -74,7 +78,10 @@
                 "topTitleLeft": "#5dd9c1",
                 "topTitleRight": "#001427"
             },
-            "keywords":["HTML5", "CSS3", "JavaScript"]
+            "keywords":["HTML5", "CSS3", "JavaScript"],
+            "liveURL": "",
+            "copyURL": "",
+            "showcasePos": "0"
 
         },
         {
@@ -116,7 +123,10 @@
                 "topTitleLeft": "#1db980",
                 "topTitleRight": "#373640"
             },
-            "keywords":["HTML5", "CSS3", "PixiJS"]
+            "keywords":["HTML5", "CSS3", "PixiJS"],
+            "liveURL": "",
+            "copyURL": "",
+            "showcasePos": "1"
 
         }
     ],

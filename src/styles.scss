@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "assets/variables";
 
 /* Global Styles */
@@ -314,6 +315,32 @@ app-my-skills{
       border-bottom-right-radius: 2px;
     }
 }
+.debug-box{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #FFF;
+  padding: 1em;
+  opacity: 0.7;
+  color: $c-bg;
+  z-index: 9999;
+  border-radius: 1em;
+  .container{
+    display: table;
+    .property{
+      display: table-row;
+      &:first-of-type{
+        font-weight: 800;
+      }
+      .name{
+        display: table-cell;
+      }
+      .value{
+        display: table-cell;
+      }
+    }
+  }
+}
 .contact-tooltip{
   background: $c-text;
   border-radius: 5em !important;
@@ -321,4 +348,18 @@ app-my-skills{
   font-size: 1.1em;
   font-weight: 800;
   padding: 0.5em 1em !important;
+}
+
+// Mobile portrait
+@media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
+  *{
+    font-size: 0.8rem;
+  }
+}
+
+// Mobile landscape
+@media screen and (min-width: map.get($mobileL, "min")) and (max-width: map.get($mobileL, "max")) and (orientation: landscape){
+  *{
+    font-size: 0.7rem;
+  }
 }

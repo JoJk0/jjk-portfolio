@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../assets/variables";
 
 svg.logo-top-floating{
@@ -298,4 +299,17 @@ svg.logo-top-floating{
   width: 1px;
   height: 1em;
   background: $c-text;
+}
+
+// Mobile portrait
+@media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
+  svg.logo-top-floating{
+    margin-top: 3em;
+    margin-left: 2.5em;
+  }
+  .menu-container{
+    margin-top: 1.5em;
+    margin-left: 1.5em;
+    margin-right: 1.5em;
+  }
 }

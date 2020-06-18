@@ -16,8 +16,11 @@ export class Projects {
         topTitleRight: string
     };
     keywords: Array<string>;
+    liveURL: string;
+    copyURL: string;
+    showcasePos: number;
 
-    constructor(id, title, date, coAuthors, images, description, typography, colourPalette, colours, keywords){
+    constructor(id, title, date, coAuthors, images, description, typography, colourPalette, colours, keywords, liveURL, copyURL, showcasePos){
         this.id = id;
         this.title = title;
         this.date = date;
@@ -34,5 +37,8 @@ export class Projects {
             topTitleRight: colours.topTitleRight
         };
         this.keywords = keywords;
+        this.liveURL = liveURL;
+        this.copyURL = copyURL;
+        this.showcasePos = showcasePos;
     }
 }

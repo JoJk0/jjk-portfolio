@@ -1,10 +1,10 @@
 <div class="progressbar" id="progressbar" #progressbar [ngStyle]="{'height': progressbarHeight+'vh'}"></div>
-<svg class="logo-top-floating">
+<svg class="logo-top-floating" #logoFloating>
   <image xlink:href="../assets/logo.svg" />
 </svg>
 <div class="backdrop" (click)="opened && toggleMenu()" [ngClass]="{ 'opened': opened }"></div>
 <div class="animating-line" [ngStyle]="{'display': animating ? 'block' : 'none', 'top': lineTop+'px', 'left': lineLeft+'px'}" #animatingLine></div>
-<div class="menu-container" [ngClass]="{ 'opened': opened }">
+<div class="menu-container" [ngClass]="{ 'opened': opened }" #menuContainer>
   <svg class="hamburger-menu" (click)="toggleMenu()" #hamburger>
     <image xlink:href="../assets/menu.svg" />    
   </svg>

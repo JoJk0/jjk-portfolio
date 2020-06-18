@@ -110,8 +110,7 @@ import { SectionProjectsComponent } from './section-projects/section-projects.co
   entryComponents: [MySkillsComponent],
   providers: [
     CartService,
-    DataJsonService,
-    ScrollGSAPService
+    DataJsonService
   ]
 })
 export class AppModule { }

@@ -42,21 +42,29 @@ mat-form-field{
   .top{
     width: 100%;
     .title{
-      color: $c-base-dark;
+      background: $c-text-gradient;
+      background-clip: text;
+      color: transparent;
       font-size: 5em;
       font-weight: 800;
       line-height: 1.5em;
       text-align: center;
-      filter: brightness(0) saturate(100%) invert(88%) sepia(9%) saturate(1765%) hue-rotate(107deg) brightness(96%) contrast(87%);
+      //filter: brightness(0) saturate(100%) invert(88%) sepia(9%) saturate(1765%) hue-rotate(107deg) brightness(96%) contrast(87%);
     }
     .desc{
       color: $c-base-light;
       font-weight: 800;
-      font-size: 2.5em;
+      font-size: 2em;
       line-height: 1.5em;
       width: 100%;
       text-align: center;
     }
+  }
+  .bottom{
+
+    //position: relative;
+    //top: -2em;
+
   }
   .contact-box{
     width: 100%;
@@ -66,8 +74,15 @@ mat-form-field{
     align-items: center;
     .left{
         transform: scale(1.5);
-        padding: 3em;
+        background: $c-button-gradient;
+        border-radius: 2rem;
+        padding: 0.2em;
         .filler-text{
+        }
+        .contact-form{
+          background: $c-bg;
+          border-radius: 1.9rem;
+          padding: 2em;
         }
         .contact-textarea{
             width: 100%;
@@ -75,6 +90,8 @@ mat-form-field{
             margin-top: -2em;
             text-align: left;
             resize: none;
+            //position: relative;
+            //top: -1em;
             #ctextarea{
                 min-height: 1.3em;
                 line-height: 150%;
@@ -91,31 +108,43 @@ mat-form-field{
             padding: 0;
             display: block;
             position: relative;
+            transition: transform 0.2s ease;
             *{
-              font-size: 1.1rem;
+              font-size: 1.2rem;
+            }
+            &:hover{
+              transform: scale(1.1);
+              opacity: 1;
+              .button-text{
+                &:before{
+                  transform: rotate(-5deg);
+                }
+              }
             }
             .button-text{
               margin: 0;
               padding: 0;
               .main{
-                clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
-                background: $c-base-light;
+                clip-path: url(#buttonBg1);
+                background: $c-button-gradient;
                 width: 18rem;
                 line-height: 6rem;
                 position: absolute;
-                top: 0;
+                top: 0%;
                 left: 0;
                 font-size: 1.3em;
+                transition: clip-path 0.2s ease;
               }
               &:before{
                 content: "";
-                clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
-                background: $c-base-dark;
+                clip-path: url(#buttonBg2);
+                background: $c-button-gradient-inverted;
                 position: absolute;
-                top: 0;
+                top: -7%;
                 left: 0;
                 width: 18rem;
-                height: 6rem;
+                height: 7rem;
+                transition: transform 0.2s ease;
               }
             }
           }

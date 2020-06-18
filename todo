@@ -1,24 +1,77 @@
-PAGES
-* Get in Touch
-* Skills Viewer
-* Portfolio Viewer
-* Portfolio
+HEY!:
+- Transition fix
+- Scrollmouse animation improvement
+- Bind out-transitions to time instead of length (prevent from blank screen)
+- Link social medias
+- Mobile version
+- Implement OnResize()
+- Safari logo display fix
 
-* Integrate top bar with top menu position
-* Make logo bigger in top-bar
-* bind URL to sections change
+WHAT I DO?:
+- Transition fix
+- Bind out-transitions to time instead of length (prevent from blank screen)
+- Mobile version
 
-ANIMATIONS
-* JOJKO light-like animation 
+WHAT I'VE MADE:
+- Transitions between arts
+- Add 'show me more' button
+- out-transition needed
+- Mobile version
+
+GET IN TOUCH:
+- Final redesign
+- Implement contact form
+- In-transition
+- Out-transition
+- Link social medias
+- Mobile version
+
+MY-SKILLS:
+- Mobile version
+
+PROJECT-VIEWER:
+- Rescale whole component (zoom-in)
+- Implement colours
+- Link project tags to other projects list
+- Implement image viewer
+- Mobile version
+
+PROJECTS:
+- Redesign
+- Mobile version
+
+<PAGE ENGINE>:
+- Make transitions consistent and double-sided
+- Improve performance
+- Link menu to sections and scroll to them
+- Link top-left logo to "Hey!" section
+- Fix z-index positions in scroll
+
+
+
+
+
+FUTURE
+- CMS for the page
+- About me
+/jɔjkɔ/ - my pronounciation
+
+// DONE
+* Self-animate 3 main skills bgs
+* Animate See them all!
 * Writing SVG anim for Jacob/Jakub/Kuba
 * Parallax effect for Hi!
 * Fixed position transition between pages
 * Mouse scroll icon animation 
 * Text in-transition 
 
-* Sort out Skills
-* Self-animate 3 main skills bgs
-* Animate See them all!
 
+Spareroom voucher
+SSREB5139747P768
 
-/jɔjkɔ/ - my pronounciation
+CS profile
+https://www.couchsurfing.com/people/jacob-janisz
+
+Known issues:
+- Logo animation is broken when page is loaded in different position than the top of the page
+- Fix Safari animation issues

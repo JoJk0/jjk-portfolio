@@ -61,7 +61,7 @@ mat-chip{
         top: 0;
         left: 0;
         width: inherit;
-        height: fill-available;
+        height: stretch;
         .art-title{
           color: $c-base-dark;
           text-transform: uppercase;
@@ -93,7 +93,7 @@ mat-chip{
         background-size: 100%;
         background-clip: text;
         width: inherit;
-        height: fill-available;
+        height: stretch;
         clip-path: polygon(2% 0%, 98% 2%, 100% 100%, 0% 96%);
         .inside-title{
           color: transparent;

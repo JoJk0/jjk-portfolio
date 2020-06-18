@@ -1,16 +1,9 @@
+@use "sass:map";
 @import "../../assets/variables";
 
-mat-chip-list mat-chip {
-  transform: scale(1.2);
-  padding: 1em;
-  z-index: 1;
-  margin: 2em;
-  font-weight: 800;
-  background: $c-text;
-}
 .background{
   content: '';
-  background: url("../../assets/hi.jpg");
+  background: url("../../assets/hi.jpg/hi_L.jpg");
   background-size: 240%;
   background-position: 58% bottom;
   top: 0;
@@ -160,6 +153,9 @@ mat-chip-list mat-chip {
     overflow: hidden;
     white-space: nowrap;
   }
+  .scroll-touch{
+    display: none;
+  }
   #scroll-icon {
     width: 7em;
     position: absolute;
@@ -248,4 +244,74 @@ mat-chip-list mat-chip {
       }
     }
   }
+}
+
+// Mobile Portrait
+@media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")){
+  .background{
+    background: url("../../assets/hi.jpg/hi_P.jpg") no-repeat;
+    background-size: 100%;
+    background-position: center bottom;
+    display: none;
+  }
+  #left-nav{
+    display: none;
+  }
+  .cnt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    .intro{
+      font-size: 4em !important;
+      padding: 0.3em 0;
+    }
+    .desc{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      p{
+        font-size: 2em !important;
+        text-align: center;
+      }
+    }
+    .scroll-touch{
+      display: block !important;
+      position: absolute;
+      bottom: 8rem;
+      width: 4em;
+      height: 8em;
+      .circle{
+        border-radius: 2em;
+        border: 0.3em solid $c-text;
+        width: 2em;
+        height: 2em;
+        position: absolute;
+        bottom: 1em;
+        left: 1em;
+      }
+      .touch{
+        background: $c-text;
+        width: 4em;
+        height: 4em;
+        border-radius: 100%;
+        opacity: 0.33;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+  section#hi{
+    width: inherit;
+    height: inherit;
+    min-width: inherit;
+    min-height: inherit;
+  }
+}
+
+// Mobile Landscape
+@media screen and (min-width: map.get($mobileL, "min")) and (max-width: map.get($mobileL, "max")){
 }

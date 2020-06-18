@@ -1,16 +1,18 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef, ViewChildren, QueryList, ChangeDetectorRef, Inject, forwardRef } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef, ViewChildren, QueryList, ChangeDetectorRef, Inject, forwardRef, AfterViewInit } from '@angular/core';
 import { gsap } from 'gsap';
 import { MatTooltip } from '@angular/material/tooltip';
 import { MainComponent } from '../main/main.component';
 import { CallService } from '../call.service';
 import { Subscription } from 'rxjs';
+import { globals } from '../app.component';
+import { ScrollGSAPService } from '../scroll-gsap.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss']
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, AfterViewInit {
 
   // Elements
   @ViewChild('animatingLine') animatingLineEl: ElementRef;
@@ -18,11 +20,17 @@ export class MenuComponent implements OnInit {
   @ViewChild('hamburger') hamburgerEl: ElementRef;
   @ViewChildren('bullet') bulletsRef: QueryList<ElementRef>;
 
+  // Animated elements of menu
+  @ViewChild('logoFloating') logoFloatingEl: ElementRef;
+  @ViewChild('menuContainer') menuContainerEl: ElementRef;
+  @ViewChild('outerBgMenu') outerBgMenuEl: ElementRef;
+
   // Properties
   progressbarHeight: number;
   lineTop: number = 0;
   lineLeft: number = 0;
   currentSection: string;
+  public scrollTweens: ScrollGSAPService[] = [];
 
   // States
   opened: boolean = false;
@@ -32,15 +40,31 @@ export class MenuComponent implements OnInit {
 
   // Subscriptions
   currentSectionSub: Subscription;
+  changeMenuPosSubscription: Subscription;
+  onResizeSub: Subscription;
 
-  constructor(private detector: ChangeDetectorRef, public callService: CallService) { 
-    
+  constructor(private detector: ChangeDetectorRef, public callService: CallService, private menuEl: ElementRef) { 
+
   }
 
   ngOnInit(): void {
+
     this.currentSectionSub = this.callService.getCurrentSection().subscribe(section => {
       this.changeSection(section.id);   
     });
+
+    this.changeMenuPosSubscription = this.callService.menuPosChange$.subscribe(section => {
+      this.animateOnScroll(section);
+    });
+
+  }
+
+  ngAfterViewInit(): void{
+
+    this.onResizeSub = this.callService.onResizeNotifier.$.subscribe(bool => {
+      this.onResize();
+    });
+
   }
 
   @HostListener('window:scroll', ['$event.target'])
@@ -139,6 +163,34 @@ export class MenuComponent implements OnInit {
 
   changeSection(section: string){
     this.currentSection = section;
+  }
+
+  animateOnScroll(section: HTMLElement){
+    // Move menu items (mobileP only)
+    if(globals.device == 'mobileP'){
+
+      // Floating logo move
+      let menuIconsMoveTween = gsap.fromTo(this.logoFloatingEl.nativeElement, { marginTop: '3em', marginLeft: '2.5em' }, { marginTop: '2em', marginLeft: '1em' });
+      let menuIconsMoveSettings = {el: section, tween: menuIconsMoveTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top"};
+      this.animateScrollTween(menuIconsMoveSettings);
+
+      // Menu container move
+      let menuContainerMoveTween = gsap.fromTo(this.menuContainerEl.nativeElement, { marginTop: '1.5em', marginLeft: '1.5em', marginRight: '1.5em' }, { marginTop: '0.5em', marginLeft: '0em', marginRight: '0.5em' });
+      let menuContainerMoveSettings = { el: section, tween: menuContainerMoveTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" }
+      this.animateScrollTween(menuContainerMoveSettings);
+
+    }
+
+  }
+
+  onResize(){
+   
+  }
+
+  private animateScrollTween(settings): void{
+    let scrollTween = new ScrollGSAPService(settings);
+    this.scrollTweens.push(scrollTween);
+    scrollTween.animate();
   }
   
 }

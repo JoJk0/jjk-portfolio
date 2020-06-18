@@ -5,27 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "type": "chrome",
             "request": "attach",
-            "name": "Attach",
-            "port": 9229,
+            "name": "Attach to Chrome",
+            "port": 9222,
+            "webRoot": "${workspaceFolder}",
             "skipFiles": [
                 "<node_internals>/**"
             ]
         },
         
         {
-            "type": "node",
+            "type": "chrome",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "Launch Chrome against localhost",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/serve",
-            "preLaunchTask": "tsc: build - tsconfig.json",
-            "outFiles": [
-                "${workspaceFolder}/dist/out-tsc/**/*.js"
-            ]
+            "preLaunchTask": "myShellCommand",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}",
         }
     ]
 }

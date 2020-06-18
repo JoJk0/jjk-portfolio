@@ -28,6 +28,7 @@ export class SectionSkillsComponent implements AfterViewInit {
   @ViewChild('otherSkills') otherSkillsEl: ElementRef;
   
   // Properties
+  public scrollTweens: ScrollGSAPService[] = [];
   mySkillsPos: Object = {
     'position': 'fixed',
     'z-index': '16',
@@ -51,6 +52,7 @@ export class SectionSkillsComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     this.animateBackground();
+    this.animateOnScrollOut();
     this.animateOnScroll();
 
   }
@@ -152,32 +154,38 @@ export class SectionSkillsComponent implements AfterViewInit {
     // TEXT
     // SkillsTitle
     let skillsTitleTween = gsap.fromTo(this.skillsTitleEl.nativeElement, { width: '0em' }, { width: 'auto'});
-    ScrollGSAPService.animate(this.sectionSkills, skillsTitleTween, d*0.25, "center", startAt*0.5, false, "top");
+    let skillsTitleSettings = { el: this.sectionSkills, tween: skillsTitleTween, duration: d*0.25, triggerHook: "center", offset: startAt*0.5, debug: false, origin: "top" };
+    this.animateScrollTween(skillsTitleSettings);
 
     // SkillsText
     let skillsTextTween = gsap.fromTo(this.skillsTextEl.nativeElement, { width: '0em' }, { width: 'auto'});
-    ScrollGSAPService.animate(this.sectionSkills, skillsTextTween, d*0.25, "center", startAt*0.55, false, "top");
+    let skillsTextSettings = { el: this.sectionSkills, tween: skillsTextTween, duration: d*0.25, triggerHook: "center", offset: startAt*0.55, debug: false, origin: "top" };
+    this.animateScrollTween(skillsTextSettings);
     
     // Skill animation
     let diff = 0.0;
     this.skillsList.forEach((skillEl) => {
 
-      let bg1 = skillEl.nativeElement.children[2];
-      let bg2 = skillEl.nativeElement.children[3];
-      let bg3 = skillEl.nativeElement.children[4];
+      let bg1 = skillEl.nativeElement.children[0].children[1];
+      let bg2 = skillEl.nativeElement.children[0].children[2];
+      let bg3 = skillEl.nativeElement.children[0].children[3];
       let text = skillEl.nativeElement.children[1].children[0];
 
-      let bg1Tween = gsap.fromTo(bg1, { scale: '0' }, { scale: '1', ease: 'back.out(3)'});
-      ScrollGSAPService.animate(this.sectionSkills, bg1Tween, d*0.2, "center", startAt*(0.5+diff), false, "top");
+      let bg1Tween = gsap.fromTo(bg1, { scale: '0' }, { scale: '1.2', ease: 'back.out(3)'});
+      let bg1Settings = { el: this.sectionSkills, tween: bg1Tween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.5+diff), debug: false, origin: "top" };
+      this.animateScrollTween(bg1Settings);
 
-      let bg2Tween = gsap.fromTo(bg2, { scale: '0' }, { scale: '1', ease: 'back.out(3)'});
-      ScrollGSAPService.animate(this.sectionSkills, bg2Tween, d*0.2, "center", startAt*(0.52+diff), false, "top");
+      let bg2Tween = gsap.fromTo(bg2, { scale: '0' }, { scale: '1.2', ease: 'back.out(3)'});
+      let bg2Settings = { el: this.sectionSkills, tween: bg2Tween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.52+diff), debug: false, origin: "top" };
+      this.animateScrollTween(bg2Settings);
 
-      let bg3Tween = gsap.fromTo(bg3, { scale: '0' }, { scale: '1', ease: 'back.out(3)'});
-      ScrollGSAPService.animate(this.sectionSkills, bg3Tween, d*0.2, "center", startAt*(0.54+diff), false, "top");
+      let bg3Tween = gsap.fromTo(bg3, { scale: '0' }, { scale: '1.2', ease: 'back.out(3)'});
+      let bg3Settings = { el: this.sectionSkills, tween: bg3Tween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.54+diff), debug: false, origin: "top" };
+      this.animateScrollTween(bg3Settings);
 
       let textTween = gsap.fromTo(text, { scale: '0' }, { scale: '1', ease: 'back.out(3)'});
-      ScrollGSAPService.animate(this.sectionSkills, textTween, d*0.2, "center", startAt*(0.52+diff), false, "top");
+      let textSettings = { el: this.sectionSkills, tween: textTween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.52+diff), debug: false, origin: "top" };
+      this.animateScrollTween(textSettings);
 
       diff = diff+0.05;
 
@@ -185,8 +193,67 @@ export class SectionSkillsComponent implements AfterViewInit {
 
     // Background
     let bgTween = gsap.fromTo(this.otherSkillsEl.nativeElement, { opacity: 0 }, { opacity: 1 });
-    ScrollGSAPService.animate(this.sectionSkills, bgTween, d*0.15, "center", startAt*0.5, false, "top");
+    let bgSettings = { el: this.sectionSkills, tween: bgTween, duration: d*0.15, triggerHook: "center", offset: startAt*0.5, debug: false, origin: "top" };
+    this.animateScrollTween(bgSettings);
 
+  }
+
+  animateOnScrollOut(): void{
+
+    let startAt: number = window.innerHeight*2;
+    let d: number = window.innerHeight;
+
+    // Skills
+    let diff = 0.25;
+    this.skillsList.forEach((skillEl) => {
+
+      let bg1 = skillEl.nativeElement.children[0].children[1];
+      let bg2 = skillEl.nativeElement.children[0].children[2];
+      let bg3 = skillEl.nativeElement.children[0].children[3];
+      let text = skillEl.nativeElement.children[1].children[0];
+
+      let bg1Tween = gsap.fromTo(bg1, { scale: '1.2' }, { scale: '0', ease: 'back.in(3)'});
+      let bg1Settings = { el: this.sectionSkills, tween: bg1Tween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.5+diff), debug: false, origin: "top" };
+      this.animateScrollTween(bg1Settings);
+
+      let bg2Tween = gsap.fromTo(bg2, { scale: '1.2' }, { scale: '0', ease: 'back.in(3)'});
+      let bg2Settings = { el: this.sectionSkills, tween: bg2Tween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.52+diff), debug: false, origin: "top" };
+      this.animateScrollTween(bg2Settings);
+
+      let bg3Tween = gsap.fromTo(bg3, { scale: '1.2' }, { scale: '0', ease: 'back.in(3)'});
+      let bg3Settings = { el: this.sectionSkills, tween: bg3Tween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.54+diff), debug: false, origin: "top" };
+      this.animateScrollTween(bg3Settings);
+
+      let textTween = gsap.fromTo(text, { scale: '1' }, { scale: '0', ease: 'back.in(3)'});
+      let textSettings = { el: this.sectionSkills, tween: textTween, duration: d*0.2, triggerHook: "center", offset: startAt*(0.52+diff), debug: false, origin: "top" };
+      this.animateScrollTween(textSettings);
+
+      diff = diff+0.05;
+
+    });
+
+    // Background
+    let bgTween = gsap.fromTo(this.otherSkillsEl.nativeElement, { opacity: 1 }, { opacity: 0 });
+    let bgSettings = { el: this.sectionSkills, tween: bgTween, duration: d*0.15, triggerHook: "center", offset: startAt*0.85, debug: false, origin: "top" };
+    this.animateScrollTween(bgSettings);
+
+    // TEXT
+    // SkillsTitle
+    let skillsTitleTween = gsap.fromTo(this.skillsTitleEl.nativeElement, { width: 'auto' }, { width: '0em'});
+    let skillsTitleSettings = { el: this.sectionSkills, tween: skillsTitleTween, duration: d*0.25, triggerHook: "center", offset: startAt*0.85, debug: false, origin: "top" };
+    this.animateScrollTween(skillsTitleSettings);
+
+    // SkillsText
+    let skillsTextTween = gsap.fromTo(this.skillsTextEl.nativeElement, { width: 'auto' }, { width: '0em'});
+    let skillsTextSettings = { el: this.sectionSkills, tween: skillsTextTween, duration: d*0.25, triggerHook: "center", offset: startAt*0.85, debug: false, origin: "top" };
+    this.animateScrollTween(skillsTextSettings);
+
+  }
+
+  private animateScrollTween(settings): void{
+    let scrollTween = new ScrollGSAPService(settings);
+    this.scrollTweens.push(scrollTween);
+    scrollTween.animate();
   }
 
 }
