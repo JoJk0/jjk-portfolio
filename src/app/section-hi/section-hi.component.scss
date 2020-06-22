@@ -86,6 +86,7 @@
         bottom: 0;
         width: 7em;
         height: 9em;
+        opacity: 0;
         image{
           width: 7em;
           height: 9em;
@@ -281,21 +282,21 @@
       display: block !important;
       position: absolute;
       bottom: 8rem;
-      width: 4em;
-      height: 8em;
+      width: 6em;
+      height: 10em;
       .circle{
         border-radius: 2em;
         border: 0.3em solid $c-text;
         width: 2em;
         height: 2em;
         position: absolute;
-        bottom: 1em;
-        left: 1em;
+        bottom: 2em;
+        left: 2em;
       }
       .touch{
         background: $c-text;
-        width: 4em;
-        height: 4em;
+        width: 6em;
+        height: 6em;
         border-radius: 100%;
         opacity: 0.33;
         position: absolute;

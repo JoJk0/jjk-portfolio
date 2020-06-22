@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollGSAPService } from './scroll-gsap.service';
 import { Subscription } from 'rxjs';
 import { CallService } from './call.service';
+import { browser } from 'protractor';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements AfterViewInit {
     this.resizeApp();
   }
 
-  constructor(public call: CallService) { }
+  constructor(public call: CallService) {
+   }
 
   ngAfterViewInit() {
 
@@ -78,7 +80,10 @@ export var globals = {
   ],
   screenWidth: 0,
   screenHeight: 0,
-  device: ''
+  device: '',
+  isChrome: false,
+  isSafari: false,
+  isFirefox: false
 }
 
 

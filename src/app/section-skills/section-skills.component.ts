@@ -6,13 +6,14 @@ import { Location } from '@angular/common';
 import { MySkillsComponent } from '../my-skills/my-skills.component';
 import { ScrollGSAPService } from '../scroll-gsap.service';
 import { NoopScrollStrategy } from '@angular/cdk/overlay';
+import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-section-skills',
   templateUrl: './section-skills.component.html',
   styleUrls: ['./section-skills.component.scss']
 })
-export class SectionSkillsComponent implements AfterViewInit {
+export class SectionSkillsComponent implements AfterViewInit, OnInit {
 
   // Elements
   @ViewChild('mySkillsButton', {read: ElementRef}) mySkillsButton: ElementRef;
@@ -43,10 +44,25 @@ export class SectionSkillsComponent implements AfterViewInit {
     'display': 'none'
   }
 
+  config: SwiperOptions = {
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    },
+    spaceBetween: 30
+  };
+  
+
   constructor(public dialog: MatDialog, private location: Location) { }
 
   private get sectionSkills(): any{
     return this._mySkillsEl.nativeElement;
+  }
+
+
+  ngOnInit(){
+
   }
 
   ngAfterViewInit(): void {

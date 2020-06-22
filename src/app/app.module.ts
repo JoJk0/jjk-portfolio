@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +28,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
@@ -42,6 +43,7 @@ import { SkillsOpenerComponent } from './skills-opener/skills-opener.component';
 import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
 import { SectionSkillsComponent } from './section-skills/section-skills.component';
 import { SectionProjectsComponent } from './section-projects/section-projects.component';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 
 @NgModule({
   imports: [
@@ -82,7 +84,10 @@ import { SectionProjectsComponent } from './section-projects/section-projects.co
     MatAutocompleteModule,
     MatInputModule,
     MatSelectModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule,
+    HammerModule,
+    NgxUsefulSwiperModule
   ],
   declarations: [
     AppComponent,

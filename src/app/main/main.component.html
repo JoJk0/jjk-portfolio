@@ -1,6 +1,6 @@
 <router-outlet></router-outlet>
 <!-- <div id="my-skills-container" #mySkillsContainer [ngStyle]="mySkillsContainerStyle"><ng-template #mySkills></ng-template></div> -->
-<div class="outer-bg" #outerBgMenu><app-section-hi #scrollable id="start" (menuChangePosEmitter)="emitMenuChangePos($event)"></app-section-hi></div>
+<div class="outer-bg" #outerBgMenu><app-section-hi #scrollable id="start" (menuChangePosEmitter)="emitMenuChangePos($event)" [skeletons]="skeletons"></app-section-hi></div>
 <app-section-skills id="what-i-do" #scrollable></app-section-skills>
 <app-section-projects id="what-i-did" #scrollable (updateSkeleton)="onProjectsLoad($event)"></app-section-projects>
 <app-get-in-touch id="get-in-touch" #scrollable></app-get-in-touch>

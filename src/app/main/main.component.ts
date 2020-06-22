@@ -32,6 +32,7 @@ export class MainComponent implements AfterViewInit, OnInit {
   // Global vars
   public currentSection: string;
   public sectionHeights: number[] = [0,0,0,0];
+  public skeletonsLoaded: boolean = false;
 
   // Local vars
   private projectsNo: number;
@@ -127,7 +128,7 @@ export class MainComponent implements AfterViewInit, OnInit {
       this.sectionHeights[i] = height;
       this.detector.detectChanges();
     });
-    this.callService.sendSkeleton(this.skeletons);
+   this.skeletonsLoaded = true;
   }
 
   animateScrollTransitions(): void{

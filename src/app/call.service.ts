@@ -44,10 +44,10 @@ export class CallService {
   };
 
   // Pass skeleton to sections (main -> sections)
-  public sendSkeletonPro : Promise<QueryList<ElementRef>>;
-  public skeletonPromise: Promise<QueryList<ElementRef>> = new Promise<QueryList<ElementRef>>(resolve => {
+  // public sendSkeletonPro : Promise<QueryList<ElementRef>>;
+  // public skeletonPromise: Promise<QueryList<ElementRef>> = new Promise<QueryList<ElementRef>>(resolve => {
 
-    resolve(skeletons);
-  });
+  //   resolve(skeletons);
+  // });
 
 }

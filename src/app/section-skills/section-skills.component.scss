@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../assets/variables";
 
 #my-skills-background{
@@ -257,6 +258,170 @@ mat-chip-list mat-chip{
             width: 18rem;
             height: 7rem;
             transition: transform 0.2s ease;
+          }
+        }
+      }
+    }
+  }
+
+  // Mobile Portrait
+  @media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")){
+    svg{
+      path.skillBgPath{
+        transform: scale(0.247);
+      }
+      path.buttonBg1, path.buttonBg2{
+        transform: scale(1.14);
+      }
+    }
+    .cnt{
+      position: absolute;
+      top: 0;
+      left: 0;
+      justify-content: space-around;
+      .top{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .title{
+          text-align: center;
+          line-height: 180%;
+        }
+        .desc{
+          white-space: pre-wrap;
+          text-align: center;
+          font-size: 1.7em;
+        }
+      }
+      #swiperCarousel{
+        width: 100vw;
+        height: auto;
+        .swiper-slide{
+          .skill{
+            position: relative;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            &.angular{
+              .bg, .bg2, .bg3{
+                // clip-path:polygon(20% 10%, 90% 30%, 90% 80%, 30% 100%, 10% 30%);
+                clip-path: url(#skillBgPath);
+                top: 10%;
+                left: 0%;
+              }
+              .bg { background: linear-gradient(5deg, rgba(0,204,187,1) 0%, rgba(0,255,234,1) 100%); }
+              .bg2{ background: linear-gradient(5deg, rgba(223,26,255,1) 0%, rgba(227,54,255,1) 100%); transform: rotate(-10deg); }
+              .bg3{ background: linear-gradient(5deg, rgba(255,211,144,1) 0%, rgba(255,211,144,1) 100%); transform: rotate(-20deg); }
+            }
+            &.nodejs{
+              .bg, .bg2, .bg3{
+                // clip-path:polygon(30% 15%, 95% 30%, 75% 100%, 30% 95%, 0 50%);
+                clip-path: url(#skillBgPath);
+                top: -5%;
+                left: -10%;
+              }
+              .bg { background: linear-gradient(-85deg, rgba(0,204,187,1) 0%, rgba(0,255,234,1) 100%); transform: rotate(100deg); }
+              .bg2{ background: linear-gradient(-85deg, rgba(223,26,255,1) 0%, rgba(227,54,255,1) 100%); transform: rotate(90deg); }
+              .bg3{ background: linear-gradient(-85deg, rgba(255,211,144,1) 0%, rgba(255,211,144,1) 100%); transform: rotate(80deg); }
+            }
+            &.php{
+              .bg, .bg2, .bg3{
+                // clip-path:polygon(10% 25%, 90% 10%, 90% 85%, 40% 95%, 10% 80%);
+                clip-path: url(#skillBgPath);
+                top: 10%;
+                left: 5%;
+              }
+              .bg { background: linear-gradient(65deg, rgba(0,204,187,1) 0%, rgba(0,255,234,1) 100%); transform: rotate(-50deg); }
+              .bg2{ background: linear-gradient(65deg, rgba(223,26,255,1) 0%, rgba(227,54,255,1) 100%); transform: rotate(-60deg); }
+              .bg3{ background: linear-gradient(65deg, rgba(255,211,144,1) 0%, rgba(255,211,144,1) 100%); transform: rotate(-70deg); }
+            }
+            .skill-top{
+              position: relative;
+              width: min-content;
+              height: min-content;
+              .bg{
+                mix-blend-mode: hard-light;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 3;
+              }
+              .bg2{
+                mix-blend-mode: screen;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+              }
+              .bg3{
+                mix-blend-mode: screen;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                z-index: 1;
+              }
+              img{
+                width: 14em;
+                z-index: 4;
+                position: relative;
+                margin: 1em;
+                transition: all 0.2s ease;
+                &:hover{
+                  transform: scale(1.1);
+                }
+              }
+            }
+            mat-chip-list mat-chip{
+              transform: scale(1.1);
+              padding: 1em;
+              z-index: 1;
+              margin: 4em;
+              font-weight: 800;
+              background: $c-text;
+            }
+          }
+        }
+        .swiper-pagination{
+          .swiper-pagination-bullet{
+            background: transparent;
+            border: 1px solid transparentize($c-text , $amount: 0.7);
+            &.swiper-pagination-bullet-active{
+              background: $c-text;
+            }
+          }
+        }
+      }
+      .skills{
+        display: none;
+      }
+      .other-skills{
+        mat-chip-list{
+          top: -3em;
+        }
+        button{
+          width: 100%;
+          height: auto;
+          margin: 1em;
+          margin-bottom: 2em;
+          .button-text{
+            .main{
+              clip-path: none;
+              border-radius: 3rem;
+              width: 100%;
+              line-height: 4.5rem;
+            }
+            &:before{
+              clip-path: none;
+              border-radius: 3rem;
+              width: 100%;
+              line-height: 4.5rem;
+              top: 3px;
+              left: 3px;
+              height: 4.5rem;
+            }
           }
         }
       }

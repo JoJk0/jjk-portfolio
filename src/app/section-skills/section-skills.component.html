@@ -18,6 +18,53 @@
       <div class="title" #skillsTitle>What I do?</div>
       <div class="desc" #skillsText>literally everything, from web design to databases.</div>
     </div>
+
+    <swiper [config]="config" id="swiperCarousel">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="skill angular" #skillMobile>
+            <div class="skill-top">
+              <img src="../assets/angular.png" />
+              <div class="bg"></div>
+              <div class="bg2"></div>
+              <div class="bg3"></div>
+            </div>
+            <mat-chip-list>
+              <mat-chip>Angular</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="skill nodejs" #skill>
+            <div class="skill-top">
+              <img src="../assets/nodejs.png" />
+              <div class="bg"></div>
+              <div class="bg2"></div>
+              <div class="bg3"></div>
+            </div>
+            <mat-chip-list>
+              <mat-chip>NodeJS</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="skill php" #skill>
+            <div class="skill-top">
+              <img src="../assets/php.png" />
+              <div class="bg"></div>
+              <div class="bg2"></div>
+              <div class="bg3"></div>
+            </div>
+            <mat-chip-list>
+              <mat-chip>PHP</mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </swiper>
+
     <div class="skills">
       <div class="skill angular" #skill>
         <div class="skill-top">

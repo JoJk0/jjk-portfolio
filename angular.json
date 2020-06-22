@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/swiper/css/swiper.css",
               "./src/jjk-material.scss",
               "src/styles.scss"
             ],
