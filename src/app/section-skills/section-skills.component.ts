@@ -27,6 +27,7 @@ export class SectionSkillsComponent implements AfterViewInit, OnInit {
   @ViewChild('skillsText') skillsTextEl: ElementRef;
   @ViewChildren('skill') skillsList: QueryList<ElementRef>;
   @ViewChild('otherSkills') otherSkillsEl: ElementRef;
+  @ViewChild('paginator') paginatorEl: ElementRef;
   
   // Properties
   public scrollTweens: ScrollGSAPService[] = [];
@@ -181,7 +182,6 @@ export class SectionSkillsComponent implements AfterViewInit, OnInit {
     // Skill animation
     let diff = 0.0;
     this.skillsList.forEach((skillEl) => {
-
       let bg1 = skillEl.nativeElement.children[0].children[1];
       let bg2 = skillEl.nativeElement.children[0].children[2];
       let bg3 = skillEl.nativeElement.children[0].children[3];
@@ -211,6 +211,11 @@ export class SectionSkillsComponent implements AfterViewInit, OnInit {
     let bgTween = gsap.fromTo(this.otherSkillsEl.nativeElement, { opacity: 0 }, { opacity: 1 });
     let bgSettings = { el: this.sectionSkills, tween: bgTween, duration: d*0.15, triggerHook: "center", offset: startAt*0.5, debug: false, origin: "top" };
     this.animateScrollTween(bgSettings);
+    
+    // Paginator (mobile)
+    let paginatorTween = gsap.fromTo(this.paginatorEl.nativeElement, { opacity: 0 }, { opacity: 1 });
+    let paginatorSettings = { el: this.sectionSkills, tween: paginatorTween, duration: d*0.15, triggerHook: "center", offset: startAt*0.5, debug: false, origin: "top" };
+    this.animateScrollTween(paginatorSettings);
 
   }
 

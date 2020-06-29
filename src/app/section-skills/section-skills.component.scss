@@ -64,6 +64,9 @@ mat-chip-list mat-chip{
         background: $c-text-gradient;
         background-clip: text;
         display: inline-block;
+        p{
+          font-size: 1em;
+        }
       }
       .desc{
         color: $c-base-light;
@@ -72,6 +75,9 @@ mat-chip-list mat-chip{
         line-height: 1.5em;
         overflow: hidden;
         white-space: nowrap;
+        p{
+          font-size: 1em;
+        }
       }
     }
     .skills{
@@ -264,6 +270,10 @@ mat-chip-list mat-chip{
     }
   }
 
+  swiper{
+    display: none;
+  }
+
   // Mobile Portrait
   @media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")){
     svg{
@@ -274,6 +284,9 @@ mat-chip-list mat-chip{
         transform: scale(1.14);
       }
     }
+    swiper{
+      display: block;
+    }
     .cnt{
       position: absolute;
       top: 0;
@@ -283,14 +296,25 @@ mat-chip-list mat-chip{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        width: 100%;
         .title{
           text-align: center;
           line-height: 180%;
+          p{
+            font-size: 1em;
+            width: 100vw;
+          }
         }
         .desc{
           white-space: pre-wrap;
           text-align: center;
           font-size: 1.7em;
+          p{
+            font-size: 1em;
+            padding-left: 1em;
+            padding-right: 1em;
+            width: 100vw;
+          }
         }
       }
       #swiperCarousel{
@@ -384,15 +408,6 @@ mat-chip-list mat-chip{
             }
           }
         }
-        .swiper-pagination{
-          .swiper-pagination-bullet{
-            background: transparent;
-            border: 1px solid transparentize($c-text , $amount: 0.7);
-            &.swiper-pagination-bullet-active{
-              background: $c-text;
-            }
-          }
-        }
       }
       .skills{
         display: none;
@@ -400,6 +415,7 @@ mat-chip-list mat-chip{
       .other-skills{
         mat-chip-list{
           top: -3em;
+          left: -30%;
         }
         button{
           width: 100%;

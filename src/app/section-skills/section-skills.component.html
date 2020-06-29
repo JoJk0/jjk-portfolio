@@ -15,14 +15,14 @@
 <div class="bg-text">Skills</div>
   <div class="cnt" #mySkills>
     <div class="top">
-      <div class="title" #skillsTitle>What I do?</div>
-      <div class="desc" #skillsText>literally everything, from web design to databases.</div>
+      <div class="title" #skillsTitle><p>What I do?</p></div>
+      <div class="desc" #skillsText><p>literally everything, from web design to databases.</p></div>
     </div>
 
     <swiper [config]="config" id="swiperCarousel">
       <div class="swiper-wrapper">
         <div class="swiper-slide">
-          <div class="skill angular" #skillMobile>
+          <div class="skill angular" #skill>
             <div class="skill-top">
               <img src="../assets/angular.png" />
               <div class="bg"></div>
@@ -62,7 +62,7 @@
         </div>
       </div>
       <!-- Add Pagination -->
-      <div class="swiper-pagination"></div>
+      <div class="swiper-pagination" #paginator></div>
     </swiper>
 
     <div class="skills">

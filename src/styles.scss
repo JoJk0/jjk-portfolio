@@ -350,6 +350,46 @@ app-my-skills{
   padding: 0.5em 1em !important;
 }
 
+/* Swiper custom style */
+.swiper-container{
+  overflow: inherit !important;
+}
+.swiper-pagination{
+  bottom: -1em !important;
+  .swiper-pagination-bullet{
+    margin: 0.5em !important;
+    background: transparent;
+    border: 2px solid transparent;
+    width: 2em;
+    height: 2em;
+    opacity: 1;
+    &:after{
+      content: '';
+      background: $c-text;
+      border-radius: 100%;
+      width: 0.4em;
+      height: 0.4em;
+      display: block;
+      margin-top: 0.6em;
+      margin-left: 0.6em;
+    }
+    &.swiper-pagination-bullet-active{
+      border: 2px solid transparentize($c-text , $amount: 0.7);
+      //background: $c-text;
+      &:after{
+        content: '';
+        background: $c-text;
+        border-radius: 100%;
+        width: 0.4em;
+        height: 0.4em;
+        display: block;
+        margin-top: 0.6em;
+        margin-left: 0.6em;
+      }
+    }
+  }
+}
+
 // Mobile portrait
 @media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
   *{
