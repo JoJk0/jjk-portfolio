@@ -291,7 +291,7 @@ mat-chip-list mat-chip{
       position: absolute;
       top: 0;
       left: 0;
-      justify-content: space-around;
+      justify-content: space-evenly;
       .top{
         display: flex;
         flex-direction: column;
@@ -329,6 +329,8 @@ mat-chip-list mat-chip{
             justify-content: center;
             align-items: center;
             z-index: 20;
+            width: min-content;
+            margin: auto;
             &.angular{
               .bg, .bg2, .bg3{
                 // clip-path:polygon(20% 10%, 90% 30%, 90% 80%, 30% 100%, 10% 30%);
@@ -399,7 +401,8 @@ mat-chip-list mat-chip{
               }
             }
             mat-chip-list mat-chip{
-              transform: scale(1.1);
+              transform: scale(1.3);
+              transform-origin: top;
               padding: 1em;
               z-index: 1;
               margin: 4em;

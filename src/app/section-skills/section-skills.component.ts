@@ -46,12 +46,18 @@ export class SectionSkillsComponent implements AfterViewInit, OnInit {
   }
 
   config: SwiperOptions = {
+    slidesPerView: 'auto',
     pagination: { el: '.swiper-pagination', clickable: true },
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    centeredSlides: true,
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
     },
-    spaceBetween: 30
+    spaceBetween: -90
   };
   
 
@@ -257,6 +263,11 @@ export class SectionSkillsComponent implements AfterViewInit, OnInit {
     let bgTween = gsap.fromTo(this.otherSkillsEl.nativeElement, { opacity: 1 }, { opacity: 0 });
     let bgSettings = { el: this.sectionSkills, tween: bgTween, duration: d*0.15, triggerHook: "center", offset: startAt*0.85, debug: false, origin: "top" };
     this.animateScrollTween(bgSettings);
+
+    // Paginator (mobile)
+    let paginatorTween = gsap.fromTo(this.paginatorEl.nativeElement, { opacity: 1 }, { opacity: 0 });
+    let paginatorSettings = { el: this.sectionSkills, tween: paginatorTween, duration: d*0.15, triggerHook: "center", offset: startAt*0.85, debug: false, origin: "top" };
+    this.animateScrollTween(paginatorSettings);
 
     // TEXT
     // SkillsTitle
