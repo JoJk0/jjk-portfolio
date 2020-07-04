@@ -5,6 +5,7 @@ import { JJKUtilsService } from '../jjkutils.service';
 import { globals } from '../app.component';
 import { CallService } from '../call.service';
 import { Subscription } from 'rxjs';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 @Component({
   selector: 'app-section-hi',
@@ -58,7 +59,9 @@ export class SectionHiComponent implements AfterViewInit {
   @ViewChild('leftNav') leftNavEl: ElementRef;
 
   // Global timelines
-  public logoTimeline = gsap.timeline({repeat: 0, delay: 1});
+  public fullLogoTimeline = gsap.timeline({repeat: 0, delay: 1});
+  public logoTimeline = gsap.timeline();
+  public logoTimelineReversed = gsap.timeline({ paused: true });
 
   // Subscriptions and promises
   onResizeSub: Subscription;
@@ -114,7 +117,7 @@ export class SectionHiComponent implements AfterViewInit {
   animateSection(): void{
     //console.log(this.scrollMouseSvg);
     let currentPos = document.documentElement.scrollTop || document.body.scrollTop;
-      this.animateOnScroll();
+      //this.animateOnScroll();
       this.animateScrollMouse();
       this.animateLogo();
       this.animateName();
@@ -207,7 +210,7 @@ export class SectionHiComponent implements AfterViewInit {
 
 
     // MAIN INTRO TIMELINE
-    let timeline = this.logoTimeline;
+    let timeline = this.fullLogoTimeline;
     this.classicTweens.push(timeline);
     timeline
 
@@ -215,27 +218,34 @@ export class SectionHiComponent implements AfterViewInit {
     .set(this.logoAnimated.nativeElement, { left: window.innerWidth/2-this.logoAnimated.nativeElement.offsetWidth*2/2+'px' })
     .fromTo(this._sectionHi.nativeElement, { backgroundColor: 'rgba(0, 20, 39, 1)' }, { duration: 0.5, backgroundColor: 'rgba(0, 20, 39, 0)', ease: "linear.inOut" }, 2)
 
-    // Rect - in
-    .fromTo(mainRect, { bottom: mainRect.getBoundingClientRect().bottom+'em' }, { duration: 0.2, bottom: '6em', ease: "power1.in" }, 0)
 
-    // Animate mainJ
+    // Logo Timeline
+    this.logoTimeline
+    .fromTo(mainRect, { bottom: mainRect.getBoundingClientRect().bottom+'em' }, { duration: 0.2, bottom: '6em', ease: "power1.in" }, 0)
     .set(mainJLower, { opacity: 1 }, 0.2)
     .fromTo(mainJLower.children[1], { strokeDashoffset: this.primaryCircle.strokeDashOffset.from}, { duration: 0.5, strokeDashoffset: this.primaryCircle.strokeDashOffset.to, ease: "power1.out" }, 0.2)
     .fromTo(mainJUpper, { transform: 'scale(0)'}, { duration: 0.5, transform: 'scale(1)', ease: "back(4).out" }, 1)
-
-    // Rect - out
     .fromTo(mainRect, {  }, { duration: 0.5,  height: '0em', ease: "power2.out" }, 0.7)
-
-    // SecondaryCircle
     .set(secondaryCircle, { opacity: 1 }, 0.5)
     .fromTo(secondaryCircle.children[1], { strokeDashoffset: this.secondaryCircle.strokeDashOffset.from}, { duration: 0.5, strokeDashoffset: this.secondaryCircle.strokeDashOffset.to, ease: "power1.out" }, 0.5)
-
-    // SecondaryPoint
     .fromTo(secondaryPoint, { transform: 'scale(0)'}, { duration: 0.5, transform: 'scale(1)', ease: "back(4).out" }, 0.8)
+    .fromTo(secondaryRect, { height: '0em'}, { duration: 0.5, height: '3em', ease: "power1.out" }, 1.2);
+  
+    // Reversed Logo Timeline
+    this.logoTimelineReversed
+    .fromTo(secondaryRect, { height: '3em', ease: "power1.out" }, { duration: 0.5, immediateRender: false, height: '0em'}, 0)
+    .fromTo(secondaryPoint, { scale: 1 }, { duration: 0.5, scale: 0, immediateRender: false, }, 0.4)
+    .fromTo(secondaryCircle.children[1], { strokeDashoffset: this.secondaryCircle.strokeDashOffset.to, ease: "power1.out" }, { duration: 0.5, strokeDashoffset: this.secondaryCircle.strokeDashOffset.from}, 0.5)
+    .fromTo(secondaryCircle, { opacity: 1 }, { duration: 0, immediateRender: false, opacity: 0 }, 1)
+    .fromTo(mainJUpper, { transform: 'scale(1)' }, { immediateRender: false, duration: 0.5, transform: 'scale(0)' }, 0.2)
+    .to(mainRect, { duration: 0.5, height: 'auto' }, 0.5)
+    .fromTo(mainJLower, { opacity: 1 }, { duration: 0, immediateRender: false, opacity: 0 }, 1.5)
+    .fromTo(mainJLower.children[1], { strokeDashoffset: this.primaryCircle.strokeDashOffset.to }, { duration: 0.5, strokeDashoffset: this.primaryCircle.strokeDashOffset.from}, 1)
+    .to(mainRect, { duration: 0.3, bottom: '100%' }, 1.5);
+    this.classicTweens.push(this.logoTimelineReversed);
 
-    // SecondaryRect
-    .fromTo(secondaryRect, { height: '0em'}, { duration: 0.5, height: '3em', ease: "power1.out" }, 1.2)
-
+    timeline
+    .add(this.logoTimeline, 0)
     // Logo - zoom out
     .fromTo(this.logoAnimated.nativeElement, { transform: 'scale(2)', left: window.innerWidth/2-this.logoAnimated.nativeElement.offsetWidth*2/2+'px' }, { duration: 0.7, transform: 'scale(1)', left: x+'px', ease: "power3.inOut" }, 1.7)
 
@@ -246,7 +256,10 @@ export class SectionHiComponent implements AfterViewInit {
 
     // Show bars
     .set(this._sectionHi.nativeElement, { zIndex: 0 }, 2.5)
-    .fromTo(this.leftNavEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1, ease: "power3.inOut" }, 2);
+    .fromTo(this.leftNavEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1, ease: "power3.inOut" }, 2)
+    
+    // ScrollTrigger logo after animation
+    .call(() => { this.animateOnScroll(); }, [], 2.4);
 
   }
 
@@ -294,112 +307,99 @@ export class SectionHiComponent implements AfterViewInit {
   }
 
   private animateOnScroll(){
+    
+    let textTimeline = gsap.timeline({ paused: true })
+    .fromTo(this.hiBackgroundEl.nativeElement, { opacity: 1, backgroundSize: this.backgroundSize+"%", backgroundPositionY: 'bottom' }, { duration: 0.5, opacity: 0, backgroundSize: (this.backgroundSize-10)+'%', backgroundPositionY: '95%' }, 0.5)
+    .fromTo(this.introEl.nativeElement, { width: 'auto' }, { duration: 0.5, width: '0' }, 0.5)
+    .fromTo(this.introDescEl.nativeElement.children[0], { width: 'auto' }, { duration: 0.5, width: '0' }, 1)
+    .fromTo(this.introDescEl.nativeElement.children[1], { width: 'auto' }, { duration: 0.5, width: '0' }, 1.2)
+    .fromTo(this.scrollMouseSvg.nativeElement, { transform: 'translateY(0em)', opacity: 1 }, { duration: 0.5, transform: 'translateY(-3em)', opacity: 0 }, 0.2)
+    .fromTo(this.leftNavSocials.nativeElement, { transform: 'translateY(0em)', opacity: 1 }, { duration: 0.5, transform: 'translateY(3em)', opacity: 0 }, 0.5);
 
-    // Elements
-    let mainRect = this.logoAnimated.nativeElement.children[0].children[0];
-    let mainRectRect = mainRect.children[0];
-    let mainRectRound = mainRect.children[1];
-    let mainJUpper = this.logoAnimated.nativeElement.children[0].children[1];
-    let mainJLower = this.logoAnimated.nativeElement.children[0].children[2];
-
-    let secondaryRect = this.logoAnimated.nativeElement.children[0].children[3];
-    let secondaryPoint = this.logoAnimated.nativeElement.children[0].children[4];
-    let secondaryCircle = this.logoAnimated.nativeElement.children[0].children[5];
-
-    // LOGO SCROLL ANIMATION
-    // SecondaryRect
-    let secondaryRectTween = gsap.fromTo(secondaryRect, { height: '3em', ease: "power1.out" }, { height: '0em'});
-    let secondaryRectSettings = { el: this.skeleton.nativeElement, tween: secondaryRectTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(secondaryRectSettings);
-
-    // SecondaryPoint
-    let secondaryPointTween = gsap.fromTo(secondaryPoint, { scale: 1 }, { scale: 0 });
-    let secondaryPointSettings = { el: this.skeleton.nativeElement, tween: secondaryPointTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(secondaryPointSettings);
-
-    // SecondaryCircle
-    let secondaryCircleTween = gsap.fromTo(secondaryCircle.children[1], { strokeDashoffset: this.secondaryCircle.strokeDashOffset.to, ease: "power1.out" }, { strokeDashoffset: this.secondaryCircle.strokeDashOffset.from});
-    let secondaryCircleSettings = { el: this.skeleton.nativeElement, tween: secondaryCircleTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(secondaryCircleSettings);
-
-    let secondaryCircleSet = gsap.fromTo(secondaryCircle, { opacity: 1 }, { immediateRender: false, opacity: 0 });
-    let secondaryCircleSetSettings = { el: this.skeleton.nativeElement, tween: secondaryCircleSet, duration: 0.01, triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
-    this.animateScrollTween(secondaryCircleSetSettings);
-
-    // MainJUpper (point)
-    let mainJUpperTween = gsap.fromTo(mainJUpper, { transform: 'scale(1)' }, { transform: 'scale(0)' });
-    let mainJUpperSettings = { el: this.skeleton.nativeElement, tween: mainJUpperTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(mainJUpperSettings);
-
-    // Rect - in
-    let rectInTween = gsap.to(mainRect, { height: 'auto' });
-    let rectInSettings = { el: this.skeleton.nativeElement, tween: rectInTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
-    this.animateScrollTween(rectInSettings);
-
-
-    // Show and animate mainJ
-    let showMainJTween = gsap.fromTo(mainJLower, { opacity: 1 }, { immediateRender: false, opacity: 0 });
-    let showMainJSettings = { el: this.skeleton.nativeElement, tween: showMainJTween, duration: 0.01, triggerHook: "center", offset: window.innerHeight*(0.85), debug: false, origin: "top" };
-    this.animateScrollTween(showMainJSettings);
-
-    let mainJTween = gsap.fromTo(mainJLower.children[1], { strokeDashoffset: this.primaryCircle.strokeDashOffset.to }, { strokeDashoffset: this.primaryCircle.strokeDashOffset.from});
-    let mainJSettings = { el: this.skeleton.nativeElement, tween: mainJTween, duration: window.innerHeight*(0.10), triggerHook: "center", offset: window.innerHeight*(0.85), debug: false, origin: "top" };
-    this.animateScrollTween(mainJSettings);
-
-    // Rect - out
-    let rectOutTween = gsap.to(mainRect, { bottom: mainRect.getBoundingClientRect().bottom+'em' })
-    let rectOutSettings = { el: this.skeleton.nativeElement, tween: rectOutTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.95), debug: false, origin: "top" };
-    this.animateScrollTween(rectOutSettings);
-
-    // BG ANIMATION
-    let bgTween = gsap.fromTo(this.hiBackgroundEl.nativeElement, { opacity: 1, backgroundSize: this.backgroundSize+"%", backgroundPositionY: 'bottom' }, { opacity: 0, backgroundSize: (this.backgroundSize-10)+'%', backgroundPositionY: '95%' });
-    let bgSettings = { el: this.skeleton.nativeElement, tween: bgTween, duration: window.innerHeight*(0.5), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(bgSettings);
-
-    // TEXT ANIMATION
-    // Main intro
-    let textTitleTween = gsap.fromTo(this.introEl.nativeElement, { width: 'auto' }, { width: '0' });
-    let textTitleSettings = { el: this.skeleton.nativeElement, tween: textTitleTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
-    this.animateScrollTween(textTitleSettings);
-
-    // Desc intro 1
-    let textDesc1Tween = gsap.fromTo(this.introDescEl.nativeElement.children[0], { width: 'auto' }, { width: '0' });
-    let textDesc1Settings = { el: this.skeleton.nativeElement, tween: textDesc1Tween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.65), debug: false, origin: "top" };
-    this.animateScrollTween(textDesc1Settings);
-
-    // Desc intro 2
-    let textDesc2Tween = gsap.fromTo(this.introDescEl.nativeElement.children[1], { width: 'auto' }, { width: '0' });
-    let textDesc2Settings = { el: this.skeleton.nativeElement, tween: textDesc2Tween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(textDesc2Settings);
-
-    // LEFT MENU ANIMATION
-    // Scroll Mouse
-    let scrollMouseTween = gsap.fromTo(this.scrollMouseSvg.nativeElement, { transform: 'translateY(0em)', opacity: 1 }, { transform: 'translateY(-3em)', opacity: 0 });
-    let scrollMouseSettings = { el: this.skeleton.nativeElement, tween: scrollMouseTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
-    this.animateScrollTween(scrollMouseSettings);
-
-    // Social Medias
-    let socialsTween = gsap.fromTo(this.leftNavSocials.nativeElement, { transform: 'translateY(0em)', opacity: 1 }, { transform: 'translateY(3em)', opacity: 0 });
-    let socialsSettings = { el: this.skeleton.nativeElement, tween: socialsTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
-    this.animateScrollTween(socialsSettings);
-
-    // (mobileP only)
     if(globals.device == 'mobileP'){
-
-      // Gradient background animation
-      let gradientBgTween = gsap.fromTo(this.superSectionHi.nativeElement, { margin: '1em', borderRadius: '2em' }, { margin: '0em', borderRadius: '0em' });
-      let gradientBgSettings = { el: this.skeleton.nativeElement, tween: gradientBgTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
-      this.animateScrollTween(gradientBgSettings);
-
-      // Change menu positions
+      textTimeline
+      .fromTo(this.superSectionHi.nativeElement, { margin: '1em', borderRadius: '2em' }, { duration: 0.5, margin: '0em', borderRadius: '0em' }, 1.2)
+      .fromTo(this.scrollTouchEl.nativeElement, { opacity: 1 }, { duration: 0.3, opacity: 0 }, 0.2);
+      
       this.call.sendMenuPosChange(this.sectionHi);
-
-      // Hide scroll touch
-      let hideScrollTouchTween = gsap.fromTo(this.scrollTouchEl.nativeElement, { opacity: 1 }, { opacity: 0 });
-      let hideScrollTouchSettings = { el: this.skeleton.nativeElement, tween: hideScrollTouchTween, duration: window.innerHeight*(0.1), triggerHook: "center", offset: window.innerHeight*(0.55), debug: false, origin: "top" };
-      this.animateScrollTween(hideScrollTouchSettings);
-
     }
+    this.classicTweens.push(textTimeline);
+
+    // Create a Logo scroll trigger animation
+    ScrollTrigger.create({
+
+      id: 'logoScrollTrigger',
+      animation: this.logoTimelineReversed,
+      trigger: this.skeleton.nativeElement,
+      start: "center center",
+      end: "center top",
+      scrub: true, 
+      markers: false
+
+    });
+
+    // Create a Text scroll trigger animation
+    ScrollTrigger.create({
+
+      id: 'sectionHiTextScrollTrigger',
+      animation: textTimeline,
+      trigger: this.skeleton.nativeElement,
+      start: "center center",
+      end: "center top",
+      scrub: true, 
+      markers: false
+
+    });
+
+    // // BG ANIMATION
+    // let bgTween = gsap.fromTo(this.hiBackgroundEl.nativeElement, { opacity: 1, backgroundSize: this.backgroundSize+"%", backgroundPositionY: 'bottom' }, { opacity: 0, backgroundSize: (this.backgroundSize-10)+'%', backgroundPositionY: '95%' });
+    // let bgSettings = { el: this.skeleton.nativeElement, tween: bgTween, duration: window.innerHeight*(0.5), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
+    // this.animateScrollTween(bgSettings);
+
+    // // TEXT ANIMATION
+    // // Main intro
+    // let textTitleTween = gsap.fromTo(this.introEl.nativeElement, { width: 'auto' }, { width: '0' });
+    // let textTitleSettings = { el: this.skeleton.nativeElement, tween: textTitleTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
+    // this.animateScrollTween(textTitleSettings);
+
+    // // Desc intro 1
+    // let textDesc1Tween = gsap.fromTo(this.introDescEl.nativeElement.children[0], { width: 'auto' }, { width: '0' });
+    // let textDesc1Settings = { el: this.skeleton.nativeElement, tween: textDesc1Tween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.65), debug: false, origin: "top" };
+    // this.animateScrollTween(textDesc1Settings);
+
+    // // Desc intro 2
+    // let textDesc2Tween = gsap.fromTo(this.introDescEl.nativeElement.children[1], { width: 'auto' }, { width: '0' });
+    // let textDesc2Settings = { el: this.skeleton.nativeElement, tween: textDesc2Tween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
+    // this.animateScrollTween(textDesc2Settings);
+
+    // // LEFT MENU ANIMATION
+    // // Scroll Mouse
+    // let scrollMouseTween = gsap.fromTo(this.scrollMouseSvg.nativeElement, { transform: 'translateY(0em)', opacity: 1 }, { transform: 'translateY(-3em)', opacity: 0 });
+    // let scrollMouseSettings = { el: this.skeleton.nativeElement, tween: scrollMouseTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.5), debug: false, origin: "top" };
+    // this.animateScrollTween(scrollMouseSettings);
+
+    // // Social Medias
+    // let socialsTween = gsap.fromTo(this.leftNavSocials.nativeElement, { transform: 'translateY(0em)', opacity: 1 }, { transform: 'translateY(3em)', opacity: 0 });
+    // let socialsSettings = { el: this.skeleton.nativeElement, tween: socialsTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
+    // this.animateScrollTween(socialsSettings);
+
+    // // (mobileP only)
+    // if(globals.device == 'mobileP'){
+
+    //   // Gradient background animation.fromTo(this.superSectionHi.nativeElement, { margin: '1em', borderRadius: '2em' }, { margin: '0em', borderRadius: '0em' })
+    //   let gradientBgTween = gsap;
+    //   let gradientBgSettings = { el: this.skeleton.nativeElement, tween: gradientBgTween, duration: window.innerHeight*(0.25), triggerHook: "center", offset: window.innerHeight*(0.75), debug: false, origin: "top" };
+    //   this.animateScrollTween(gradientBgSettings);
+
+    //   // Change menu positions
+    //   this.call.sendMenuPosChange(this.sectionHi);
+
+    //   // Hide scroll touch
+    //   let hideScrollTouchTween = gsap.fromTo(this.scrollTouchEl.nativeElement, { opacity: 1 }, { opacity: 0 });
+    //   let hideScrollTouchSettings = { el: this.skeleton.nativeElement, tween: hideScrollTouchTween, duration: window.innerHeight*(0.1), triggerHook: "center", offset: window.innerHeight*(0.55), debug: false, origin: "top" };
+    //   this.animateScrollTween(hideScrollTouchSettings);
+
+    // }
   }
 
   onResize(): void{
@@ -408,15 +408,6 @@ export class SectionHiComponent implements AfterViewInit {
 
       // Erase name
       this.currentNameVal = "";
-
-      // Unload scroll tweens
-      for(let i = this.scrollTweens.length-1; i>=0; i--){
-
-        this.scrollTweens[i].kill();
-        this.scrollTweens[i] = null;
-        this.scrollTweens.splice(i, 1);
-
-      }
 
       // Unload classic tweens
       for(let i = this.classicTweens.length-1; i>=0; i--){

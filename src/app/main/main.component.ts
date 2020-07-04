@@ -11,6 +11,7 @@ import { ActivatedRoute, Router, Scroll } from '@angular/router';
 import { CallService } from '../call.service';
 import { Subscription } from 'rxjs';
 import { ScrollGSAPService } from '../scroll-gsap.service';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 @Component({
   selector: 'app-main',
@@ -27,7 +28,7 @@ export class MainComponent implements AfterViewInit, OnInit {
   @ViewChildren('skeleton', {read: ElementRef}) skeletons: QueryList<ElementRef>;
 
   // Scrollable tweens
-  public scrollTweens: ScrollGSAPService[] = [];
+  // public scrollTweens: ScrollGSAPService[] = [];
 
   // Global vars
   public currentSection: string;
@@ -139,14 +140,25 @@ export class MainComponent implements AfterViewInit, OnInit {
 
       this.sections.forEach((section, j=(this.sections.length-1)) => {
         if(i == j){
-          // Show
-          let tween = gsap.fromTo(section.nativeElement, { zIndex: -(i+1) }, { zIndex: i+1 });
-          let animateScrollInSettings = { el: skeleton.nativeElement, tween: tween, duration: 0, triggerHook: "bottom", offset: duration, debug: false, origin: 'top' };
-          this.animateScrollTween(animateScrollInSettings);
-          // Hide
-          let tween2 = gsap.fromTo(section.nativeElement, { zIndex: i+1 }, { immediateRender: false, zIndex: -(i+1) });
-          let animateScrollOutSettings = { el: skeleton.nativeElement, tween: tween2, duration: 0, triggerHook: "bottom", offset: duration, debug: false, origin: 'bottom' };
-          this.animateScrollTween(animateScrollOutSettings);
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: skeleton.nativeElement,
+              start: "top center",
+              end: "top bottom",
+              scrub: true, 
+              markers: false
+            }
+          })
+          .fromTo(section.nativeElement, { zIndex: -(i+1) }, { zIndex: i+1 });
+
+          // // Show
+          // let tween = gsap.fromTo(section.nativeElement, { zIndex: -(i+1) }, { zIndex: i+1 });
+          // let animateScrollInSettings = { el: skeleton.nativeElement, tween: tween, duration: 0, triggerHook: "bottom", offset: duration, debug: false, origin: 'top' };
+          // this.animateScrollTween(animateScrollInSettings);
+          // // Hide
+          // let tween2 = gsap.fromTo(section.nativeElement, { zIndex: i+1 }, { immediateRender: false, zIndex: -(i+1) });
+          // let animateScrollOutSettings = { el: skeleton.nativeElement, tween: tween2, duration: 0, triggerHook: "bottom", offset: duration, debug: false, origin: 'bottom' };
+          // this.animateScrollTween(animateScrollOutSettings);
         }
         j = j-1;
       });
@@ -176,17 +188,18 @@ export class MainComponent implements AfterViewInit, OnInit {
   onResize(): void{
 
     let unload = () => {
-      this.scrollTweens.forEach((scrollTween) => {
-        let index = this.scrollTweens.indexOf(scrollTween);
-        scrollTween.kill();
-        this.scrollTweens.splice(index, 1);
-      });
-      this.scrollTweens = [];
+      // this.scrollTweens.forEach((scrollTween) => {
+      //   let index = this.scrollTweens.indexOf(scrollTween);
+      //   scrollTween.kill();
+      //   this.scrollTweens.splice(index, 1);
+      // });
+      // this.scrollTweens = [];
       load();
     }
 
     let load = () => {
       this.updateSkeleton();
+      ScrollTrigger.refresh()
       this.onProjectsLoad(this.projectsNo);
     }
 
@@ -194,10 +207,10 @@ export class MainComponent implements AfterViewInit, OnInit {
 
   }
 
-  private animateScrollTween(settings): void{
-    let scrollTween = new ScrollGSAPService(settings);
-    this.scrollTweens.push(scrollTween);
-    scrollTween.animate();
-  }
+  // private animateScrollTween(settings): void{
+  //   let scrollTween = new ScrollGSAPService(settings);
+  //   this.scrollTweens.push(scrollTween);
+  //   scrollTween.animate();
+  // }
 
 }
