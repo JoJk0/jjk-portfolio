@@ -124,10 +124,8 @@ input {
 
 label {
   font-size: 12px;
-  font-weight: bold;
   margin-bottom: 4px;
   display: block;
-  text-transform: uppercase;
 }
 
 /* Button */
@@ -217,6 +215,21 @@ mat-form-field{
   }
 }
 
+.mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+.mat-select-panel-wrap{
+  transform: scale(1.3);
+  transform-origin: top left;
+}
+
+mat-form-field.contact-select{
+  transform: scale(1.3);
+  margin: auto !important;
+  display: block;
+}
+
 /* MAT DIALOG CONTAINERS */
 
 .dialogBackdrop{
@@ -227,7 +240,7 @@ mat-form-field{
 }
 .mat-dialog { transition: none; }
 #my-skills-container{
-  background: $c-base-dark;
+  background: $c-text;
   overflow: hidden;
   z-index: 17;
   color: $c-bg;
@@ -394,6 +407,9 @@ app-my-skills{
 @media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
   *{
     font-size: 0.8rem;
+  }
+  .mat-dialog-container{
+    padding: 0 !important;
   }
 }
 

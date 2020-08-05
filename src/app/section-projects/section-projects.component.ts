@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, ElementRef, QueryList, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChildren, ElementRef, QueryList, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter, Input } from '@angular/core';
 import { Projects } from '../projects';
 import { ArtViewComponent } from '../art-view/art-view.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,14 +7,16 @@ import { Location } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollGSAPService } from '../scroll-gsap.service';
 import { Scroll } from '@angular/router';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 @Component({
   selector: 'app-section-projects',
   templateUrl: './section-projects.component.html',
   styleUrls: ['./section-projects.component.scss']
 })
-export class SectionProjectsComponent implements OnInit {
+export class SectionProjectsComponent implements OnInit, AfterViewInit {
 
+  @Input() skeletons: QueryList<ElementRef>;
   @Output() updateSkeleton = new EventEmitter<number>();
   
   // Elements
@@ -27,6 +29,7 @@ export class SectionProjectsComponent implements OnInit {
 
   // Properties
   public scrollTweens: ScrollGSAPService[] = [];
+  public skeleton: ElementRef;
   artPos = {
     'position': 'fixed',
     'z-index': '16',
@@ -40,6 +43,29 @@ export class SectionProjectsComponent implements OnInit {
   projects: Projects[] = [];
   
   constructor(public dialog: MatDialog, private jsonData: DataJsonService, private location: Location, private detector: ChangeDetectorRef) { }
+
+  async ngAfterViewInit(){
+
+    await this.skeletons;
+
+    this.skeletons.forEach((skeleton) => {
+      if(skeleton.nativeElement.id == 'section-projects-skeleton'){
+            
+        this.skeleton = skeleton;
+        this.detector.detectChanges();
+        setTimeout(() => {
+          console.log(this.skeleton.nativeElement.offsetHeight);
+          this.animateOnScroll();
+        }, 0);
+
+        // this.onResizeSub = this.call.onResizeNotifier.$.subscribe(bool => {
+        //   this.onResize();
+        // });
+
+      }
+    });
+
+  }
 
   ngOnInit(){
 
@@ -60,7 +86,6 @@ export class SectionProjectsComponent implements OnInit {
 
           setTimeout(() => {
             this.detector.detectChanges();
-            this.animateOnScroll();
           }, 0);
       },
       error => console.log(error)
@@ -109,19 +134,26 @@ export class SectionProjectsComponent implements OnInit {
     let duration = (i: number) => { return window.innerHeight*i/2 }; // <0,2>
     let startAt = (i: number) => { return window.innerHeight*2+window.innerHeight*i/2 }; // <0,2>
 
+    let projectsTimeline = gsap.timeline({ paused: true })
+
     // Title - show
-    let projectsTitleTween = gsap.fromTo(this.projectsTitleEl.nativeElement, { y: '-1em', opacity: 0 }, { y: '0em', opacity: 1 });
-    let projectsTitleSettings = { el: section, tween: projectsTitleTween, duration: duration(0.5), triggerHook: "center", offset: startAt(0), debug: false, origin: "top" };
-    this.animateScrollTween(projectsTitleSettings);
+    .fromTo(this.projectsTitleEl.nativeElement, { y: '-1em', opacity: 0 }, { duration: 0.5, y: '0em', opacity: 1 }, 0)
 
     // Move title to the bottom
-    let titleMoveTween = gsap.fromTo(this.artListEl.nativeElement, { height: '0em' }, { height: '45em', ease: 'power2.inOut' });
-    let titleMoveSettings = { el: section, tween: titleMoveTween, duration: duration(0.2), triggerHook: "center", offset: startAt(0.3), debug: false, origin: "top" };
-    this.animateScrollTween(titleMoveSettings);
+    .fromTo(this.artListEl.nativeElement, { height: '0em' }, { duration: 0.2, height: '45em', ease: 'power2.inOut' }, 0.3);
 
     // Move art
     let diff = 0.0;
     this.arts.forEach((art) => {
+
+      // Pair project's view with Project obj
+      let currentProject: Projects;
+      this.projects.forEach((project) => {
+        console.log("project-"+project.id);
+        if("project-"+project.id == art.nativeElement.id){
+          currentProject = project;
+        }
+      });
 
       // Elements
       let imgContainerEl = art.nativeElement.children[0];
@@ -131,81 +163,68 @@ export class SectionProjectsComponent implements OnInit {
       
 
     // --- In ---
+      
+      projectsTimeline
       // Pre-set values
-      let setShowTitle = gsap.to(artTitleEl, { left: '-200%' });
-      let setShowTitleSettings = { el: section, tween: setShowTitle, duration: duration(0), triggerHook: "center", offset: startAt(0), debug: false, origin: "top" };
-      this.animateScrollTween(setShowTitleSettings);
+      .to(artTitleEl, { duration: 0, left: '-200%' }, 0+diff)
 
-      let setShowInsideTitle = gsap.to(artInsideTitleEl, { marginLeft: '-200%' });
-      let setShowInsideTitleSettings = { el: section, tween: setShowInsideTitle, duration: duration(0), triggerHook: "center", offset: startAt(0), debug: false, origin: "top" };
-      this.animateScrollTween(setShowInsideTitleSettings);
+      .to(artInsideTitleEl, { duration: 0, marginLeft: '-200%' }, 0+diff)
 
-      let setShowImage = gsap.to(imgContainerEl, { left: '100vw' });
-      let setShowImageSettings = { el: section, tween: setShowImage, duration: duration(0), triggerHook: "center", offset: startAt(0), debug: false, origin: "top" };
-      this.animateScrollTween(setShowImageSettings);
+      .to(imgContainerEl, { duration: 0, left: '100vw' }, 0+diff)
 
 
       // Show text
-      let showTitleTween = gsap.fromTo(artTitleEl, { left: '-200%', ease: 'power2.out' }, { immediateRender: false, left: '0%', ease: 'power2.out'});
-      let showTitleSettings = { el: section, tween: showTitleTween, duration: duration(0.8), triggerHook: "center", offset: startAt(0.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(showTitleSettings);
+      .fromTo(artTitleEl, { left: '-200%', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, left: '0%', ease: 'power2.out'}, 0.2+diff)
 
       // Show inside text
-      let showInsideTitleTween = gsap.fromTo(artInsideTitleEl, { marginLeft: '-200%', ease: 'power2.out' }, { immediateRender: false, marginLeft: '0%', ease: 'power2.out' });
-      let showInsideTitleSettings = { el: section, tween: showInsideTitleTween, duration: duration(0.8), triggerHook: "center", offset: startAt(0.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(showInsideTitleSettings);
+      .fromTo(artInsideTitleEl, { marginLeft: '-200%', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, marginLeft: '0%', ease: 'power2.out' }, 0.2+diff)
 
       // Show image
-      let showImageTween = gsap.fromTo(imgContainerEl, { left: '100vw', ease: 'power2.out' }, { immediateRender: false, left: '0vw', ease: 'power2.out' });
-      let showImageSettings = { el: section, tween: showImageTween, duration: duration(0.8), triggerHook: "center", offset: startAt(0.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(showImageSettings);
+      .fromTo(imgContainerEl, { left: '100vw', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, left: '0vw', ease: 'power2.out' }, 0.2+diff)
+
+      // Change background
+      .to(this.sectionProjectsContainerEl.nativeElement, { duration: 0.5, backgroundColor: currentProject.colours.background }, diff)
     
     // Scroll page
-      let scrollArtTween = gsap.fromTo(art.nativeElement, { top: '15vh' }, { immediateRender: false, top: '-100vh', ease: 'none'});
-      let scrollArtSettings = { el: section, tween: scrollArtTween, duration: duration(0.8), triggerHook: "center", offset: startAt(1.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(scrollArtSettings);
+      .fromTo(art.nativeElement, { top: '15vh' }, { duration: 0.8, immediateRender: false, top: '-100vh', ease: 'none'}, 1.2+diff)
 
     // --- Out ---
 
       // Hide text
-      let hideTitleTween = gsap.fromTo(artTitleEl, { left: '0%', paused: true, ease: 'power4.in' }, { immediateRender: false, left: '200%', ease: 'power4.in'});
-      let hideTitleSettings = { el: section, tween: hideTitleTween, duration: duration(0.8), triggerHook: "center", offset: startAt(1.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(hideTitleSettings);
+      .fromTo(artTitleEl, { left: '0%', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, left: '200%', ease: 'power4.in'}, 1.2+diff)
 
       // Hide inside text
-      let hideInsideTitleTween = gsap.fromTo(artInsideTitleEl, { marginLeft: '0%', paused: true, ease: 'power4.in' }, { immediateRender: false, marginLeft: '200%', ease: 'power4.in' });
-      let hideInsideTitleSettings = { el: section, tween: hideInsideTitleTween, duration: duration(0.8), triggerHook: "center", offset: startAt(1.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(hideInsideTitleSettings);
+      .fromTo(artInsideTitleEl, { marginLeft: '0%', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, marginLeft: '200%', ease: 'power4.in' }, 1.2+diff)
 
       // Hide image
-      let hideImageTween = gsap.fromTo(imgContainerEl, { left: '0vw', paused: true, ease: 'power4.in' }, { immediateRender: false, left: '-100vw', ease: 'power4.in' });
-      let hideImageSettings = { el: section, tween: hideImageTween, duration: duration(0.8), triggerHook: "center", offset: startAt(1.2+diff), debug: false, origin: "top" };
-      this.animateScrollTween(hideImageSettings);
+      .fromTo(imgContainerEl, { left: '0vw', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, left: '-100vw', ease: 'power4.in' }, 1.2+diff)
       
       // Post-set values
-      let setHideTitle = gsap.to(artTitleEl, { left: '200%' });
-      let setHideTitleSettings = { el: section, tween: setHideTitle, duration: duration(0), triggerHook: "center", offset: startAt(2), debug: false, origin: "top" };
-      this.animateScrollTween(setHideTitleSettings);
+      .to(artTitleEl, { duration: 0, left: '200%' }, 2+diff)
+      
+      .to(artInsideTitleEl, { duration: 0, marginLeft: '200%' }, 2+diff)
 
-      let setHideInsideTitle = gsap.to(artInsideTitleEl, { marginLeft: '200%' });
-      let setHideInsideTitleSettings = { el: section, tween: setHideInsideTitle, duration: duration(0), triggerHook: "center", offset: startAt(2), debug: false, origin: "top" };
-      this.animateScrollTween(setHideInsideTitleSettings);
-
-      let setHideImage = gsap.to(imgContainerEl, { left: '-100vw' });
-      let setHideImageSettings = { el: section, tween: setHideImage, duration: duration(0), triggerHook: "center", offset: startAt(2), debug: false, origin: "top" };
-      this.animateScrollTween(setHideImageSettings);
+      .to(imgContainerEl, { duration: 0, eft: '-100vw' }, 2+diff);
 
       diff = diff+1.6;
 
     });
 
+
+    ScrollTrigger.create({
+
+      id: 'projectsScrollTrigger',
+      animation: projectsTimeline,
+      trigger: this.skeleton.nativeElement,
+      start: "top center",
+      end: "bottom center",
+      scrub: true, 
+      markers: false
+
+    });
+
   }
 
-  private animateScrollTween(settings): void{
-    let scrollTween = new ScrollGSAPService(settings);
-    this.scrollTweens.push(scrollTween);
-    scrollTween.animate();
-  }
 
 }
 // 0 -> 0.5 0.5+a/2

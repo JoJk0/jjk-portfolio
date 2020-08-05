@@ -5,14 +5,19 @@
         <div class="skills-list-cat" *ngFor="let category of skills">
             <div class="skills-cat-title" #catTitle>{{category.title}}</div>
             <mat-chip-list>
-                <mat-chip *ngFor="let skill of category.SubSkills" #skill>{{skill}}</mat-chip>
+                <mat-chip *ngFor="let skill of category.SubSkills" #skill><div class="chip-skill">{{skill}}</div></mat-chip>
             </mat-chip-list>
         </div>
     </div>
     <div class="uni-modules" #uniModulesContainer>
+        <div class="seperator"></div>
         <div class="title" #uniModulesTitle>Uni Modules</div>
         <div class="modules-list">
-            <div class="module" *ngFor="let uniModule of uniModules" #module>{{uniModule}}</div>
+            <div class="letter-group" *ngFor="let group of uniModulesGrouped">
+                <div class="letter">{{ group.key }}</div>
+                <div class="module" *ngFor="let uniModule of group.unimodules" #module>{{uniModule}}</div>
+            </div>
+
         </div>
         <mat-icon>expand_more</mat-icon>
     </div>

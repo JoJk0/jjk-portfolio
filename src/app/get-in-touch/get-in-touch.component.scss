@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../assets/variables";
 
 mat-form-field{
@@ -194,4 +195,127 @@ mat-form-field{
     top: -5em;
     left: -5em;
     line-height: 150%;
+}
+
+mat-horizontal-stepper{
+  background: transparent !important;
+  .contact-select{
+    width: auto;
+  }
+  .step-title{
+    font-size: 2em;
+    padding: 1em;
+    text-align: center;
+    .nice-to-meet-you{
+      font-size: 1.5em;
+      line-height: 150%;
+      padding-bottom: 1.5em;
+      color: $c-base-light;
+    }
+  }
+  .gradient-border-wrapper{
+    background: $c-button-gradient;
+    border-radius: 2rem;
+    padding: 0.2em;
+    width: 20em;
+    margin: auto;
+    .gradient-wrapper-inside{
+      background: $c-bg;
+      border-radius: 1.9rem;
+      padding: 0 1em;
+      &:hover{
+        background: lighten($c-bg, $amount: 5);
+      }
+    }
+  }
+  mat-select{
+    padding: 1em;
+  }
+  .form-input{
+    width: 20em;
+    transform: scale(1.5);
+    transform-origin: top center;
+    margin: auto !important;
+    display: block;
+    background: rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+    padding: 0.2em 0.6em;
+  }
+  .textarea-input{
+
+    width: 35em;
+    transform-origin: top center;
+    margin: auto !important;
+    display: block;
+    background: rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+    padding: 0.3em 1em;
+
+  }
+  button{
+    color: $c-bg;
+    font-weight: 800;
+    background: transparent;
+    width: 18rem;
+    height: 6rem;
+    padding: 0;
+    display: block;
+    position: relative;
+    transition: transform 0.2s ease;
+    transform: scale(0.8);
+    margin: 6em auto;
+    &.textarea{
+      margin-top: 5em;
+    }
+    *{
+      font-size: 1.2rem;
+    }
+    &:hover{
+      transform: scale(0.9);
+      opacity: 1;
+      .button-text{
+        &:before{
+          transform: rotate(-5deg);
+        }
+      }
+    }
+    .button-text{
+      margin: 0;
+      padding: 0;
+      .main{
+        // clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
+        clip-path: url(#buttonBg1);
+        background: $c-button-gradient;
+        width: 18rem;
+        line-height: 6rem;
+        position: absolute;
+        top: 0%;
+        left: 0;
+        font-size: 1.3em;
+        transition: clip-path 0.2s ease;
+        i{
+          font-size: 1.3em;
+          position: relative;
+          top: 0.25em;
+        }
+      }
+      &:before{
+        content: "";
+        // clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
+        clip-path: url(#buttonBg2);
+        background: $c-button-gradient-inverted;
+        position: absolute;
+        top: -7%;
+        left: 0;
+        width: 18rem;
+        height: 7rem;
+        transition: transform 0.2s ease;
+      }
+    }
+  }
+}
+
+// Mobile portrait
+@media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
+
 }

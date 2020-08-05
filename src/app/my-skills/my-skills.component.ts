@@ -25,7 +25,8 @@ export class MySkillsComponent implements OnInit, AfterViewInit {
 
   // Properties
   skills: Skills[] = [];
-  uniModules: UniModules[] = [];
+  uniModules: String[] = [];
+  uniModulesGrouped: any = [];
   animationTimeline: gsap.core.Timeline;
 
   constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<MySkillsComponent>, private location: Location) { }
@@ -45,6 +46,24 @@ export class MySkillsComponent implements OnInit, AfterViewInit {
     this.jsonData.getUniModules().subscribe(
       response => {
           this.uniModules = response;
+
+          const sorted = this.uniModules.sort((a, b) => a > b ? 1 : -1);
+
+          const grouped = sorted.reduce((groups, unimodule) => {
+              const letter = unimodule.charAt(0);
+
+              groups[letter] = groups[letter] || [];
+              groups[letter].push(unimodule);
+
+              return groups;
+          }, {});
+
+          const result = Object.keys(grouped).map(key => ({key, unimodules: grouped[key]}));
+
+          this.uniModulesGrouped = result;
+
+          console.log(result);
+
           setTimeout(() => {
             this.animateUniModules();
           }, 0);

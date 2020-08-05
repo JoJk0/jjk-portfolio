@@ -3,39 +3,79 @@
         <div class="title">Say Hi! 👋🏻</div>
         <div class="desc">let's do something amazing.</div>
     </div>
-    <div class="contact-box">
-        <div class="left">
-            <div class="contact-form">
-                <form [formGroup]="options">
-                    <div class="top">
-                        <span class="filler-text">Hi! I'm</span>
-                        <mat-form-field appearance="standard" [ngStyle]="{'width': inputWidth['cname']+'px'}">
-                            <input matInput maxlength="32" placeholder="John Smith" required autocomplete="off" (keydown)="presizeInput($event)" (paste)="presizeInputPaste($event)" (keyup)="resizeInput($event)" id="cname" />
-                            <!-- <input matInput maxlength="32" placeholder="John Smith" required autocomplete="off" (keydown)="presizeTextarea($event)" (keyup)="resizeInput($event)" id="cname" /> -->
-                        </mat-form-field>
-                        <span class="filler-text">and I want to talk about</span>
-                        <mat-form-field appearance="standard" [ngStyle]="{'width': 25+inputWidth['ctopic']+'px'}">
-                            <mat-select required placeholder="❤️ coffee" id="ctopic" (selectionChange)="resizeInput($event); changeTopic($event)"> 
+
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step [stepControl]="firstOptions" [editable]="false">
+                  <form [formGroup]="firstOptions">
+                    <div class="step-title">let's talk about...</div>
+                    <div class="gradient-border-wrapper">
+                      <div class="gradient-wrapper-inside">
+                        <mat-form-field class="contact-select" appearance="standard">
+                            <mat-select formControlName="firstCtrl" required placeholder="❤️ coffee" id="ctopic" (selectionChange)="resizeInput($event); changeTopic($event)"> 
                                 <mat-option [value]="topic.name" *ngFor="let topic of topics">{{ topic.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <span class="filler-text">.</span>
+                      </div>
                     </div>
-                    <mat-form-field appearance="standard" class="contact-textarea">
-                        <textarea maxlength="2048" matInput [placeholder]="textareaPlaceholder" [ngStyle]="{'height': inputHeight+'px'}" id="ctextarea" #ctextarea (keydown)="presizeInput($event)" (paste)="presizeInputPaste($event)" (keyup)="resizeInput($event)"></textarea>
-                        <mat-hint align="end">{{ctextarea.value?.length || 0}}/2048</mat-hint>
+                    <div>
+                      <button matStepperNext class="buttonNext"><div class="button-text"><div class="main">Next<i class="material-icons">chevron_right</i></div></div></button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="secondOptions" [editable]="false">
+                  <form [formGroup]="secondOptions">
+                    <div class="step-title">First, how should I call you?</div>
+                    <mat-form-field class="form-input" floatLabel="never">
+                      <input matInput maxlength="32" formControlName="secondCtrl" placeholder="Ex. Elon Musk"
+                             required>
                     </mat-form-field>
-                    <div class="bottom">
-                        <span class="filler-text">Reach me at</span>
-                        <mat-form-field appearance="standard" [ngStyle]="{'width': inputWidth['cemail']+'px'}">
-                            <input type="email" maxlength="64" matInput placeholder="john.smith@example.com" required autocomplete="off" (keydown)="presizeInput($event)" (paste)="presizeInputPaste($event)" (keyup)="resizeInput($event)" id="cemail" />
-                        </mat-form-field>
+                    <div>
+                      <button matStepperNext #mySkillsButton><div class="button-text"><div class="main">Next <i class="material-icons">navigate_next</i></div></div></button>
+                      <div class="cv-link" *ngIf="firstOptions.controls['firstCtrl'].value == ''">Looking for my CV? Get it here!</div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <button #formSubmitButton><div class="button-text"><div class="main">Ok, I'm done.</div></div></button>
-    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="thirdOptions" [editable]="false">
+                  <form [formGroup]="thirdOptions">
+                    <div class="step-title">
+                      <div class="nice-to-meet-you">Nice to meet you, {{ secondOptions.controls['secondCtrl'].value }}.</div>
+                      How should I get back to you?
+                    </div>
+                    <mat-form-field class="form-input" floatLabel="never">
+                      <input type="email" matInput formControlName="thirdCtrl" placeholder="Ex. follow.dreams@thinkbig.io" required>
+                      <mat-error *ngIf="thirdOptions.controls['thirdCtrl'].hasError('email') && !thirdOptions.controls['thirdCtrl'].hasError('required')">
+                        Currently I only accept email addresses, enter one
+                      </mat-error>
+                    </mat-form-field>
+                    <div>
+                      <button matStepperNext class="buttonNext"><div class="button-text"><div class="main">Next<i class="material-icons">chevron_right</i></div></div></button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step [stepControl]="messageOptions" [editable]="false">
+                  <form [formGroup]="messageOptions">
+                    <div class="step-title">Great, what's on your mind?</div>
+                    <mat-form-field class="textarea-input" floatLabel="never">
+                      <textarea matInput matTextareaAutosize #textarea maxlength="768" matAutosizeMinRows="5" maxRows="10" formControlName="messageCtrl" placeholder="Did you know I love Guatemalan coffee?" required></textarea>
+                      <mat-hint align="end">{{textarea.value.length}} / 768</mat-hint>
+                      <mat-hint align="start"><mat-checkbox disableRipple checked>Send a copy of this message to your email</mat-checkbox></mat-hint>
+                    </mat-form-field>
+                    <div>
+                      <button matStepperNext class="buttonNext textarea"><div class="button-text"><div class="main">Send <i class="material-icons">send</i></div></div></button>
+                    </div>
+                  </form>
+                </mat-step>
+                <mat-step>
+                  <ng-template matStepLabel>Done</ng-template>
+                  <p>You are now done.</p>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                  </div>
+                </mat-step>
+              </mat-horizontal-stepper>
+    <!-- <button #formSubmitButton><div class="button-text"><div class="main">Ok, I'm done.</div></div></button> -->
+
     <footer>
         <div class="right">
             <!-- <div class="sub-title">Let's get connected</div> -->

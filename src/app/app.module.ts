@@ -29,6 +29,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatTableModule } from '@angular/material/table';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
@@ -86,6 +89,9 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     MatSelectModule,
     MatTooltipModule,
     MatTabsModule,
+    MatTableModule,
+    MatStepperModule,
+    MatCheckboxModule,
     HammerModule,
     NgxUsefulSwiperModule
   ],

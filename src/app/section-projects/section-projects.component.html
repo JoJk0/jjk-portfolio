@@ -1,7 +1,7 @@
 <div id="art-background" #artBackground [ngStyle]="artPos"></div>
 <div class="cnt" #sectionProjectsContainer>
   <div class="what-i-did-list" #artList>
-    <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art>
+    <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art id="project-{{ project.id }}">
       <div class="img-container">
         <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
         <div class="art-title-container"><div class="art-title">{{ project.title }}&nbsp;</div></div>

@@ -27,7 +27,7 @@ export class DataJsonService {
   }
 
   getUniModules(){
-    return this.http.get<UniModules[]>(this.uniModulesUrl);
+    return this.http.get<String[]>(this.uniModulesUrl);
   }
 
   getTopics(){

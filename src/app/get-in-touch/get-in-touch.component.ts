@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatStepper } from '@angular/material/stepper';
+import { MatCheckbox } from '@angular/material/checkbox';
 import { MatSelect } from '@angular/material/select';
 import { EmailValidator } from '@angular/forms';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -16,10 +18,16 @@ import { Topic } from '../topic';
 export class GetInTouchComponent implements OnInit {
   
   @ViewChild('ctextarea') cTextarea: ElementRef;
+  @ViewChild('textarea') textarea: ElementRef;
   @ViewChild('inputTester') inputTesterEl: ElementRef;
   @ViewChild('textareaTester') textareaTesterEl: ElementRef;
 
-  options: FormGroup;
+  firstOptions: FormGroup;
+  secondOptions: FormGroup;
+  thirdOptions: FormGroup;
+  messageOptions: FormGroup;
+
+  
   inputTesterValue: string;
   textareaTesterValue : string;
   testerWidth: number;
@@ -37,7 +45,18 @@ export class GetInTouchComponent implements OnInit {
   inputHeight: number = 32;
   
   constructor(fb: FormBuilder, private jsonData: DataJsonService) {
-    this.options = fb.group({});
+    this.firstOptions = fb.group({
+      firstCtrl: [null, Validators.required]
+    });
+    this.secondOptions = fb.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.thirdOptions = fb.group({
+      thirdCtrl: ['', Validators.email]
+    });
+    this.messageOptions = fb.group({
+      messageCtrl: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
@@ -60,7 +79,6 @@ export class GetInTouchComponent implements OnInit {
         this.textareaTesterValue = this.textareaPlaceholder;
         setTimeout(() => {
           let testerHeight = this.textareaTesterEl.nativeElement.offsetHeight;
-          this.testerWidth = this.cTextarea.nativeElement.offsetWidth;
           setTimeout(() => {
             this.inputHeight = testerHeight;
           }, 0);
