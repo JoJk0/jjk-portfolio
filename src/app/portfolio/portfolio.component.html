@@ -1,5 +1,9 @@
 <router-outlet></router-outlet>
-<div class="bg-text">Portfolio</div>
+<div class="top">
+  <div class="section-title">Portfolio</div>
+  <div class="desc">Enter the keywords to show projects</div>
+</div>
+
 
 <mat-form-field class="arts-search">
     <mat-chip-list #chipList aria-label="Choose keywords">
@@ -30,8 +34,12 @@
     <div class="art" *ngFor="let project of availableProjects" [routerLink]="['/projects/'+project.id]" queryParamsHandling="preserve" #art>
         <div class="img-container">
           <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
-          <div class="art-title-container"><div class="art-title">{{ project.title }}</div></div>
-          <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')"><div class="inside-title">{{ project.title }}</div></div>
+          <div class="art-title-container"><div class="art-title">{{ project.title }}&nbsp;</div></div>
+          <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')">
+            <div class="inside-stretcher">
+              <div class="inside-title">{{ project.title }}&nbsp;</div>
+            </div>
+          </div>
         </div>
       </div>
 </div>

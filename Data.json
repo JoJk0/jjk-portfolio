@@ -37,20 +37,14 @@
         {
             "id": 0,
             "title": "JJK Portfolio 8.0",
-            "date": "1/5/2020",
+            "date": "1597688872000",
             "coAuthors": [],
             "images": ["1.png", "jjk-2.png", "jjk-3.png", "jjk-4.png"],
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
             "typography":[
                 {
-                    "name": "Quicksand",
-                    "displayName": "Quicksand",
-                    "style": ""
-                },
-                {
-                    "name": "Londrina Outline",
-                    "displayName": "Londrina Outline",
-                    "style": "font-family: 'Londrina Outline'; font-weight: bold; text-transform: uppercase"
+                    "name": "quicksand",
+                    "displayName": "Quicksand"
                 }
             ],
             "colourPalette":[
@@ -59,12 +53,12 @@
                     "name": "Kuretake black manga"
                 },
                 {
-                    "code": "#5dd9c1",
-                    "name": "Sweet garden"
+                    "code": "#797ef7",
+                    "name": "Orchid"
                 },
                 {
-                    "code": "#acfdd9",
-                    "name": "Pale turquoise"
+                    "code": "#00ffce",
+                    "name": "Bright teal"
                 },
                 {
                     "code": "#c4fffe",
@@ -73,14 +67,18 @@
             ],
             "colours":{
                 "background": "#001427",
-                "panelBg": "#5dd9c1",
+                "panelBg": "#c4fffe",
                 "text": "#001427",
-                "topTitleLeft": "#5dd9c1",
-                "topTitleRight": "#001427"
+                "topTitleLeft": "#c4fffe",
+                "topTitleRight": "#001427",
+                "buttons": "linear-gradient(12deg, rgb(121, 126, 247) 0%, rgb(0, 255, 206) 75%)"
             },
             "keywords":["HTML5", "CSS3", "JavaScript"],
             "liveURL": "",
-            "copyURL": "",
+            "copyURL": "jjk",
+            "reportURL": "jjk",
+            "githubURL": "",
+            "dribbbleURL": "",
             "showcasePos": "0"
 
         },
@@ -93,9 +91,8 @@
             "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
             "typography":[
                 {
-                    "name": "Roboto",
-                    "displayName": "Roboto",
-                    "style": ""
+                    "name": "roboto",
+                    "displayName": "Roboto"
                 }
             ],
             "colourPalette":[
@@ -121,11 +118,14 @@
                 "panelBg": "#1db980",
                 "text": "#373640",
                 "topTitleLeft": "#1db980",
-                "topTitleRight": "#373640"
+                "topTitleRight": "#373640",
+                "buttons": "linear-gradient(15deg, #797ef7 0%, #00ffce 59%)"
             },
-            "keywords":["HTML5", "CSS3", "PixiJS"],
+            "keywords":["HTML5", "CSS3", "PixiJS", "Canvas (HTML)", "JavaScript", "Photoshop"],
             "liveURL": "",
             "copyURL": "",
+            "reportURL": "",
+            "githubURL": "",
             "showcasePos": "1"
 
         }

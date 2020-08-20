@@ -1,15 +1,11 @@
-<div class="main-container" [ngStyle]="{'background-color': project.colours.background }">
+<div class="main-container" [ngStyle]="{'background-color': project.colours.background }" #mainContainer>
     <div class="left-panel" [ngStyle]="{'background-color': project.colours.background }">
-        <div class="left-title" [ngStyle]="{'color': project.colours.background, 'text-shadow': '-2px -2px 0 '+project.colours.topTitleLeft+',  
-        2px -2px 0 '+project.colours.topTitleLeft+',
-        -2px 2px 0 '+project.colours.topTitleLeft+',
-         2px 2px 0 '+project.colours.topTitleLeft+',
-       -1px -1px 0 '+project.colours.topTitleLeft+',  
-        1px -1px 0 '+project.colours.topTitleLeft+',
-        -1px 1px 0 '+project.colours.topTitleLeft+',
-         1px 1px 0 '+project.colours.topTitleLeft+''}">{{ project.title }}</div>
+        <div class="left-title" #desktopTitleLeft>
+            <div class="border" [ngStyle]="{ 'background': project.colours.topTitleLeft, 'background-clip': 'text', '-webkit-background-clip': 'text' }">{{ project.title }}&nbsp;</div>
+            <div class="fill" [ngStyle]="{'color': project.colours.background }">{{ project.title }}&nbsp;</div>
+        </div>
     </div>
-    <div class="right-panel" [ngStyle]="{'background-color': project.colours.panelBg }">
+    <div class="right-panel" [ngStyle]="{'background-color': project.colours.panelBg }" #rightPanel>
         <div class="dialog-close" (click)="close()" [routerLink]="['/'+origin]" queryParamsHandling="preserve"><button mat-icon-button><mat-icon>close</mat-icon></button></div> 
         <div class="title" [ngStyle]="{'color': project.colours.panelBg, 'text-shadow': '
        -2px -2px 0 '+project.colours.topTitleRight+',  
@@ -19,36 +15,75 @@
        -1px -1px 0 '+project.colours.topTitleRight+',  
         1px -1px 0 '+project.colours.topTitleRight+',
         -1px 1px 0 '+project.colours.topTitleRight+',
-         1px 1px 0 '+project.colours.topTitleRight+'' }">{{ project.title }}</div>
+         1px 1px 0 '+project.colours.topTitleRight+'' }" #desktopTitleRight>{{ project.title }}&nbsp;</div>
     </div>
     <div class="content">
-        <div class="left">
+        <div class="left" #mobileTop (click)="showGallery()">
             <div class="box-viewer">    
                 <div class="main-viewer">
-                    <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.images[0] }}"/>
+                    <swiper [config]="config" id="swiperCarousel">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide" *ngFor="let image of project.images">
+                            <div class="swiper-zoom-container">
+                                <img src="../assets/arts/{{image}}" alt="{{ image }}"/>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination" #paginator></div>
+                    </swiper>
+                    <div class="image-container">
+                        <img src="../assets/arts/{{currentPhoto}}" alt="{{ currentPhoto }}" #desktopViewer/>
+                    </div>
+                    <!-- <pinch-zoom overflow="visible" backgroundColor="transparent">
+                        <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.images[0] }}"/>
+                    </pinch-zoom> -->
                 </div>
-                <div class="other-photos">
-                    <img src="../assets/arts/{{image}}" *ngFor="let image of project.images"/>
+                <div class="other-photos" #otherPhotos>
+                    <img src="../assets/arts/{{image}}" *ngFor="let image of project.images" (click)="changePhoto(image)" [ngClass]="{ 'active': (currentPhoto == image) }" />
                 </div>
             </div>
         </div>
-        <div class="right" [ngStyle]="{ 'color': project.colours.text }">
-            <div class="details">
+        <div class="right" #mobileBottom [ngStyle]="{ 'color': project.colours.text, 'background-color': (globals.device == 'mobileP') ? project.colours.panelBg : '' }" (swipedown)="showGallery()" (swipeup)="hideGallery()" (click)="hideGallery()">
+            <div class="seperator"></div>
+            <div class="details" #rightDetails>
+                <div class="top">
+                    <div class="dialog-close m" (click)="close()" [routerLink]="['/'+origin]" queryParamsHandling="preserve"><button mat-icon-button><mat-icon>close</mat-icon></button></div> 
+                    <div class="main-title">{{ project.title }}</div>
+                </div>
                 <div class="main-desc">{{ project.description }}</div>
                 <div class="typography">
                     <div class="title">Typography</div>
-                    <div class="font" *ngFor="let font of project.typography" [ngStyle]="font.style">{{ font.displayName }}</div>
+                    <div class="font" *ngFor="let font of project.typography">
+                        <img src="../assets/fonts/{{font.name}}.svg" alt="{{ font.displayName }}" />
+                    </div>
                 </div>
                 <div class="color-palette">
                     <div class="title">Colour palette</div>
                     <div class="palette-container">
-                    <div class="palette" *ngFor="let palette of project.colourPalette" [ngStyle]="{'background': palette.code, 'border': '1px solid '+project.colours.background}"></div>
+                        <div class="palette" *ngFor="let palette of project.colourPalette" [ngStyle]="{'background': palette.code, 'border': '1px solid '+project.colours.background}">
+                            <div class="colour-name">
+                                <div class="code">{{ palette.code }}</div>
+                                <div class="name">{{ palette.name }}</div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div class="date">
+                    <div class="title">Published</div>
+                    <div class="desc">{{ project.date | date: 'd MMMM yyyy' }}</div>
                 </div>
                 <div class="skills-keywords">
                     <mat-chip-list>
                         <mat-chip *ngFor="let skill of project.keywords"  [ngStyle]="{ 'color': project.colours.text, 'border': '1px solid '+project.colours.text }">{{ skill }}</mat-chip>
                     </mat-chip-list>
+                </div>
+                <div class="links">
+                    <a href="{{ project.copyURL }}" target="_blank" *ngIf="project.copyURL != ''"><button [ngStyle]="{ 'background': project.colours.buttons }"><i class="material-icons secondary">play_arrow</i> View copy</button></a>
+                    <a href="{{ project.liveURL }}" target="_blank" *ngIf="project.liveURL != ''"><button [ngStyle]="{ 'background': project.colours.buttons }"><i class="material-icons secondary">play_arrow</i> Go to website</button></a>
+                    <a href="{{ project.reportURL }}" target="_blank" *ngIf="project.reportURL != ''"><button [ngStyle]="{ 'background': project.colours.buttons }"><i class="material-icons secondary">description</i> View report</button></a>
+                    <a href="{{ project.githubURL }}" target="_blank" *ngIf="project.githubURL != ''"><button [ngStyle]="{ 'background': project.colours.buttons }"><img src="../assets/github.svg" /> View on GitHub</button></a>
+                    <a href="{{ project.dribbbleURL }}" target="_blank" *ngIf="project.dribbbleURL != ''"><button [ngStyle]="{ 'background': project.colours.buttons }"><i class="material-icons secondary">sports_basketball</i> View on Dribbble</button></a>
                 </div>
             </div>
         </div>

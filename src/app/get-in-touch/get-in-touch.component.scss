@@ -42,6 +42,20 @@ mat-form-field{
   align-items: center;
   .top{
     width: 100%;
+    .title-cnt{
+      display: flex;
+      justify-content: center;
+      .waving-hand{
+        background: $c-text-gradient;
+        background-clip: text;
+        color: transparent;
+        font-size: 5em;
+        font-weight: 800;
+        line-height: 1.5em;
+        text-align: center;
+        transform-origin: 90% 80%;
+      }
+    }
     .title{
       background: $c-text-gradient;
       background-clip: text;
@@ -317,5 +331,69 @@ mat-horizontal-stepper{
 
 // Mobile portrait
 @media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
+
+  .gradient-border-wrapper{
+    transform: scale(1.3);
+  }
+  button{
+    width: 80vw !important;
+    height: auto;
+    margin: 1em;
+    margin-bottom: 2em;
+    .button-text{
+      .main{
+        clip-path: none !important;
+        border-radius: 3rem;
+        width: 80vw !important;
+        line-height: 5.5rem !important;
+        font-size: 1.5em !important;
+      }
+      &:before{
+        clip-path: none !important;
+        border-radius: 3rem;
+        width: 80vw !important;
+        line-height: 5.5rem !important;
+        top: 3px !important;
+        left: 3px !important;
+        height: 5.5rem !important;
+      }
+    }
+  }
+  .form-input{
+    // width: 20em;
+    // transform: scale(1.5);
+    // transform-origin: top center;
+    // margin: auto !important;
+    // display: block;
+    // background: rgba(0,0,0,0.2);
+    // border-radius: 0.5em;
+    // padding: 0.2em 0.6em;
+    &.mat-focused{
+      width: 65vw !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      transform-origin: top left !important;
+      z-index: 9999;
+      display: block;
+      font-size: 2em;
+      background: darken($c-bg, $amount: 10) !important;
+      &:after{
+        content: '';
+        position: fixed;
+        display: block;
+        z-index: 99;
+        top: 10vh;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: $c-bg;
+      }
+    }
+  }
+
+  .socials{
+    transform: scale(1.3);
+  }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, QueryList } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatStepper } from '@angular/material/stepper';
@@ -8,6 +8,8 @@ import { EmailValidator } from '@angular/forms';
 import { MatTooltip } from '@angular/material/tooltip';
 import { DataJsonService } from '../data-json.service';
 import { Topic } from '../topic';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 @Component({
   selector: 'app-get-in-touch',
@@ -17,10 +19,13 @@ import { Topic } from '../topic';
 
 export class GetInTouchComponent implements OnInit {
   
+  @Input() skeletons: QueryList<ElementRef>;
+  
   @ViewChild('ctextarea') cTextarea: ElementRef;
   @ViewChild('textarea') textarea: ElementRef;
   @ViewChild('inputTester') inputTesterEl: ElementRef;
   @ViewChild('textareaTester') textareaTesterEl: ElementRef;
+  @ViewChild('wavingHand') wavingHandEl: ElementRef;
 
   firstOptions: FormGroup;
   secondOptions: FormGroup;
@@ -35,6 +40,7 @@ export class GetInTouchComponent implements OnInit {
   topics: Topic[] = [];
   textareaPlaceholder: string;
 
+  public skeleton: ElementRef;
   private shrinkFactor = 1;
 
   inputWidth: Object = {
@@ -68,6 +74,47 @@ export class GetInTouchComponent implements OnInit {
       },
       error => console.log(error)
     );
+
+  }
+
+  async ngAfterViewInit(){
+
+    
+    await this.skeletons;
+
+    this.skeletons.forEach((skeleton) => {
+      if(skeleton.nativeElement.id == 'get-in-touch-skeleton'){
+            
+        this.skeleton = skeleton;
+        this.animateHand();
+        
+        // this.onResizeSub = this.call.onResizeNotifier.$.subscribe(bool => {
+        //   this.onResize();
+        // });
+
+      }
+    });
+
+  }
+
+  animateHand(): void{
+
+    let handTimeline = gsap.timeline({ repeat: 3, yoyo: true, paused: true });
+
+    handTimeline
+    .fromTo(this.wavingHandEl.nativeElement, { rotate: 0 }, { duration: 2, rotate: 15, ease: 'power1.inOut' }, 0);
+
+    ScrollTrigger.create({
+
+      id: 'wavingHandScrollTrigger',
+      animation: handTimeline,
+      trigger: this.skeleton.nativeElement,
+      start: "top center",
+      end: "bottom center",
+      scrub: false, 
+      markers: false
+
+    });
 
   }
 

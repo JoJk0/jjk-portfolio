@@ -3,7 +3,7 @@
 <div class="outer-bg" #outerBgMenu><app-section-hi #scrollable id="start" (menuChangePosEmitter)="emitMenuChangePos($event)" [skeletons]="skeletons"></app-section-hi></div>
 <app-section-skills id="what-i-do" #scrollable [skeletons]="skeletons"></app-section-skills>
 <app-section-projects id="what-i-did" #scrollable (updateSkeleton)="onProjectsLoad($event)" [skeletons]="skeletons"></app-section-projects>
-<app-get-in-touch id="get-in-touch" #scrollable></app-get-in-touch>
+<app-get-in-touch id="get-in-touch" #scrollable [skeletons]="skeletons"></app-get-in-touch>
 <div id="main-skeleton">
     <div id="section-hi-skeleton" [ngStyle]="{ 'height': sectionHeights[0]+'px' }" #skeleton></div>
     <div id="section-skills-skeleton" [ngStyle]="{ 'height': sectionHeights[1]+'px' }" #skeleton></div>

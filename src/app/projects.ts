@@ -13,14 +13,18 @@ export class Projects {
         panelBg: string,
         text: string,
         topTitleLeft: string,
-        topTitleRight: string
+        topTitleRight: string,
+        buttons: string
     };
     keywords: Array<string>;
     liveURL: string;
     copyURL: string;
+    reportURL: string;
+    githubURL: string;
+    dribbbleURL: string;
     showcasePos: number;
 
-    constructor(id, title, date, coAuthors, images, description, typography, colourPalette, colours, keywords, liveURL, copyURL, showcasePos){
+    constructor(id, title, date, coAuthors, images, description, typography, colourPalette, colours, keywords, liveURL, copyURL, reportURL, githubURL, dribbbleURL, showcasePos){
         this.id = id;
         this.title = title;
         this.date = date;
@@ -34,11 +38,15 @@ export class Projects {
             panelBg:  colours.panelBg,
             text: colours.text,
             topTitleLeft: colours.topTitleLeft,
-            topTitleRight: colours.topTitleRight
+            topTitleRight: colours.topTitleRight,
+            buttons: colours.buttons
         };
         this.keywords = keywords;
         this.liveURL = liveURL;
         this.copyURL = copyURL;
+        this.reportURL = reportURL;
+        this.githubURL = githubURL;
+        this.dribbbleURL = dribbbleURL;
         this.showcasePos = showcasePos;
     }
 }

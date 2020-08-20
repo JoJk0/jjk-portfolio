@@ -1,3 +1,4 @@
+@use "sass:map";
 @import "../../assets/variables";
 
 .cnt{
@@ -149,51 +150,119 @@
         }
       }
     }
-    .hungry{
-      text-align: center;
-      display: none;
-      .text{
-          color: $c-base-light;
-          font-weight: 800;
-          font-size: 2.5em;
-          line-height: 1.5em;
-      }
       button{
-          color: $c-bg;
-          font-weight: 800;
-          background: transparent;
-          width: 18rem;
-          height: 6rem;
-          padding: 0;
-          display: block;
-          position: relative;
-          *{
-            font-size: 1.1rem;
-          }
+        color: $c-bg;
+        font-weight: 800;
+        background: transparent;
+        width: 18rem;
+        height: 6rem;
+        padding: 0;
+        display: block;
+        position: relative;
+        transition: transform 0.2s ease;
+        *{
+          font-size: 1.2rem;
+        }
+        &:hover{
+          transform: scale(1.1);
+          opacity: 1;
           .button-text{
-            margin: 0;
-            padding: 0;
-            .main{
-              clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
-              background: $c-base-light;
-              width: 18rem;
-              line-height: 6rem;
-              position: absolute;
-              top: 0;
-              left: 0;
-              font-size: 1.3em;
-            }
             &:before{
-              content: "";
-              clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
-              background: $c-base-dark;
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 18rem;
-              height: 6rem;
+              transform: rotate(-5deg);
             }
           }
         }
+        .button-text{
+          margin: 0;
+          padding: 0;
+          .main{
+            // clip-path:polygon(15% 15%, 95% 7%, 85% 95%, 5% 90%);
+            clip-path: url(#buttonBg1);
+            background: $c-button-gradient;
+            width: 18rem;
+            line-height: 6rem;
+            position: absolute;
+            top: 0%;
+            left: 0;
+            font-size: 1.3em;
+            transition: clip-path 0.2s ease;
+          }
+          &:before{
+            content: "";
+            // clip-path: polygon(7% 25%, 85% 0%, 92% 90%, 12% 100%);
+            clip-path: url(#buttonBg2);
+            background: $c-button-gradient-inverted;
+            position: absolute;
+            top: -7%;
+            left: 0;
+            width: 18rem;
+            height: 7rem;
+            transition: transform 0.2s ease;
+          }
+        }
+      }
+
+  }
+
+  // Mobile Portrait
+  @media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")){
+
+    .cnt{
+      .top{
+        .title{
+          font-size: 3.8em;
+        }
+      }
+      .what-i-did-list{
+        .art{
+          .img-container{
+            .art-title-container{
+              .art-title{
+                font-size: 6em;
+                width: 100vw;
+                white-space: pre-wrap;
+                text-align: left;
+                margin-top: 52%;
+                -webkit-text-stroke: 4px !important;
+              }
+            }
+            .inside-title-container{
+              .inside-stretcher{
+                .inside-title{
+                  font-size: 6em;
+                  width: 100vw;
+                  white-space: pre-wrap;
+                  text-align: left;
+                  margin-top: 52%;
+                }
+              }
+            }
+          }
+        }
+      }
+      button{
+        width: 90% !important;
+        height: auto !important;
+        margin: 1em;
+        margin-bottom: 5em;
+        .button-text{
+          .main{
+            clip-path: none !important;
+            border-radius: 3rem;
+            width: 100% !important;
+            line-height: 4.5rem !important;
+          }
+          &:before{
+            clip-path: none !important;
+            border-radius: 3rem;
+            width: 100% !important;
+            line-height: 4.5rem !important;
+            top: 3px !important;
+            left: 3px !important;
+            height: 4.5rem !important;
+          }
+        }
+      }
     }
+
   }

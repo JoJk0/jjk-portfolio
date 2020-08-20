@@ -140,7 +140,7 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
     .fromTo(this.projectsTitleEl.nativeElement, { y: '-1em', opacity: 0 }, { duration: 0.5, y: '0em', opacity: 1 }, 0)
 
     // Move title to the bottom
-    .fromTo(this.artListEl.nativeElement, { height: '0em' }, { duration: 0.2, height: '45em', ease: 'power2.inOut' }, 0.3);
+    .fromTo(this.artListEl.nativeElement, { height: '0em' }, { duration: 0.2, height: '80vh', ease: 'power2.inOut' }, 0.3);
 
     // Move art
     let diff = 0.0;

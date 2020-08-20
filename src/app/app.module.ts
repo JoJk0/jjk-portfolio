@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, HammerModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -47,6 +47,15 @@ import { GetInTouchComponent } from './get-in-touch/get-in-touch.component';
 import { SectionSkillsComponent } from './section-skills/section-skills.component';
 import { SectionProjectsComponent } from './section-projects/section-projects.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
+
+import * as Hammer from 'hammerjs';
+
+export class MyHammerConfig extends HammerGestureConfig {
+  overrides = <any>{
+  swipe: { direction: Hammer.DIRECTION_ALL },
+  };
+}
 
 @NgModule({
   imports: [
@@ -93,7 +102,8 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
     MatStepperModule,
     MatCheckboxModule,
     HammerModule,
-    NgxUsefulSwiperModule
+    NgxUsefulSwiperModule,
+    PinchZoomModule
   ],
   declarations: [
     AppComponent,
@@ -121,9 +131,11 @@ import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
   entryComponents: [MySkillsComponent],
   providers: [
     CartService,
-    DataJsonService
+    DataJsonService,
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
   ]
 })
+
 export class AppModule { }
 
 

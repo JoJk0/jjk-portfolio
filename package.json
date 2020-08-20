@@ -31,6 +31,7 @@
     "ngx-carousel-lib": "^0.1.2",
     "ngx-device-detector": "^1.4.5",
     "ngx-parallax": "^4.0.0",
+    "ngx-pinch-zoom": "^2.4.4",
     "ngx-useful-swiper": "^9.0.3",
     "rxjs": "^6.6.0",
     "scrollmagic": "^2.0.7",

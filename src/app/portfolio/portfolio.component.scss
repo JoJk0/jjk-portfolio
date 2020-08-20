@@ -1,28 +1,24 @@
 @import "../../assets/variables";
 
-.bg-text{
-    position: absolute;
-    top: 0.2em;
-    left: -0.1em;
-    font-weight: bold;
-    letter-spacing: -0.07em;
-    text-transform: uppercase;
-    //font-family: 'Londrina Outline';
-    font-size: 12em;
-    color: $c-base-dark;
-    //transform: rotate(-10deg);
-    opacity: 0.1;
-    z-index: 2;
-    color: $c-bg;
-    text-shadow:
-    -2px -2px 0 $c-base-light,  
-     2px -2px 0 $c-base-light,
-     -2px 2px 0 $c-base-light,
-      2px 2px 0 $c-base-light,
-    -1px -1px 0 $c-base-light,  
-     1px -1px 0 $c-base-light,
-     -1px 1px 0 $c-base-light,
-      1px 1px 0 $c-base-light;
+.top{
+  width: 100%;
+  padding: 2em;
+  .section-title{
+    color: transparent;
+    background: $c-text-gradient;
+    background-clip: text;
+    font-size: 5em;
+    font-weight: 800;
+    line-height: 1.5em;
+    text-align: center;
+  }
+  .desc{
+    color: $c-base-light;
+    font-weight: 800;
+    font-size: 2em;
+    line-height: 1em;
+    text-align: center;
+  }
 }
 mat-chip{
     color: $c-bg !important;
@@ -33,10 +29,13 @@ mat-chip{
     }
 }
 .arts-search{
-    transform: scale(1.3);
-    width: 50vw;
+    width: 30em;
     margin: 1em auto;
     letter-spacing: normal !important;
+    background: rgba(0,0,0,0.2);
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    transform: scale(1.2);
 }
 .portfolio-list{
     display: flex;
@@ -44,11 +43,11 @@ mat-chip{
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    overflow: hidden;
 }
 .art{
     position: relative;
     margin: 6em;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,55 +55,58 @@ mat-chip{
       width: 25em;
       z-index: 20;
       position: relative;
+      display: flex;
+      justify-content: center;
       .art-title-container{
         position: absolute;
-        top: 0;
-        left: 0;
-        width: inherit;
+        width: 100%;
         height: stretch;
+        display: flex;
+        align-items: flex-end;
         .art-title{
-          color: $c-base-dark;
+          color: transparent;
+          background: $c-text-gradient;
+          background-clip: text;
+          -webkit-text-stroke: 4px;
           text-transform: uppercase;
           font-weight: 800;
           font-size: 4em;
-          white-space: nowrap;
+          white-space: pre-wrap;
           letter-spacing: -0.07em;
-          width: inherit;
-          text-align: center;
-          padding-top: 50%;
-          margin-left: -15%;
-          text-shadow:
-          -2px -2px 0 $c-base-dark,  
-           2px -2px 0 $c-base-dark,
-           -2px 2px 0 $c-base-dark,
-            2px 2px 0 $c-base-dark,
-          -1px -1px 0 $c-base-dark,  
-           1px -1px 0 $c-base-dark,
-           -1px 1px 0 $c-base-dark,
-            1px 1px 0 $c-base-dark;
+          width: max-content;
+          height: min-content;
+          margin-bottom: -5%;
+          margin-left: -5%;
+          position: relative;
+          line-height: 100%;
         }
       }
       .inside-title-container{
         position: absolute;
-        top: 0;
-        left: 0;
         background: url('../../assets/arts/1.png');
         background-position: center;
         background-size: 100%;
         background-clip: text;
-        width: inherit;
+        width: 100%;
         height: stretch;
         clip-path: polygon(2% 0%, 98% 2%, 100% 100%, 0% 96%);
+        display: flex;
+        align-items: flex-end;
+        .inside-stretcher{
+          width: 100%;
+        }
         .inside-title{
           color: transparent;
           text-transform: uppercase;
           font-weight: 800;
           font-size: 4em;
-          margin-left: -15%;
-          white-space: nowrap;
+          margin-left: -5%;
+          white-space: pre-wrap;
           letter-spacing: -0.07em;
-          text-align: center;
-          padding-top: 50%;
+          margin-bottom: -5%;
+          display: flex;
+          justify-content: center;
+          line-height: 100%;
         }
       }
       img{
