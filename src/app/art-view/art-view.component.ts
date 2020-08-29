@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { gsap } from 'gsap';
 import { SwiperOptions } from 'swiper';
 import { globals } from '../app.component';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-art-view',
@@ -30,7 +31,10 @@ export class ArtViewComponent implements OnInit, AfterViewInit {
   origin: string;
   found: boolean = false;
   galleryOpen: boolean = false;
+  public imageRefs: Array<String> = new Array<String>();
+  public fontRefs: Array<String> = new Array<String>();
   currentPhoto: string = '';
+  fireStorage: AngularFireStorage;
 
   projects: Projects[];
   public project: Projects;
@@ -51,9 +55,10 @@ export class ArtViewComponent implements OnInit, AfterViewInit {
     spaceBetween: 0
   };
   
-  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<ArtViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private location: Location, private detector: ChangeDetectorRef) {
+  constructor(private jsonData: DataJsonService, public dialogRef: MatDialogRef<ArtViewComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private location: Location, private detector: ChangeDetectorRef, fireStorage: AngularFireStorage) {
     this.projectID = data.projectID;
     this.origin = data.origin;
+    this.fireStorage = fireStorage;
    }
 
   ngOnInit(): void {
@@ -95,7 +100,34 @@ export class ArtViewComponent implements OnInit, AfterViewInit {
       if(project.id == this.projectID){
         found = project.id;
         this.project = project;
-        this.currentPhoto = project.images[0];
+
+        let storageRoot = this.fireStorage.storage.ref();
+        let projectRef = storageRoot.child('projects').child(''+project.id);
+
+        // Load project images
+        projectRef.listAll().then((res) => {
+          let i = 0;
+          res.items.forEach((imageRef) => {
+            imageRef.getDownloadURL().then((url) => {
+              this.imageRefs.push(url);
+              i++;
+              if(i == 1){
+                this.currentPhoto = url;
+              }
+            });
+          });
+        });
+
+        // Load font assets
+        project.typography.forEach((font) => {
+
+          let fontRef = storageRoot.child('fonts').child(font['name']+'.svg');
+          fontRef.getDownloadURL().then((url) => {
+            this.fontRefs.push(url);
+          });
+
+        });
+
       }
     });
     //console.log(this.project.colours.background);
@@ -144,7 +176,7 @@ export class ArtViewComponent implements OnInit, AfterViewInit {
   }
 
   onResize(): void{
-    
+
   }
 
 }

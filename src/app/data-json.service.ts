@@ -10,11 +10,11 @@ import { Topic } from './topic';
 })
 export class DataJsonService {
 
-  private url: string = "http://localhost:3000/";
-  private skillsUrl: string = this.url+"Skills";
-  private projectsUrl: string = this.url+"Projects";
-  private uniModulesUrl: string = this.url+"UniModules";
-  private topicsUrl: string = this.url+"Topics";
+  private url: string = "https://jjk-portfolio.firebaseio.com/";
+  private skillsUrl: string = this.url+"Skills.json";
+  private projectsUrl: string = this.url+"Projects.json";
+  private uniModulesUrl: string = this.url+"UniModules.json";
+  private topicsUrl: string = this.url+"Topics.json";
 
   constructor(private http: HttpClient) { }
 

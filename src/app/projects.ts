@@ -4,7 +4,6 @@ export class Projects {
     title: string;
     date: Date;
     coAuthors: Array<any>;
-    images: Array<string>;
     description: string;
     typography: Array<Object>;
     colourPalette: Array<Object>;
@@ -29,7 +28,6 @@ export class Projects {
         this.title = title;
         this.date = date;
         this.coAuthors = coAuthors;
-        this.images = images;
         this.description = description;
         this.typography = typography;
         this.colourPalette = colourPalette;

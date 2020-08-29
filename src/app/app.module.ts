@@ -49,7 +49,12 @@ import { SectionProjectsComponent } from './section-projects/section-projects.co
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from '../environments/environment';
+
 import * as Hammer from 'hammerjs';
+import { CvComponent } from './cv/cv.component';
 
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
@@ -83,8 +88,11 @@ export class MyHammerConfig extends HammerGestureConfig {
           }
         ] 
       },
+      { path: 'cv', component: CvComponent },
       { path: '**', component: PageNotFoundComponent }
     ]),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
@@ -125,7 +133,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     SkillsOpenerComponent,
     GetInTouchComponent,
     SectionSkillsComponent,
-    SectionProjectsComponent
+    SectionProjectsComponent,
+    CvComponent
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [MySkillsComponent],

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "jjk-portfolio"
+  },
+  "targets": {
+    "jjk-portfolio": {
+      "hosting": {
+        "JJK-Portfolio": [
+          "jjk-portfolio"
+        ]
+      }
+    }
+  }
+}

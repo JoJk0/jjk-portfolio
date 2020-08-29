@@ -23,9 +23,9 @@
                 <div class="main-viewer">
                     <swiper [config]="config" id="swiperCarousel">
                         <div class="swiper-wrapper">
-                          <div class="swiper-slide" *ngFor="let image of project.images">
+                          <div class="swiper-slide" *ngFor="let image of imageRefs">
                             <div class="swiper-zoom-container">
-                                <img src="../assets/arts/{{image}}" alt="{{ image }}"/>
+                                <img src="{{image}}" alt="{{ image }}"/>
                             </div>
                           </div>
                         </div>
@@ -33,14 +33,14 @@
                         <div class="swiper-pagination" #paginator></div>
                     </swiper>
                     <div class="image-container">
-                        <img src="../assets/arts/{{currentPhoto}}" alt="{{ currentPhoto }}" #desktopViewer/>
+                        <img src="{{currentPhoto}}" alt="{{ currentPhoto }}" #desktopViewer/>
                     </div>
                     <!-- <pinch-zoom overflow="visible" backgroundColor="transparent">
                         <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.images[0] }}"/>
                     </pinch-zoom> -->
                 </div>
                 <div class="other-photos" #otherPhotos>
-                    <img src="../assets/arts/{{image}}" *ngFor="let image of project.images" (click)="changePhoto(image)" [ngClass]="{ 'active': (currentPhoto == image) }" />
+                    <img src="{{image}}" *ngFor="let image of imageRefs" (click)="changePhoto(image)" [ngClass]="{ 'active': (currentPhoto == image) }" />
                 </div>
             </div>
         </div>
@@ -54,8 +54,8 @@
                 <div class="main-desc">{{ project.description }}</div>
                 <div class="typography">
                     <div class="title">Typography</div>
-                    <div class="font" *ngFor="let font of project.typography">
-                        <img src="../assets/fonts/{{font.name}}.svg" alt="{{ font.displayName }}" />
+                    <div class="font" *ngFor="let fontUrl of fontRefs">
+                        <img src="{{ fontUrl }}" alt="font" />
                     </div>
                 </div>
                 <div class="color-palette">
