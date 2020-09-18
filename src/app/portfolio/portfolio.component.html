@@ -1,45 +1,51 @@
-<router-outlet></router-outlet>
-<div class="top">
-  <div class="section-title">Portfolio</div>
-  <div class="desc">Enter the keywords to show projects</div>
-</div>
-
-
-<mat-form-field class="arts-search">
-    <mat-chip-list #chipList aria-label="Choose keywords">
-      <mat-chip
-        *ngFor="let keyword of keywords"
-        [selectable]="selectable"
-        [removable]="removable"
-        (removed)="remove(keyword)">
-        {{keyword}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-      </mat-chip>
-      <input
-        placeholder="Choose keywords..."
-        #keywordInput
-        [formControl]="keywordFormCtrl"
-        [matAutocomplete]="auto"
-        [matChipInputFor]="chipList"
-        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event.value, $event)">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let keyword of filteredKeywords | async" [value]="keyword">
-        {{keyword}}
-      </mat-option>
-    </mat-autocomplete>
-</mat-form-field>
-<div class="portfolio-list">
-    <div class="art" *ngFor="let project of availableProjects" [routerLink]="['/projects/'+project.id]" queryParamsHandling="preserve" #art>
-        <div class="img-container">
-          <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
-          <div class="art-title-container"><div class="art-title">{{ project.title }}&nbsp;</div></div>
-          <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')">
-            <div class="inside-stretcher">
-              <div class="inside-title">{{ project.title }}&nbsp;</div>
+<div id="portfolio-container">
+  <router-outlet></router-outlet>
+  <div class="top">
+    <div class="section-title">Portfolio</div>
+    <div class="desc">Enter the keywords to browse projects</div>
+  </div>
+  <mat-form-field class="arts-search">
+      <mat-chip-list #chipList aria-label="Type or choose keywords to be shown">
+        <mat-chip
+          *ngFor="let keyword of keywords"
+          [selectable]="selectable"
+          [removable]="removable"
+          (removed)="remove(keyword)">
+          {{keyword}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input
+          placeholder="Type or choose keywords to be shown ..."
+          #keywordInput
+          [formControl]="keywordFormCtrl"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          (matChipInputTokenEnd)="add($event.value, $event)">
+      </mat-chip-list>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+        <mat-option *ngFor="let keyword of filteredKeywords | async" [value]="keyword">
+          {{keyword}}
+        </mat-option>
+      </mat-autocomplete>
+  </mat-form-field>
+  <div class="portfolio-list">
+      <div class="art" *ngFor="let project of availableProjects" [routerLink]="['/projects/'+project.id]" queryParamsHandling="preserve" #art>
+          <div class="img-container">
+            <img src="{{ projectCovers[project.id] }}" alt="{{ project.title }}" />
+            <div class="art-date">
+              <div class="month">{{ project.date | date: 'MMM' }}</div>
+              <div class="year">'{{ project.date | date: 'yy' }}</div>
+            </div>
+            <div class="art-title-container">
+              <div class="art-title">{{ project.title }}&nbsp;</div>
+            </div>
+            <div class="inside-title-container" [ngStyle]="{ 'background-image': 'url('+projectCovers[project.id]+')' }">
+              <div class="inside-stretcher">
+                <div class="inside-title">{{ project.title }}&nbsp;</div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+  </div>
 </div>

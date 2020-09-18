@@ -146,11 +146,13 @@
             .title{
                 height: 3.5em;
                 line-height: 150%;
+                background: transparent !important;
             }
             .desc{
                 font-size: 1.2em;
                 font-weight: 600;
                 margin-bottom: 1em;
+                text-align: left;
             }
         }
         .contacts{
@@ -350,6 +352,9 @@
 @media print{
     body{
         background: white;
+    }
+    .top{
+        display: none;
     }
     #cv{
         width: 100vw;

@@ -23,7 +23,7 @@ export class Projects {
     dribbbleURL: string;
     showcasePos: number;
 
-    constructor(id, title, date, coAuthors, images, description, typography, colourPalette, colours, keywords, liveURL, copyURL, reportURL, githubURL, dribbbleURL, showcasePos){
+    constructor(id, title, date, coAuthors, description, typography, colourPalette, colours, keywords, liveURL, copyURL, reportURL, githubURL, dribbbleURL, showcasePos){
         this.id = id;
         this.title = title;
         this.date = date;

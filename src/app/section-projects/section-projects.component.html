@@ -3,9 +3,9 @@
   <div class="what-i-did-list" #artList>
     <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art id="project-{{ project.id }}">
       <div class="img-container">
-        <img src="../assets/arts/{{ project.images[0] }}" alt="{{ project.title }}" />
+        <img src="{{ projectCovers[project.id] }}" alt="{{ project.title }}" />
         <div class="art-title-container"><div class="art-title">{{ project.title }}&nbsp;</div></div>
-        <div class="inside-title-container" style="background-image: url('../assets/arts/{{ project.images[0] }}')">
+        <div class="inside-title-container" [ngStyle]="{ 'background-image': 'url('+projectCovers[project.id]+')' }">
           <div class="inside-stretcher">
             <div class="inside-title">{{ project.title }}&nbsp;</div>
           </div>

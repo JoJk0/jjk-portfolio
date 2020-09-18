@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Injectable } from '@angular/core';
 import { BrowserModule, HammerModule, HAMMER_GESTURE_CONFIG, HammerGestureConfig } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -56,7 +56,8 @@ import { environment } from '../environments/environment';
 import * as Hammer from 'hammerjs';
 import { CvComponent } from './cv/cv.component';
 
-export class MyHammerConfig extends HammerGestureConfig {
+@Injectable() export class MyHammerConfig extends HammerGestureConfig {
+
   overrides = <any>{
   swipe: { direction: Hammer.DIRECTION_ALL },
   };

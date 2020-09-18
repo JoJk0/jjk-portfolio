@@ -230,6 +230,17 @@ mat-form-field.contact-select{
   margin: auto !important;
   display: block;
 }
+mat-form-field.mat-form-field-appearance-legacy .mat-form-field-underline{
+  opacity: 0;
+}
+.mat-autocomplete-panel{
+  background: $c-text;
+  mat-option{
+    &:hover{
+      background: rgba(255,255,255,0.2) !important;
+    }
+  }
+}
 
 /* MAT DIALOG CONTAINERS */
 
@@ -411,6 +422,12 @@ app-my-skills{
   }
   .mat-dialog-container{
     padding: 0 !important;
+  }
+  .mat-option-text{
+    font-size: 1em;
+  }
+  mat-form-field mat-chip-list mat-chip{
+    font-size: 1.2em !important;
   }
 }
 

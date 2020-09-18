@@ -1,40 +1,42 @@
 HEY!:
-- Transition fix
++ Transition fix
 + Scrollmouse animation improvement
 - Bind out-transitions to time instead of length (prevent from blank screen)
-- Link social medias
++ Link social medias
 + Mobile version
 + Implement OnResize()
 + Safari logo display fix
 
 WHAT I DO?:
-- Transition fix
++ Transition fix
 - Bind out-transitions to time instead of length (prevent from blank screen)
-- Mobile version
++ Mobile version
 
 WHAT I'VE MADE:
-- Transitions between arts
-- Add 'show me more' button
++ Transitions between arts
++ Add 'show me more' button
+- Redesign
 - out-transition needed
 - Mobile version
 
 GET IN TOUCH:
-- Final redesign
++ Final redesign
 - Implement contact form
 - In-transition
 - Out-transition
-- Link social medias
-- Mobile version
++ Link social medias
++ Mobile version
 
 MY-SKILLS:
-- Mobile version
++ Mobile version
 
 PROJECT-VIEWER:
-- Rescale whole component (zoom-in)
-- Implement colours
++ Rescale whole component (zoom-in)
++ Implement colours
 - Link project tags to other projects list
-- Implement image viewer
-- Mobile version
++ Implement image viewer
++ Mobile version
+- Black/white text colour change fix
 
 PROJECTS:
 - Redesign

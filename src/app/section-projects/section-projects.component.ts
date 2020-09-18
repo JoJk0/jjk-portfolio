@@ -8,13 +8,14 @@ import { gsap } from 'gsap';
 import { ScrollGSAPService } from '../scroll-gsap.service';
 import { Scroll } from '@angular/router';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-section-projects',
   templateUrl: './section-projects.component.html',
   styleUrls: ['./section-projects.component.scss']
 })
-export class SectionProjectsComponent implements OnInit, AfterViewInit {
+export class SectionProjectsComponent implements OnInit{
 
   @Input() skeletons: QueryList<ElementRef>;
   @Output() updateSkeleton = new EventEmitter<number>();
@@ -30,6 +31,7 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
   // Properties
   public scrollTweens: ScrollGSAPService[] = [];
   public skeleton: ElementRef;
+  public fireStorage: AngularFireStorage;
   artPos = {
     'position': 'fixed',
     'z-index': '16',
@@ -41,10 +43,13 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
   };
 
   projects: Projects[] = [];
+  projectCovers: Array<String> = [];
   
-  constructor(public dialog: MatDialog, private jsonData: DataJsonService, private location: Location, private detector: ChangeDetectorRef) { }
+  constructor(public dialog: MatDialog, private jsonData: DataJsonService, private location: Location, private detector: ChangeDetectorRef, fireStorage: AngularFireStorage) {
+    this.fireStorage = fireStorage;
+  }
 
-  async ngAfterViewInit(){
+  async loadSkeletons(){
 
     await this.skeletons;
 
@@ -54,7 +59,6 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
         this.skeleton = skeleton;
         this.detector.detectChanges();
         setTimeout(() => {
-          console.log(this.skeleton.nativeElement.offsetHeight);
           this.animateOnScroll();
         }, 0);
 
@@ -74,6 +78,18 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
 
           // Set projects to var
           this.projects = response;
+  
+          // Load projects image
+          let storageRoot = this.fireStorage.storage.ref();
+          let projectRef = storageRoot.child('projects');
+          projectRef.listAll().then((res) => {
+            res.prefixes.forEach((project) => {
+              project.child("0.png").getDownloadURL().then((url) => {
+                this.projectCovers.push(url);
+                this.detector.detectChanges();
+              });
+            })
+          });
 
           // Update skeleton
           let counter = 0;
@@ -86,6 +102,7 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
 
           setTimeout(() => {
             this.detector.detectChanges();
+            this.loadSkeletons();
           }, 0);
       },
       error => console.log(error)
@@ -149,7 +166,6 @@ export class SectionProjectsComponent implements OnInit, AfterViewInit {
       // Pair project's view with Project obj
       let currentProject: Projects;
       this.projects.forEach((project) => {
-        console.log("project-"+project.id);
         if("project-"+project.id == art.nativeElement.id){
           currentProject = project;
         }

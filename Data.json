@@ -39,7 +39,7 @@
             "title": "JJK Portfolio 8.0",
             "date": "1597688872000",
             "coAuthors": [],
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
+            "description": "This is my newest portfolio and personal website. I gained many new skills while working on this project (like Angular, TypeScript, Node.js). I spent months during the COVID-19 lockdown learning new tools, designing, implementing and deploying the website. It is one of the most exciting projects for me.",
             "typography":[
                 {
                     "name": "quicksand",
@@ -72,10 +72,10 @@
                 "topTitleRight": "#001427",
                 "buttons": "linear-gradient(12deg, rgb(121, 126, 247) 0%, rgb(0, 255, 206) 75%)"
             },
-            "keywords":["HTML5", "CSS3", "JavaScript"],
+            "keywords":["Angular","Node.js","TypeScript","GSAP","Git","Google Firebase","Photoshop","Illustrator","HTML5", "CSS3", "JavaScript"],
             "liveURL": "",
-            "copyURL": "jjk",
-            "reportURL": "jjk",
+            "copyURL": "",
+            "reportURL": "",
             "githubURL": "",
             "dribbbleURL": "",
             "showcasePos": "0"
@@ -84,9 +84,9 @@
         {
             "id": 1,
             "title": "Motorway Traffic Simulator",
-            "date": "1/5/2019",
+            "date": "1556668800000",
             "coAuthors": [],
-            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lobortis auctor dolor, quis congue odio sollicitudin quis. Sed leo risus, ultrices eu vestibulum a, aliquam vel ligula. Donec euismod ligula id turpis fringilla, non bibendum urna rutrum. Aliquam maximus tellus sed ultrices interdum. Integer condimentum vel ligula fermentum dapibus.",
+            "description": "This is my Masters' final project. The app is simulating a traffic on the motorway. ",
             "typography":[
                 {
                     "name": "roboto",
@@ -113,18 +113,115 @@
             ],
             "colours":{
                 "background": "#373640",
-                "panelBg": "#1db980",
-                "text": "#373640",
+                "panelBg": "#424150",
+                "text": "#ffffff",
                 "topTitleLeft": "#1db980",
-                "topTitleRight": "#373640",
-                "buttons": "linear-gradient(15deg, #797ef7 0%, #00ffce 59%)"
+                "topTitleRight": "#37efb9",
+                "buttons": "#1db980"
             },
             "keywords":["HTML5", "CSS3", "PixiJS", "Canvas (HTML)", "JavaScript", "Photoshop"],
             "liveURL": "",
-            "copyURL": "",
+            "copyURL": "https://motorway-traffic-simulator.web.app/",
+            "reportURL": "https://motorway-traffic-simulator.web.app/Report.pdf",
+            "githubURL": "https://github.com/JoJk0/motorway-traffic-simulator",
+            "dribbbleURL": "",
+            "showcasePos": "1"
+
+        },
+        {
+            "id": 2,
+            "title": "UoL Walking Tour Backend",
+            "date": "1544486400000",
+            "coAuthors": [],
+            "description": "This is my Masters' group project. ",
+            "typography":[
+                {
+                    "name": "roboto",
+                    "displayName": "Roboto"
+                }
+            ],
+            "colourPalette":[
+                {
+                    "code": "#FFFFFF",
+                    "name": "White"
+                },
+                {
+                    "code": "#F1F6FE",
+                    "name": "Cotton Ball"
+                },
+                {
+                    "code": "#2a79fe",
+                    "name": "Hailey Blue"
+                },
+                {
+                    "code": "#f44336",
+                    "name": "Vermilion Bird"
+                }
+            ],
+            "colours":{
+                "background": "#F1F6FE",
+                "panelBg": "#FFFFFF",
+                "text": "#000000",
+                "topTitleLeft": "#2a79fe",
+                "topTitleRight": "#2a79fe",
+                "buttons": "#2a79fe"
+            },
+            "keywords":["HTML5", "CSS3", "PixiJS", "Canvas (HTML)", "JavaScript", "Photoshop"],
+            "liveURL": "",
+            "copyURL": "https://uol-walking-tour-backend.000webhostapp.com/",
             "reportURL": "",
             "githubURL": "",
-            "showcasePos": "1"
+            "showcasePos": "2"
+
+        },
+        {
+            "id": 3,
+            "title": "JJK Portfolio 7.0",
+            "date": "1449964800000",
+            "coAuthors": [],
+            "description": "Seventh version of my portfolio",
+            "typography":[
+                {
+                    "name": "raleway",
+                    "displayName": "Raleway"
+                },
+                {
+                    "name": "open-sans",
+                    "displayName": "Open Sans"
+                }
+            ],
+            "colourPalette":[
+                {
+                    "code": "#026BAC",
+                    "name": "Indigo Bunting"
+                },
+                {
+                    "code": "#FAFAFA",
+                    "name": "Dr. White"
+                },
+                {
+                    "code": "#FFFFFF",
+                    "name": "White"
+                },
+                {
+                    "code": "#000000",
+                    "name": "Black"
+                }
+            ],
+            "colours":{
+                "background": "#FAFAFA",
+                "panelBg": "#FFFFFF",
+                "text": "#000000",
+                "topTitleLeft": "#026BAC",
+                "topTitleRight": "#026BAC",
+                "buttons": "#FAFAFA"
+            },
+            "keywords":["HTML5", "CSS3", "JQuery", "LESS", "JavaScript", "Photoshop"],
+            "liveURL": "",
+            "copyURL": "localhost",
+            "reportURL": "",
+            "githubURL": "",
+            "showcasePos": "3"
 
         }
     ],

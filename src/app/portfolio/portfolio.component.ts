@@ -9,6 +9,7 @@ import { Projects } from '../projects';
 import { DataJsonService } from '../data-json.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-portfolio',
@@ -18,6 +19,7 @@ import { Location } from '@angular/common';
 export class PortfolioComponent implements OnInit, AfterViewInit {
 
   projects: Projects[] = [];
+  projectCovers: Array<String> = [];
   availableProjects: Projects[] = [];
 
   visible = true;
@@ -30,13 +32,15 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   allKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP'];
   availableKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP'];
 
+  fireStorage: AngularFireStorage;
   searchKeywords: any;
   sub: any;
 
   @ViewChild('keywordInput') keywordInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(private jsonData: DataJsonService, private route: ActivatedRoute, private location: Location) {
+  constructor(private jsonData: DataJsonService, private route: ActivatedRoute, private location: Location, fireStorage: AngularFireStorage) {
+    this.fireStorage = fireStorage;
     this.filterMap();
     this.sortKeywords();
   }
@@ -120,6 +124,18 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
       response => {
           this.projects = response;
           this.availableProjects = response;
+
+          // Load projects image
+          let storageRoot = this.fireStorage.storage.ref();
+          let projectRef = storageRoot.child('projects');
+          projectRef.listAll().then((res) => {
+            res.prefixes.forEach((project) => {
+              project.child("0.png").getDownloadURL().then((url) => {
+                this.projectCovers.push(url);
+              });
+            })
+          });
+          
           let queryKeywordsStr = this.route.snapshot.paramMap.get('keywords');
           let queryKeywords: string[];
           if(!queryKeywordsStr){
