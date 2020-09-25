@@ -27,6 +27,10 @@ body {
   cursor: $cur;
   color: $c-text;
 }
+
+// hide recaptcha v3
+.grecaptcha-badge { visibility: hidden; }
+
 ::-webkit-scrollbar {
   display: none;
 }

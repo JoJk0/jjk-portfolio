@@ -14,7 +14,7 @@
                     <div class="gradient-border-wrapper">
                       <div class="gradient-wrapper-inside">
                         <mat-form-field class="contact-select" appearance="standard">
-                            <mat-select formControlName="firstCtrl" required placeholder="❤️ coffee" id="ctopic" (selectionChange)="resizeInput($event); changeTopic($event)"> 
+                            <mat-select formControlName="firstCtrl" required placeholder="❤️ coffee" id="ctopic" (selectionChange)="resizeInput($event); changeTopic($event)" #topicSelect> 
                                 <mat-option [value]="topic.name" *ngFor="let topic of topics">{{ topic.name }}</mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -56,24 +56,44 @@
                   </form>
                 </mat-step>
                 <mat-step [stepControl]="messageOptions" [editable]="false">
-                  <form [formGroup]="messageOptions">
+                  <form [formGroup]="messageOptions" (ngSubmit)="onSubmit()">
                     <div class="step-title">Great, what's on your mind?</div>
                     <mat-form-field class="textarea-input" floatLabel="never">
-                      <textarea matInput matTextareaAutosize #textarea maxlength="768" matAutosizeMinRows="5" maxRows="10" formControlName="messageCtrl" placeholder="Did you know I love Guatemalan coffee?" required></textarea>
+                      <textarea matInput matTextareaAutosize #textarea maxlength="768" matAutosizeMinRows="5" maxRows="10" formControlName="messageCtrl" [placeholder]="textareaPlaceholder" required></textarea>
                       <mat-hint align="end">{{textarea.value.length}} / 768</mat-hint>
-                      <mat-hint align="start"><mat-checkbox disableRipple checked>Send a copy of this message to your email</mat-checkbox></mat-hint>
+                      <mat-hint align="start"><mat-checkbox formControlName="emailCopyCtrl" [checked]="checkboxEmail" (change)="checkboxEmail = !checkboxEmail" disableRipple>Send a copy of this message to your email</mat-checkbox></mat-hint>
                     </mat-form-field>
+                    <div class="recaptcha-info">
+                      This site is protected by reCAPTCHA and the Google
+                      <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and
+                      <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
+                    </div>
                     <div>
-                      <button matStepperNext class="buttonNext textarea"><div class="button-text"><div class="main">Send <i class="material-icons">send</i></div></div></button>
+                      <button type="submit" matStepperNext class="buttonNext textarea"><div class="button-text"><div class="main">Send <i class="material-icons">send</i></div></div></button>
                     </div>
                   </form>
                 </mat-step>
                 <mat-step>
                   <ng-template matStepLabel>Done</ng-template>
-                  <p>You are now done.</p>
-                  <div>
-                    <button mat-button matStepperPrevious>Back</button>
-                    <button mat-button (click)="stepper.reset()">Reset</button>
+                  <mat-progress-spinner *ngIf="formSending" color="primary" mode="indeterminate"></mat-progress-spinner>
+                  <div class="form-response" *ngIf="formSuccess">
+                    <div class="resp-title">{{ sentInfoTitle }}!</div>
+                    <div class="resp-desc">{{ sentInfoDesc }}</div>
+                    <div class="resp-desc" *ngIf="checkboxEmail">I've sent you a copy of this email to <span>{{ thirdOptions.value.thirdCtrl }}</span>.</div>
+                  </div>
+                  <div class="form-response" *ngIf="formFailure">
+                    <div class="resp-title">Sorry!</div>
+                    <div class="resp-desc">That didn't quite go through. Please try again. Possible causes:
+                      <ul>
+                        <li>Illegal characters entered</li>
+                        <li>You might have been a robot</li>
+                        <li>Server failure</li>
+                        <li>Loss of internet</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <button matStepperPrev class="buttonNext"><div class="button-text"><div class="main"><i class="material-icons">chevron_left</i> Go back</div></div></button>
+                    </div>
                   </div>
                 </mat-step>
               </mat-horizontal-stepper>

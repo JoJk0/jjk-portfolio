@@ -199,7 +199,7 @@
     }
     .mid{
         display: flex;
-        margin-top: 1em;
+        margin-top: -1em;
         width: 100%;
         padding: 2.5em;
         .left{
@@ -236,9 +236,6 @@
                             text-transform: uppercase;
                             font-size: 0.7em;
                         }
-                        .year{
-
-                        }
                     }
                 }
                 .timeline{
@@ -269,9 +266,6 @@
                             .job-title{
                                 font-weight: 600;
                                 font-size: 1.2em;
-                            }
-                            .company{
-
                             }
                             .length{
                                 font-size: 0.8em;
@@ -313,6 +307,22 @@
             }
             .note{
                 padding: 1em 0;
+            }
+            .portfolio{
+                background: rgba(63, 189, 227, 0.2);
+                font-weight: 800;
+                border-radius: 2em;
+                padding: 0.7em 1.5em;
+                display: flex;
+                align-items: center;
+                i{
+                    font-weight: bold;
+                    font-size: 1.2em;
+                    margin-right: 0.5em;
+                }
+                a{
+                    margin-left: 0.3em;
+                }
             }
             .top-skills{
                 display: flex;

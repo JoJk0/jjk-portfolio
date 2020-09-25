@@ -77,18 +77,24 @@ export class SectionProjectsComponent implements OnInit{
       response => {
 
           // Set projects to var
-          this.projects = response;
+          response.forEach((project) => {
+            if(project.showcasePos != -1){
+              this.projects.push(project);
+              this.detector.detectChanges();
+            }
+          });
   
           // Load projects image
           let storageRoot = this.fireStorage.storage.ref();
           let projectRef = storageRoot.child('projects');
-          projectRef.listAll().then((res) => {
-            res.prefixes.forEach((project) => {
-              project.child("0.png").getDownloadURL().then((url) => {
-                this.projectCovers.push(url);
-                this.detector.detectChanges();
-              });
-            })
+
+          this.projects.forEach((project) => {
+            let thisProjectRef = projectRef.child(project.id+'');
+            thisProjectRef.child("0.png").getDownloadURL().then((url) => {
+              this.projectCovers[project.id] = url;
+              console.log(project.id+" "+url+" "+thisProjectRef);
+              this.detector.detectChanges();
+            });
           });
 
           // Update skeleton
@@ -154,10 +160,10 @@ export class SectionProjectsComponent implements OnInit{
     let projectsTimeline = gsap.timeline({ paused: true })
 
     // Title - show
-    .fromTo(this.projectsTitleEl.nativeElement, { y: '-1em', opacity: 0 }, { duration: 0.5, y: '0em', opacity: 1 }, 0)
+    .fromTo(this.projectsTitleEl.nativeElement, { y: '1em', opacity: 0 }, { duration: 0.5, y: '0em', opacity: 1 }, 0)
 
-    // Move title to the bottom
-    .fromTo(this.artListEl.nativeElement, { height: '0em' }, { duration: 0.2, height: '80vh', ease: 'power2.inOut' }, 0.3);
+    // Move title to the top
+    .fromTo(this.artListEl.nativeElement, { height: '0em' }, { duration: 0.2, height: '65vh', ease: 'power2.inOut' }, 0.3);
 
     // Move art
     let diff = 0.0;
@@ -182,49 +188,52 @@ export class SectionProjectsComponent implements OnInit{
       
       projectsTimeline
       // Pre-set values
-      .to(artTitleEl, { duration: 0, left: '-200%' }, 0+diff)
 
-      .to(artInsideTitleEl, { duration: 0, marginLeft: '-200%' }, 0+diff)
+      .set(art.nativeElement, { display: 'flex' }, 0.3+diff)
 
-      .to(imgContainerEl, { duration: 0, left: '100vw' }, 0+diff)
+      .to(artTitleEl, { duration: 0, left: '-200%' }, 0.3+diff)
+
+      .to(artInsideTitleEl, { duration: 0, marginLeft: '-200%' }, 0.3+diff)
 
 
       // Show text
-      .fromTo(artTitleEl, { left: '-200%', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, left: '0%', ease: 'power2.out'}, 0.2+diff)
+      .fromTo(artTitleEl, { left: '-200%', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, left: '0%', ease: 'power2.out'}, 0.5+diff)
 
       // Show inside text
-      .fromTo(artInsideTitleEl, { marginLeft: '-200%', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, marginLeft: '0%', ease: 'power2.out' }, 0.2+diff)
+      .fromTo(artInsideTitleEl, { marginLeft: '-200%', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, marginLeft: '0%', ease: 'power2.out' }, 0.5+diff)
 
       // Show image
-      .fromTo(imgContainerEl, { left: '100vw', ease: 'power2.out' }, { duration: 0.8, immediateRender: false, left: '0vw', ease: 'power2.out' }, 0.2+diff)
+      .fromTo(imgContainerEl.children[0], { clipPath: 'circle(0em)', ease: 'power2.out' }, { duration: 1.2, immediateRender: false, clipPath: 'circle(70em)', ease: 'power2.out' }, 0.5+diff)
 
-      // Change background
-      .to(this.sectionProjectsContainerEl.nativeElement, { duration: 0.5, backgroundColor: currentProject.colours.background }, diff)
-    
-    // Scroll page
-      .fromTo(art.nativeElement, { top: '15vh' }, { duration: 0.8, immediateRender: false, top: '-100vh', ease: 'none'}, 1.2+diff)
+      // Darken image for shwoing text
+      .fromTo(imgContainerEl.children[0].children[0], { filter: 'brightness(1) contrast(1) saturate(1)' }, { filter: 'brightness(0.4) contrast(0.95) saturate(1.5)' }, 0.8+diff)
+      .fromTo(imgContainerEl.children[2], { filter: 'brightness(1) contrast(1) saturate(1)' }, { filter: 'brightness(0.4) contrast(0.95) saturate(1.5)' }, 0.8+diff)
 
     // --- Out ---
 
       // Hide text
-      .fromTo(artTitleEl, { left: '0%', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, left: '200%', ease: 'power4.in'}, 1.2+diff)
+      .fromTo(artTitleEl, { left: '0%', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, left: '200%', ease: 'power4.in'}, 1.5+diff)
 
       // Hide inside text
-      .fromTo(artInsideTitleEl, { marginLeft: '0%', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, marginLeft: '200%', ease: 'power4.in' }, 1.2+diff)
+      .fromTo(artInsideTitleEl, { marginLeft: '0%', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, marginLeft: '200%', ease: 'power4.in' }, 1.5+diff)
 
       // Hide image
-      .fromTo(imgContainerEl, { left: '0vw', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, left: '-100vw', ease: 'power4.in' }, 1.2+diff)
+      .fromTo(imgContainerEl.children[0], { opacity: '1', paused: true, ease: 'power4.in' }, { duration: 0.8, immediateRender: false, opacity: '0', ease: 'power4.in' }, 1.5+diff)
       
       // Post-set values
-      .to(artTitleEl, { duration: 0, left: '200%' }, 2+diff)
+      .to(artTitleEl, { duration: 0, left: '200%' }, 2.3+diff)
       
-      .to(artInsideTitleEl, { duration: 0, marginLeft: '200%' }, 2+diff)
+      .to(artInsideTitleEl, { duration: 0, marginLeft: '200%' }, 2.3+diff)
 
-      .to(imgContainerEl, { duration: 0, eft: '-100vw' }, 2+diff);
+      .to(imgContainerEl, { duration: 0, eft: '-100vw' }, 2.3+diff);
 
       diff = diff+1.6;
 
     });
+
+    projectsTimeline
+
+    .fromTo(this.projectsLinkEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, diff-0.6);
 
 
     ScrollTrigger.create({

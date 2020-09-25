@@ -221,7 +221,7 @@
             "copyURL": "localhost",
             "reportURL": "",
             "githubURL": "",
-            "showcasePos": "3"
+            "showcasePos": "-1"
 
         }
     ],
@@ -262,12 +262,12 @@
         {
             "name": "❤️ coffee",
             "draftText": "Did you know I love coffee from Guatemala?...",
-            "sentText": "You're a boss! Thanks for your interest about me. I would love to talk to you or meet for a coffee ❤️."
+            "sentText": "You're a boss! Thanks for your interest about me. \nI would love to talk to you or meet for a coffee ❤️."
         },
         {
             "name": "👔 hiring me",
             "draftText": "By hiring me you will get a young and talented team member ...",
-            "sentText": "You're a boss! Thanks for choosing me as a potential candidate. I would love to speak to you soon!"
+            "sentText": "You're a boss! Thanks for choosing me as a potential candidate. \nI would love to speak to you soon."
         },
         {
             "name": "🤝 cooperation",
@@ -277,17 +277,17 @@
         {
             "name": "📑 freelance projects",
             "draftText": "Did you know I've started freelancing in 2011? ...",
-            "sentText": "You're a boss! Thanks for asking about freelancing, I will send you a reply soon."
+            "sentText": "You're a boss! Thanks for asking about freelancing. \nI will send you a reply soon."
         },
         {
             "name": "🐞 bugs",
             "draftText": "This site is still in early development stages ...",
-            "sentText": "You're a star! Cheers 🍻 for reporting a bug. I will have a look at it and will reply soon."
+            "sentText": "You're a star! Cheers 🍻 for reporting a bug. \nI will have a look at it and will reply soon."
         },
         {
             "name": "👩‍💻 social media",
             "draftText": "My Facebook site has been created in 2011 ...",
-            "sentText": "All done! Thanks for asking about social media, I will send you a reply soon."
+            "sentText": "All done! Thanks for asking about social media. \nI will send you a reply soon."
         }
     ]
 }

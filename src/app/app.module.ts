@@ -15,7 +15,6 @@ import { ShippingComponent } from './shipping/shipping.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DataJsonService } from './data-json.service';
-import { ScrollGSAPService } from './scroll-gsap.service';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatCardModule } from '@angular/material/card';
@@ -32,6 +31,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { MenuComponent } from './menu/menu.component';
 import { MainComponent } from './main/main.component';
@@ -48,6 +48,7 @@ import { SectionSkillsComponent } from './section-skills/section-skills.componen
 import { SectionProjectsComponent } from './section-projects/section-projects.component';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
+import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -110,9 +111,11 @@ import { CvComponent } from './cv/cv.component';
     MatTableModule,
     MatStepperModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule,
     HammerModule,
     NgxUsefulSwiperModule,
-    PinchZoomModule
+    PinchZoomModule,
+    RecaptchaV3Module
   ],
   declarations: [
     AppComponent,
@@ -142,7 +145,8 @@ import { CvComponent } from './cv/cv.component';
   providers: [
     CartService,
     DataJsonService,
-    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }
+    { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
+    { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdVt88ZAAAAACjzpUIkS5NxYV093paEt3d43VTi' }
   ]
 })
 

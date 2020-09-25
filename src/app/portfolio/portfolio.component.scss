@@ -114,9 +114,6 @@ mat-chip{
         line-height: 100%;
         mix-blend-mode: lighten;
         transition: all 0.3s ease;
-        .month{
-
-        }
         .year{
           font-size: 1.5em;
         }
@@ -172,7 +169,6 @@ mat-chip{
           letter-spacing: -0.07em;
           margin-bottom: -5%;
           display: flex;
-          justify-content: center;
           line-height: 100%;
         }
       }

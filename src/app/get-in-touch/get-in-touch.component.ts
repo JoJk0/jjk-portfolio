@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatStepper } from '@angular/material/stepper';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatSelect } from '@angular/material/select';
 import { EmailValidator } from '@angular/forms';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -10,6 +11,11 @@ import { DataJsonService } from '../data-json.service';
 import { Topic } from '../topic';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { ETIME } from 'constants';
+import { ReCaptchaV3Service } from 'ng-recaptcha';
+import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-get-in-touch',
@@ -26,6 +32,7 @@ export class GetInTouchComponent implements OnInit {
   @ViewChild('inputTester') inputTesterEl: ElementRef;
   @ViewChild('textareaTester') textareaTesterEl: ElementRef;
   @ViewChild('wavingHand') wavingHandEl: ElementRef;
+  @ViewChild('topicSelect') topicSelectEl: ElementRef;
 
   firstOptions: FormGroup;
   secondOptions: FormGroup;
@@ -39,6 +46,14 @@ export class GetInTouchComponent implements OnInit {
   testerHeight: number;
   topics: Topic[] = [];
   textareaPlaceholder: string;
+  sentInfoTitle: string;
+  sentInfoDesc: string;
+  checkboxEmail: boolean = true;
+
+  // Mat form
+  formSending: boolean = false;
+  formSuccess: boolean = false;
+  formFailure: boolean = false;
 
   public skeleton: ElementRef;
   private shrinkFactor = 1;
@@ -49,8 +64,12 @@ export class GetInTouchComponent implements OnInit {
     cemail: 230
   };
   inputHeight: number = 32;
+
+  // Subscriptions
+  private recaptchaSub: Subscription;
+
   
-  constructor(fb: FormBuilder, private jsonData: DataJsonService) {
+  constructor(fb: FormBuilder, private jsonData: DataJsonService, private http: HttpClient, private recaptchaV3Service: ReCaptchaV3Service) {
     this.firstOptions = fb.group({
       firstCtrl: [null, Validators.required]
     });
@@ -61,7 +80,8 @@ export class GetInTouchComponent implements OnInit {
       thirdCtrl: ['', Validators.email]
     });
     this.messageOptions = fb.group({
-      messageCtrl: ['', Validators.required]
+      messageCtrl: ['', Validators.required],
+      emailCopyCtrl: ['', '']
     });
   }
 
@@ -124,6 +144,8 @@ export class GetInTouchComponent implements OnInit {
       if(topic.name == value){
         this.textareaPlaceholder = topic.draftText;
         this.textareaTesterValue = this.textareaPlaceholder;
+        this.sentInfoTitle = topic.sentText.split("!")[0];
+        this.sentInfoDesc = topic.sentText.split("!")[1];
         setTimeout(() => {
           let testerHeight = this.textareaTesterEl.nativeElement.offsetHeight;
           setTimeout(() => {
@@ -329,6 +351,44 @@ export class GetInTouchComponent implements OnInit {
 
     }
     
+  }
+
+  onSubmit(): void{
+    this.formSending = true;
+    
+    this.recaptchaSub = this.recaptchaV3Service.execute('importantAction').subscribe((token) => {
+
+        let data = {
+      
+          topic: this.firstOptions.value.firstCtrl,
+          name: this.secondOptions.value.secondCtrl,
+          email: this.thirdOptions.value.thirdCtrl,
+          message: this.messageOptions.value.messageCtrl,
+          emailCopy: this.messageOptions.value.emailCopyCtrl,
+          gRecaptchaResponse: token
+    
+        }
+    
+        this.http.post<any>('https://europe-west1-jjk-portfolio.cloudfunctions.net/sendEmail', data).subscribe({
+        // this.http.post<any>('http://localhost:5000/jjk-portfolio/europe-west1/sendEmail', data).subscribe({
+          next: data => {
+            this.formSending = false;
+            this.formSuccess = true;
+          },
+          error: error => {
+            this.formSending = false;
+            this.formFailure = true;
+          }
+        });
+
+    });
+
+  }
+
+  ngOnDestroy(){
+    if(this.formSuccess || this.formFailure){
+      this.recaptchaSub.unsubscribe();
+    }
   }
 
 }

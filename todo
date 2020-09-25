@@ -15,15 +15,15 @@ WHAT I DO?:
 WHAT I'VE MADE:
 + Transitions between arts
 + Add 'show me more' button
-- Redesign
++ Redesign
 - out-transition needed
 - Mobile version
 
 GET IN TOUCH:
 + Final redesign
-- Implement contact form
++ Implement contact form
 - In-transition
-- Out-transition
++ Out-transition
 + Link social medias
 + Mobile version
 
@@ -37,10 +37,14 @@ PROJECT-VIEWER:
 + Implement image viewer
 + Mobile version
 - Black/white text colour change fix
+- Safari fix pictures
+- Font vectorization SVG
+- Fix scrolling
+- Fix gallery swiping
 
 PROJECTS:
-- Redesign
-- Mobile version
++ Redesign
++ Mobile version
 
 <PAGE ENGINE>:
 - Make transitions consistent and double-sided

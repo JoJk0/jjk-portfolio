@@ -1,9 +1,14 @@
 <div id="art-background" #artBackground [ngStyle]="artPos"></div>
 <div class="cnt" #sectionProjectsContainer>
+  <div class="top">
+    <div class="title" #projectsTitle>What I've made?</div>
+  </div>
   <div class="what-i-did-list" #artList>
     <div class="art" *ngFor="let project of projects; let i=index" (click)="openArt(i, project.id)" #art id="project-{{ project.id }}">
       <div class="img-container">
-        <img src="{{ projectCovers[project.id] }}" alt="{{ project.title }}" />
+        <div class="img-cnt">
+          <img src="{{ projectCovers[project.id] }}" alt="{{ project.title }}" />
+        </div>
         <div class="art-title-container"><div class="art-title">{{ project.title }}&nbsp;</div></div>
         <div class="inside-title-container" [ngStyle]="{ 'background-image': 'url('+projectCovers[project.id]+')' }">
           <div class="inside-stretcher">
@@ -13,9 +18,6 @@
       </div>
     </div>
     <button class=""></button>
-  </div>
-  <div class="top">
-    <div class="title" #projectsTitle>What I've made?</div>
   </div>
   <button #projectsLink [routerLink]="['/projects']"><div class="button-text"><div class="main">Show me more</div></div></button>
 </div>

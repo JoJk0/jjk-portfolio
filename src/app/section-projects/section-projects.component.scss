@@ -39,10 +39,10 @@
       height: 0em;
       .art{
         position: absolute;
-        top: 15vh;
+        top: 20vh;
         width: 100%;
         text-align: center;
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
         flex-direction: column;
@@ -50,10 +50,18 @@
           height: 35em;
           z-index: 20;
           position: relative;
-          left: 100vw;
+          left: 0;
           width: min-content;
           display: flex;
           justify-content: center;
+          .img-cnt{
+            clip-path: circle(0em);
+            width: min-content;
+            display: flex;
+            height: 35em;
+            align-items: center;
+            justify-content: center;
+          }
           .art-title-container{
             position: absolute;
             width: min-content;
@@ -159,6 +167,7 @@
         display: block;
         position: relative;
         transition: transform 0.2s ease;
+        margin-top: 2em;
         *{
           font-size: 1.2rem;
         }
