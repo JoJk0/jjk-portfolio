@@ -34,6 +34,15 @@ export class GetInTouchComponent implements OnInit {
   @ViewChild('wavingHand') wavingHandEl: ElementRef;
   @ViewChild('topicSelect') topicSelectEl: ElementRef;
 
+  // Animated elements
+  @ViewChild('contactTitle') contactTitleEl: ElementRef;
+  @ViewChild('wavingHand') wavingHand: ElementRef;
+  @ViewChild('contactDesc') contactDescEl: ElementRef;
+  @ViewChild('stepperCnt') stepperEl: ElementRef;
+  @ViewChild('contactTitleCnt') contactTitleCntEl: ElementRef;
+  @ViewChild('contactTop') contactTopEl: ElementRef;
+  @ViewChild('pageFooter') pageFooterEl: ElementRef;
+
   firstOptions: FormGroup;
   secondOptions: FormGroup;
   thirdOptions: FormGroup;
@@ -107,6 +116,7 @@ export class GetInTouchComponent implements OnInit {
             
         this.skeleton = skeleton;
         this.animateHand();
+        this.animateOnScroll();
         
         // this.onResizeSub = this.call.onResizeNotifier.$.subscribe(bool => {
         //   this.onResize();
@@ -380,6 +390,42 @@ export class GetInTouchComponent implements OnInit {
             this.formFailure = true;
           }
         });
+
+    });
+
+  }
+
+  animateOnScroll(): void{
+
+    let contactTimeline = gsap.timeline({ paused: true });
+  
+    contactTimeline
+
+    // Pre-set
+    .set(this.contactTitleEl.nativeElement, { width: 0 }, 0)
+    .set(this.contactDescEl.nativeElement, { width: 0 }, 0)
+    .set(this.stepperEl.nativeElement, { height: 0 }, 0)
+    .set(this.contactTopEl.nativeElement, { top: '18vh' }, 0)
+
+    .fromTo(this.contactTopEl.nativeElement, { opacity: 0, top: '20vh' }, { duration: 0.5, opacity: 1, top: '18vh' }, 0)
+    .fromTo(this.contactTitleEl.nativeElement, { width: '0em' }, { duration: 0.8, width: 'auto' }, 0.5)
+    .fromTo(this.wavingHandEl.nativeElement, { fontSize: '10em' }, { duration: 0.8, fontSize: '5em' }, 1.3)
+    .fromTo(this.stepperEl.nativeElement, { height: '0em' }, { duration: 0.8, height: 'auto' }, 1.3)
+    .fromTo(this.pageFooterEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, 1.3)
+    .fromTo(this.contactTopEl.nativeElement, { top: '18vh' }, { duration: 0.8, top: '0vh' }, 1.3)
+    .fromTo(this.stepperEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, 1.7)
+    .fromTo(this.contactDescEl.nativeElement, { width: '0em' }, { duration: 2, width: 'auto' }, 2)
+    .set(this.contactDescEl.nativeElement, { width: 'auto' }, 5);
+
+    ScrollTrigger.create({
+
+      id: 'contactScrollTrigger',
+      animation: contactTimeline,
+      trigger: this.skeleton.nativeElement,
+      start: "top center",
+      end: "bottom center",
+      scrub: true, 
+      markers: false
 
     });
 

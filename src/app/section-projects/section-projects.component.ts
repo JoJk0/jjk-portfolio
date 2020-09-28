@@ -233,7 +233,9 @@ export class SectionProjectsComponent implements OnInit{
 
     projectsTimeline
 
-    .fromTo(this.projectsLinkEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, diff-0.6);
+    .fromTo(this.projectsLinkEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, diff-0.6)
+    .fromTo(this.projectsLinkEl.nativeElement, { opacity: 1 }, { duration: 0.5, immediateRender: false, opacity: 0 }, diff+0.4)
+    .fromTo(this.projectsTitleEl.nativeElement, { opacity: 1 }, { duration: 0.5, immediateRender: false, opacity: 0 }, diff+0.4);
 
 
     ScrollTrigger.create({

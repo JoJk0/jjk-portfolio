@@ -42,9 +42,11 @@ mat-form-field{
   align-items: center;
   .top{
     width: 100%;
+    position: relative;
     .title-cnt{
       display: flex;
       justify-content: center;
+      align-items: center;
       .waving-hand{
         background: $c-text-gradient;
         background-clip: text;
@@ -54,16 +56,19 @@ mat-form-field{
         line-height: 1.5em;
         text-align: center;
         transform-origin: 90% 80%;
+        position: relative;
       }
     }
     .title{
       background: $c-text-gradient;
       background-clip: text;
+      white-space: nowrap;
       color: transparent;
       font-size: 5em;
       font-weight: 800;
       line-height: 1.5em;
       text-align: center;
+      margin-right: -0.4em;
       //filter: brightness(0) saturate(100%) invert(88%) sepia(9%) saturate(1765%) hue-rotate(107deg) brightness(96%) contrast(87%);
     }
     .desc{
@@ -73,6 +78,9 @@ mat-form-field{
       line-height: 1.5em;
       width: 100%;
       text-align: center;
+      white-space: nowrap;
+      margin: auto;
+      overflow: hidden;
     }
   }
   .bottom{
@@ -166,6 +174,28 @@ mat-form-field{
   }
   footer{
     width: 100;
+    .version-status{
+      .top{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 1em;
+        flex-wrap: wrap;
+        width: 100vw;
+        span{
+          font-weight: bold;
+          margin: 0 0.5em;
+        }
+        .version-info{
+          display: inline;
+        }
+      }
+      p{
+        opacity: 0.7;
+        text-align: center;
+        padding: 0 1em;
+      }
+    }
     .right{
         padding: 1em;
         .sub-title{
@@ -173,6 +203,7 @@ mat-form-field{
         }
         .socials{
             display: flex;
+            justify-content: center;
             .social{
                 position: relative;
                 width: 2em;
@@ -210,9 +241,12 @@ mat-form-field{
     left: -5em;
     line-height: 150%;
 }
-
+.stepper-cnt{
+  overflow: hidden;
+}
 mat-horizontal-stepper{
   background: transparent !important;
+  overflow: hidden;
   .contact-select{
     width: auto;
   }
@@ -277,7 +311,7 @@ mat-horizontal-stepper{
     position: relative;
     transition: transform 0.2s ease;
     transform: scale(0.8);
-    margin: 6em auto;
+    margin: 3em auto;
     &.textarea{
       margin-top: 3em;
     }
@@ -433,6 +467,25 @@ mat-horizontal-stepper{
 
   .socials{
     transform: scale(1.3);
+  }
+
+  footer{
+    .version-status{
+      margin: 0 1em;
+      .top{
+        justify-content: flex-start !important;
+        width: auto !important;
+        .version-info{
+          display: block !important;
+          width: 100%;
+          font-size: 1.2em;
+        }
+      }
+      p{
+        text-align: left !important;
+        font-size: 1.2em;
+      }
+    }
   }
 
 }

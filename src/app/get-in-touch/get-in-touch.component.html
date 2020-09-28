@@ -1,12 +1,12 @@
 <div class="cnt">
-    <div class="top">
-        <div class="title-cnt">
-          <div class="title">Say Hi!&nbsp;</div>
+    <div class="top" #contactTop>
+        <div class="title-cnt" #contactTitleCnt>
+          <div class="title" #contactTitle>Say Hi!&nbsp;&nbsp;</div>
           <div class="waving-hand" #wavingHand>👋🏻</div>
         </div>
-        <div class="desc">let's do something amazing.</div>
+        <div class="desc" #contactDesc>let's do something amazing.</div>
     </div>
-
+    <div class="stepper-cnt" #stepperCnt>
             <mat-horizontal-stepper linear #stepper>
                 <mat-step [stepControl]="firstOptions" [editable]="false">
                   <form [formGroup]="firstOptions">
@@ -97,9 +97,17 @@
                   </div>
                 </mat-step>
               </mat-horizontal-stepper>
+            </div>
     <!-- <button #formSubmitButton><div class="button-text"><div class="main">Ok, I'm done.</div></div></button> -->
 
-    <footer>
+    <footer #pageFooter>
+      <div class="version-status">
+        <div class="top">
+          <i class="material-icons">info</i> <span>ALPHA:</span> 
+          <div class="version-info">This website has just been released and may be unstable.</div>
+        </div>
+        <p>Should you have any bugs discovered, send a bug report on Github or through contact form.</p>
+      </div>
         <div class="right">
             <!-- <div class="sub-title">Let's get connected</div> -->
             <div class="socials">
