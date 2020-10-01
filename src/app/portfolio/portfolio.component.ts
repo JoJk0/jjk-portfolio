@@ -29,8 +29,8 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   keywordFormCtrl = new FormControl();
   filteredKeywords: Observable<string[]>;
   keywords: string[] = [];
-  allKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP'];
-  availableKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP'];
+  allKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP', 'Angular', 'pixiJS', 'Node.js', 'MySQL'];
+  availableKeywords: string[] = ['HTML5', 'CSS3', 'JavaScript', 'TypeScript', 'PHP', 'Angular', 'pixiJS', 'Node.js', 'MySQL'];
 
   fireStorage: AngularFireStorage;
   searchKeywords: any;

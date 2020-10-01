@@ -72,7 +72,7 @@
                 "topTitleRight": "#001427",
                 "buttons": "linear-gradient(12deg, rgb(121, 126, 247) 0%, rgb(0, 255, 206) 75%)"
             },
-            "keywords":["Angular","Node.js","TypeScript","GSAP","Git","Google Firebase","Photoshop","Illustrator","HTML5", "CSS3", "JavaScript", "HMTL5", "CSS3", "SASS", "TypeScript"],
+            "keywords":["Angular","Node.js","TypeScript","GSAP","Git","Google Firebase","Photoshop","Illustrator","HTML5", "CSS3", "JavaScript", "SASS", "TypeScript"],
             "liveURL": "",
             "copyURL": "",
             "reportURL": "",
@@ -166,11 +166,11 @@
                 "topTitleRight": "#2a79fe",
                 "buttons": "#F1F6FE"
             },
-            "keywords":["HTML5", "CSS3", "PixiJS", "JavaScript", "PHP", "Photoshop", "JSON", "MySQL", "PHPMyAdmin"],
+            "keywords":["HTML5", "CSS3", "JavaScript", "PHP", "Photoshop", "JSON", "MySQL", "PHPMyAdmin"],
             "liveURL": "",
             "copyURL": "https://uol-walking-tour-backend.000webhostapp.com/",
             "reportURL": "",
-            "githubURL": "",
+            "githubURL": "https://github.com/JoJk0/uol-walking-tour-backend",
             "dribbbleURL": "",
             "showcasePos": "2"
 
@@ -231,7 +231,7 @@
             "title": "JJK Portfolio 6.1",
             "date": "1376784000000",
             "coAuthors": [],
-            "description": "Sixth version of my portfolio",
+            "description": "Sixth version of my portfolio. Created as a single-page website.",
             "typography":[
                 {
                     "name": "oswald",
@@ -273,7 +273,7 @@
             "copyURL": "http://uol-walking-tour-backend.000webhostapp.com/projects/jjk-v6.1/",
             "dribbbleURL": "",
             "reportURL": "",
-            "githubURL": "",
+            "githubURL": "https://github.com/JoJk0/jjk-portfolio-v6.1",
             "showcasePos": "-1"
 
         }
