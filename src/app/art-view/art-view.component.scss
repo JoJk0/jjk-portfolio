@@ -93,6 +93,11 @@
                 swiper{
                     display: none;
                 }
+                .image-container{
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                }
                 img{
                     max-width: calc(100vw - 30em);
                     margin: 0 2em;

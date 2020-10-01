@@ -39,7 +39,7 @@
             "title": "JJK Portfolio 8.0",
             "date": "1597688872000",
             "coAuthors": [],
-            "description": "This is my newest portfolio and personal website. I gained many new skills while working on this project (like Angular, TypeScript, Node.js). I spent months during the COVID-19 lockdown learning new tools, designing, implementing and deploying the website. It is one of the most exciting projects for me.",
+            "description": "This is my newest portfolio and personal website. I gained loads of new skills while working on this project (like Angular, TypeScript, Node.js). I spent months during the COVID-19 lockdown learning new tools, designing, implementing and deploying the website. It is one of the most exciting projects for me.",
             "typography":[
                 {
                     "name": "quicksand",
@@ -72,7 +72,7 @@
                 "topTitleRight": "#001427",
                 "buttons": "linear-gradient(12deg, rgb(121, 126, 247) 0%, rgb(0, 255, 206) 75%)"
             },
-            "keywords":["Angular","Node.js","TypeScript","GSAP","Git","Google Firebase","Photoshop","Illustrator","HTML5", "CSS3", "JavaScript"],
+            "keywords":["Angular","Node.js","TypeScript","GSAP","Git","Google Firebase","Photoshop","Illustrator","HTML5", "CSS3", "JavaScript", "HMTL5", "CSS3", "SASS", "TypeScript"],
             "liveURL": "",
             "copyURL": "",
             "reportURL": "",
@@ -86,7 +86,7 @@
             "title": "Motorway Traffic Simulator",
             "date": "1556668800000",
             "coAuthors": [],
-            "description": "This is my Masters' final project. The app is simulating a traffic on the motorway. ",
+            "description": "This is my Masters' final project. The app is simulating a traffic on the motorway and collects data. I've used HTML5 Canvas in order to create game-like experience.",
             "typography":[
                 {
                     "name": "roboto",
@@ -115,11 +115,11 @@
                 "background": "#373640",
                 "panelBg": "#424150",
                 "text": "#ffffff",
-                "topTitleLeft": "#1db980",
-                "topTitleRight": "#37efb9",
+                "topTitleLeft": "#37efb9",
+                "topTitleRight": "#1db980",
                 "buttons": "#1db980"
             },
-            "keywords":["HTML5", "CSS3", "PixiJS", "Canvas (HTML)", "JavaScript", "Photoshop"],
+            "keywords":["HTML5", "CSS3", "PixiJS", "Canvas (HTML)", "JavaScript", "Photoshop", "JQuery"],
             "liveURL": "",
             "copyURL": "https://motorway-traffic-simulator.web.app/",
             "reportURL": "https://motorway-traffic-simulator.web.app/Report.pdf",
@@ -133,7 +133,7 @@
             "title": "UoL Walking Tour Backend",
             "date": "1544486400000",
             "coAuthors": ["Stas Synenko"],
-            "description": "This is my Masters' group project. ",
+            "description": "This is my Masters' group project. I implemented a Backend system for the university's walking tour gallery app.",
             "typography":[
                 {
                     "name": "roboto",
@@ -164,9 +164,9 @@
                 "text": "#000000",
                 "topTitleLeft": "#2a79fe",
                 "topTitleRight": "#2a79fe",
-                "buttons": "#2a79fe"
+                "buttons": "#F1F6FE"
             },
-            "keywords":["HTML5", "CSS3", "PixiJS", "Canvas (HTML)", "JavaScript", "Photoshop"],
+            "keywords":["HTML5", "CSS3", "PixiJS", "JavaScript", "PHP", "Photoshop", "JSON", "MySQL", "PHPMyAdmin"],
             "liveURL": "",
             "copyURL": "https://uol-walking-tour-backend.000webhostapp.com/",
             "reportURL": "",
@@ -180,7 +180,7 @@
             "title": "JJK Portfolio 7.0",
             "date": "1449964800000",
             "coAuthors": [],
-            "description": "Seventh version of my portfolio",
+            "description": "Seventh version of my portfolio, applied simple and modern methodologies.",
             "typography":[
                 {
                     "name": "raleway",
@@ -219,10 +219,10 @@
             },
             "keywords":["HTML5", "CSS3", "JQuery", "LESS", "JavaScript", "Photoshop"],
             "liveURL": "",
-            "copyURL": "localhost",
+            "copyURL": "http://uol-walking-tour-backend.000webhostapp.com/projects/jjk-v7/",
             "dribbbleURL": "",
             "reportURL": "",
-            "githubURL": "",
+            "githubURL": "https://github.com/JoJk0/jjk-portfolio-v7",
             "showcasePos": "-1"
 
         },
@@ -270,7 +270,7 @@
             },
             "keywords":["HTML5", "CSS3", "JQuery", "LESS", "JavaScript", "Photoshop"],
             "liveURL": "",
-            "copyURL": "localhost",
+            "copyURL": "http://uol-walking-tour-backend.000webhostapp.com/projects/jjk-v6.1/",
             "dribbbleURL": "",
             "reportURL": "",
             "githubURL": "",
