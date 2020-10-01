@@ -18,7 +18,7 @@
          1px 1px 0 '+project.colours.topTitleRight+'' }" #desktopTitleRight>{{ project.title }}&nbsp;</div>
     </div>
     <div class="content">
-        <div class="left" #mobileTop (click)="showGallery()">
+        <div class="left" #mobileTop (click)="showGallery()" (swipedown)="showGallery()" (swipeup)="hideGallery()">
             <div class="box-viewer">    
                 <div class="main-viewer">
                     <swiper [config]="config" id="swiperCarousel">
@@ -44,8 +44,10 @@
                 </div>
             </div>
         </div>
-        <div class="right" #mobileBottom [ngStyle]="{ 'color': project.colours.text, 'background-color': (globals.device == 'mobileP') ? project.colours.panelBg : '' }" (swipedown)="showGallery()" (swipeup)="hideGallery()" (click)="hideGallery()">
-            <div class="seperator"></div>
+        <div class="right" #mobileBottom [ngStyle]="{ 'color': project.colours.text, 'background-color': (globals.device == 'mobileP') ? project.colours.panelBg : '' }" (click)="hideGallery()">
+            <div class="seperator-cnt" (swipedown)="showGallery()" (swipeup)="hideGallery()">
+                <div class="seperator"></div>
+            </div>
             <div class="details" #rightDetails>
                 <div class="top">
                     <div class="dialog-close m" (click)="close()" [routerLink]="['/'+origin]" queryParamsHandling="preserve"><button mat-icon-button><mat-icon>close</mat-icon></button></div> 
@@ -55,7 +57,7 @@
                 <div class="typography">
                     <div class="title">Typography</div>
                     <div class="font" *ngFor="let fontUrl of fontRefs">
-                        <img src="{{ fontUrl }}" alt="font" />
+                        <img src="{{ fontUrl }}" alt="font" [ngClass]="{ 'white': isWhiteText == true, 'black': isWhiteText == false }" />
                     </div>
                 </div>
                 <div class="color-palette">

@@ -1,0 +1,87 @@
+@use "sass:map";
+@import "../../assets/variables";
+
+footer{
+    width: 100;
+    .version-status{
+        margin-top: 2em;
+      .top{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 1em;
+        flex-wrap: wrap;
+        width: 100vw;
+        span{
+          font-weight: bold;
+          margin: 0 0.5em;
+        }
+        .version-info{
+          display: inline;
+        }
+      }
+      p{
+        opacity: 0.7;
+        text-align: center;
+        padding: 0 1em;
+      }
+    }
+    .right{
+        padding: 1em;
+        .sub-title{
+            padding: 1em;
+        }
+        .socials{
+            display: flex;
+            justify-content: center;
+            .social{
+                position: relative;
+                width: 2em;
+                height: 2em;
+                margin: 1em;
+                filter: brightness(0) saturate(100%) invert(99%) sepia(99%) saturate(413%) hue-rotate(81deg) brightness(106%) contrast(106%);
+                transition: all 0.2s ease;
+                .layer1{
+                    position: absolute;
+                    width: 100%;
+                    filter: grayscale(100%);
+                }
+                &:hover{
+                    filter: none;
+                    .layer1{
+                        filter: grayscale(0%);
+                    }
+                }
+            }
+        }
+    }
+    .footer{
+        text-align: center;
+        margin-bottom: 2em;
+    }
+}
+
+
+// Mobile portrait
+@media screen and (min-width: map.get($mobileP, "min")) and (max-width: map.get($mobileP, "max")) and (orientation: portrait){
+
+    footer{
+        .version-status{
+          margin: 0 1em;
+          .top{
+            justify-content: flex-start !important;
+            width: auto !important;
+            .version-info{
+              display: block !important;
+              width: 100%;
+              font-size: 1.2em;
+            }
+          }
+          p{
+            text-align: left !important;
+            font-size: 1.2em;
+          }
+        }
+      }
+
+}

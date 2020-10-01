@@ -88,10 +88,10 @@ mat-chip{
     }
     .img-container{
       width: 25em;
-      z-index: 20;
       position: relative;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
       .art-date{
         background: linear-gradient(15deg, #5dbfe4 0%, #00ffce 59%);
         position: absolute;

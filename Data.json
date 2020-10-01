@@ -132,7 +132,7 @@
             "id": 2,
             "title": "UoL Walking Tour Backend",
             "date": "1544486400000",
-            "coAuthors": [],
+            "coAuthors": ["Stas Synenko"],
             "description": "This is my Masters' group project. ",
             "typography":[
                 {
@@ -171,6 +171,7 @@
             "copyURL": "https://uol-walking-tour-backend.000webhostapp.com/",
             "reportURL": "",
             "githubURL": "",
+            "dribbbleURL": "",
             "showcasePos": "2"
 
         },
@@ -219,6 +220,58 @@
             "keywords":["HTML5", "CSS3", "JQuery", "LESS", "JavaScript", "Photoshop"],
             "liveURL": "",
             "copyURL": "localhost",
+            "dribbbleURL": "",
+            "reportURL": "",
+            "githubURL": "",
+            "showcasePos": "-1"
+
+        },
+        {
+            "id": 4,
+            "title": "JJK Portfolio 6.1",
+            "date": "1376784000000",
+            "coAuthors": [],
+            "description": "Sixth version of my portfolio",
+            "typography":[
+                {
+                    "name": "oswald",
+                    "displayName": "Oswald"
+                },
+                {
+                    "name": "roboto",
+                    "displayName": "Roboto"
+                }
+            ],
+            "colourPalette":[
+                {
+                    "code": "#03679f",
+                    "name": "Prime Blue"
+                },
+                {
+                    "code": "#00a2ff",
+                    "name": "Protoss Pylon"
+                },
+                {
+                    "code": "#FAFAFA",
+                    "name": "Dr. White"
+                },
+                {
+                    "code": "#CCCCCC",
+                    "name": "Cerebral Grey"
+                }
+            ],
+            "colours":{
+                "background": "#03679f",
+                "panelBg": "#FAFAFA",
+                "text": "#000000",
+                "topTitleLeft": "#00a2ff",
+                "topTitleRight": "#03679f",
+                "buttons": "#00a2ff"
+            },
+            "keywords":["HTML5", "CSS3", "JQuery", "LESS", "JavaScript", "Photoshop"],
+            "liveURL": "",
+            "copyURL": "localhost",
+            "dribbbleURL": "",
             "reportURL": "",
             "githubURL": "",
             "showcasePos": "-1"

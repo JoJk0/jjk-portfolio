@@ -81,7 +81,7 @@ export class SectionSkillsComponent implements AfterViewInit, OnInit {
     await this.skeletons;
 
     this.skeletons.forEach((skeleton) => {
-      if(skeleton.nativeElement.id == 'section-skills-skeleton'){
+      if(skeleton.nativeElement.id == 'what-i-do-skeleton'){
             
         this.skeleton = skeleton;
         this.animateBackground();

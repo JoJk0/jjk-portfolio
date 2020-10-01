@@ -6,6 +6,7 @@ HEY!:
 + Mobile version
 + Implement OnResize()
 + Safari logo display fix
+- Name width fix
 
 WHAT I DO?:
 + Transition fix
@@ -36,11 +37,11 @@ PROJECT-VIEWER:
 - Link project tags to other projects list
 + Implement image viewer
 + Mobile version
-- Black/white text colour change fix
-- Safari fix pictures
-- Font vectorization SVG
-- Fix scrolling
-- Fix gallery swiping
++ Black/white text colour change fix
++ Safari fix pictures
++ Font vectorization SVG
++ Fix scrolling
++ Fix gallery swiping
 
 PROJECTS:
 + Redesign
@@ -49,9 +50,10 @@ PROJECTS:
 <PAGE ENGINE>:
 - Make transitions consistent and double-sided
 - Improve performance
-- Link menu to sections and scroll to them
-- Link top-left logo to "Hey!" section
-- Fix z-index positions in scroll
++ Link menu to sections and scroll to them
++ Link top-left logo to "Hey!" section
++ Fix z-index positions in scroll
+- Code cleanup
 
 
 

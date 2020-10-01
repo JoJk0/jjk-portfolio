@@ -5,8 +5,8 @@
 <app-section-projects id="what-i-did" #scrollable (updateSkeleton)="onProjectsLoad($event)" [skeletons]="skeletons"></app-section-projects>
 <app-get-in-touch id="get-in-touch" #scrollable [skeletons]="skeletons"></app-get-in-touch>
 <div id="main-skeleton">
-    <div id="section-hi-skeleton" [ngStyle]="{ 'height': sectionHeights[0]+'px' }" #skeleton></div>
-    <div id="section-skills-skeleton" [ngStyle]="{ 'height': sectionHeights[1]+'px' }" #skeleton></div>
-    <div id="section-projects-skeleton" [ngStyle]="{ 'height': sectionHeights[2]+'px' }" #skeleton></div>
+    <div id="start-skeleton" [ngStyle]="{ 'height': sectionHeights[0]+'px' }" #skeleton></div>
+    <div id="what-i-do-skeleton" [ngStyle]="{ 'height': sectionHeights[1]+'px' }" #skeleton></div>
+    <div id="what-i-did-skeleton" [ngStyle]="{ 'height': sectionHeights[2]+'px' }" #skeleton></div>
     <div id="get-in-touch-skeleton" [ngStyle]="{ 'height': sectionHeights[3]+'px' }" #skeleton></div>
 </div>

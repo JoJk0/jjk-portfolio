@@ -35,6 +35,7 @@ export class ArtViewComponent implements OnInit, AfterViewInit {
   public fontRefs: Array<String> = new Array<String>();
   currentPhoto: string = '';
   fireStorage: AngularFireStorage;
+  isWhiteText: boolean;
 
   projects: Projects[];
   public project: Projects;
@@ -100,6 +101,17 @@ export class ArtViewComponent implements OnInit, AfterViewInit {
       if(project.id == this.projectID){
         found = project.id;
         this.project = project;
+
+        // Determine font color
+        var hexToHsl = require('hex-to-hsl');
+        let hsl = hexToHsl(this.project.colours.panelBg);
+
+        if(hsl[2] > 50){
+          this.isWhiteText = false;
+        } else{
+          this.isWhiteText = true;
+        };
+        
 
         let storageRoot = this.fireStorage.storage.ref();
         let projectRef = storageRoot.child('projects').child(''+project.id);

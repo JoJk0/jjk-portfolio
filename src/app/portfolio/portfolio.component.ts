@@ -1,5 +1,5 @@
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {OnInit, Component, ElementRef, ViewChild, AfterViewInit} from '@angular/core';
+import {OnInit, Component, ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent, MatAutocomplete} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
@@ -39,7 +39,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   @ViewChild('keywordInput') keywordInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
-  constructor(private jsonData: DataJsonService, private route: ActivatedRoute, private location: Location, fireStorage: AngularFireStorage) {
+  constructor(private jsonData: DataJsonService, private route: ActivatedRoute, private location: Location, fireStorage: AngularFireStorage, private detector: ChangeDetectorRef) {
     this.fireStorage = fireStorage;
     this.filterMap();
     this.sortKeywords();
@@ -128,12 +128,13 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
           // Load projects image
           let storageRoot = this.fireStorage.storage.ref();
           let projectRef = storageRoot.child('projects');
-          projectRef.listAll().then((res) => {
-            res.prefixes.forEach((project) => {
-              project.child("0.png").getDownloadURL().then((url) => {
-                this.projectCovers.push(url);
-              });
-            })
+
+          this.projects.forEach((project) => {
+            let thisProjectRef = projectRef.child(project.id+'');
+            thisProjectRef.child("0.png").getDownloadURL().then((url) => {
+              this.projectCovers[project.id] = url;
+              this.detector.detectChanges();
+            });
           });
           
           let queryKeywordsStr = this.route.snapshot.paramMap.get('keywords');

@@ -95,7 +95,7 @@ export class SectionHiComponent implements AfterViewInit {
     await this.skeletons;
 
     this.skeletons.forEach((skeleton) => {
-      if(skeleton.nativeElement.id == 'section-hi-skeleton'){
+      if(skeleton.nativeElement.id == 'start-skeleton'){
             
         this.skeleton = skeleton;
 

@@ -1,5 +1,5 @@
 <div class="progressbar" id="progressbar" #progressbar [ngStyle]="{'height': progressbarHeight+'vh'}"></div>
-<svg class="logo-top-floating" #logoFloating>
+<svg [routerLink]="['/']" (click)="navigateTo('start')" class="logo-top-floating" #logoFloating>
   <image xlink:href="../assets/logo.svg" />
 </svg>
 <div class="backdrop" (click)="opened && toggleMenu()" [ngClass]="{ 'opened': opened }"></div>

@@ -99,34 +99,7 @@
               </mat-horizontal-stepper>
             </div>
     <!-- <button #formSubmitButton><div class="button-text"><div class="main">Ok, I'm done.</div></div></button> -->
-
-    <footer #pageFooter>
-      <div class="version-status">
-        <div class="top">
-          <i class="material-icons">info</i> <span>ALPHA:</span> 
-          <div class="version-info">This website has just been released and may be unstable.</div>
-        </div>
-        <p>Should you have any bugs discovered, send a bug report on Github or through contact form.</p>
-      </div>
-        <div class="right">
-            <!-- <div class="sub-title">Let's get connected</div> -->
-            <div class="socials">
-              <div class="social" matTooltip="jojko.tech" matTooltipClass="contact-tooltip" matTooltipPosition="above">
-                <a href="https://www.facebook.com/jojko.tech" target="_blank"><img src="../assets/fb.png" alt="" class="layer1" /></a>
-            </div>
-            <div class="social" matTooltip="in/jojko" matTooltipClass="contact-tooltip" matTooltipPosition="above">
-                <a href="https://www.linkedin.com/in/jojko/" target="_blank"><img src="../assets/in.png" alt="" class="layer1" /></a>
-            </div>
-            <div class="social" matTooltip="jojk0" matTooltipClass="contact-tooltip" matTooltipPosition="above">
-                <a href="https://www.instagram.com/jojk0/" target="_blank"><img src="../assets/ig.png" alt="" class="layer1" /></a>
-            </div>
-            <div class="social" matTooltip="jojk0" matTooltipClass="contact-tooltip" matTooltipPosition="above">
-                <a href="https://github.com/JoJk0" target="_blank"><img src="../assets/gh.png" alt="" class="layer1" /></a>
-            </div>
-            </div>
-        </div>
-        <div class="footer">© 2020 jojko.tech</div>
-    </footer>
+    <app-footer #pageFooter></app-footer>
 </div>
 <div class="input-tester" #inputTester>{{ inputTesterValue }}</div>
 <div class="textarea-tester" #textareaTester [ngStyle]="{'width': testerWidth+'px'}">{{ textareaTesterValue }}</div>

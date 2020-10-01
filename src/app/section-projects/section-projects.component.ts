@@ -54,7 +54,7 @@ export class SectionProjectsComponent implements OnInit{
     await this.skeletons;
 
     this.skeletons.forEach((skeleton) => {
-      if(skeleton.nativeElement.id == 'section-projects-skeleton'){
+      if(skeleton.nativeElement.id == 'what-i-did-skeleton'){
             
         this.skeleton = skeleton;
         this.detector.detectChanges();
@@ -92,7 +92,6 @@ export class SectionProjectsComponent implements OnInit{
             let thisProjectRef = projectRef.child(project.id+'');
             thisProjectRef.child("0.png").getDownloadURL().then((url) => {
               this.projectCovers[project.id] = url;
-              console.log(project.id+" "+url+" "+thisProjectRef);
               this.detector.detectChanges();
             });
           });
@@ -233,7 +232,7 @@ export class SectionProjectsComponent implements OnInit{
 
     projectsTimeline
 
-    .fromTo(this.projectsLinkEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, diff-0.6)
+    .fromTo(this.projectsLinkEl.nativeElement, { opacity: 0 }, { duration: 0.5, opacity: 1 }, diff-2.2)
     .fromTo(this.projectsLinkEl.nativeElement, { opacity: 1 }, { duration: 0.5, immediateRender: false, opacity: 0 }, diff+0.4)
     .fromTo(this.projectsTitleEl.nativeElement, { opacity: 1 }, { duration: 0.5, immediateRender: false, opacity: 0 }, diff+0.4);
 

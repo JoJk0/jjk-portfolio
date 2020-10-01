@@ -56,6 +56,7 @@ import { environment } from '../environments/environment';
 
 import * as Hammer from 'hammerjs';
 import { CvComponent } from './cv/cv.component';
+import { FooterComponent } from './footer/footer.component';
 
 @Injectable() export class MyHammerConfig extends HammerGestureConfig {
 
@@ -138,7 +139,8 @@ import { CvComponent } from './cv/cv.component';
     GetInTouchComponent,
     SectionSkillsComponent,
     SectionProjectsComponent,
-    CvComponent
+    CvComponent,
+    FooterComponent
   ],
   bootstrap: [ AppComponent ],
   entryComponents: [MySkillsComponent],

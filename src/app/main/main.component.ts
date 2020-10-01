@@ -102,7 +102,7 @@ export class MainComponent implements AfterViewInit, OnInit {
 
   navigateTo(sectionName: string){
     // Get section
-    let sectionEl: ElementRef = this.sections.find(sectionID => sectionID.nativeElement.id == sectionName);
+    let sectionEl: ElementRef = this.skeletons.find(sectionID => sectionID.nativeElement.id == sectionName+'-skeleton');
     if(sectionEl){
       sectionEl.nativeElement.scrollIntoView();
     }
