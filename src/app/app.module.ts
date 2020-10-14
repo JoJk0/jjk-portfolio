@@ -52,6 +52,8 @@ import { RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module } from 'ng-recaptcha';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirePerformanceModule, PerformanceMonitoringService } from '@angular/fire/performance';
+import { AngularFireAnalyticsModule, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { environment } from '../environments/environment';
 
 import * as Hammer from 'hammerjs';
@@ -96,6 +98,8 @@ import { FooterComponent } from './footer/footer.component';
     ]),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    AngularFirePerformanceModule,
+    AngularFireAnalyticsModule,
     BrowserAnimationsModule,
     MatSliderModule,
     MatCardModule,
@@ -147,6 +151,9 @@ import { FooterComponent } from './footer/footer.component';
   providers: [
     CartService,
     DataJsonService,
+    PerformanceMonitoringService,
+    ScreenTrackingService,
+    UserTrackingService,
     { provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig },
     { provide: RECAPTCHA_V3_SITE_KEY, useValue: '6LdVt88ZAAAAACjzpUIkS5NxYV093paEt3d43VTi' }
   ]

@@ -43,7 +43,7 @@
                     <img src="{{image}}" *ngFor="let image of imageRefs" (click)="changePhoto(image)" [ngClass]="{ 'active': (currentPhoto == image) }" />
                 </div>
             </div>
-        </div>
+        </div> 
         <div class="right" #mobileBottom [ngStyle]="{ 'color': project.colours.text, 'background-color': (globals.device == 'mobileP') ? project.colours.panelBg : '' }" (click)="hideGallery()">
             <div class="seperator-cnt" (swipedown)="showGallery()" (swipeup)="hideGallery()">
                 <div class="seperator"></div>
@@ -59,7 +59,7 @@
                     <div class="font" *ngFor="let fontUrl of fontRefs">
                         <img src="{{ fontUrl }}" alt="font" [ngClass]="{ 'white': isWhiteText == true, 'black': isWhiteText == false }" />
                     </div>
-                </div>
+                </div> 
                 <div class="color-palette">
                     <div class="title">Colour palette</div>
                     <div class="palette-container">

@@ -6,7 +6,7 @@
     },    
     {
         "title": "Back-end development",
-		"SubSkills": ["Angular CLI", "Node.js", "PHP", "RESTful apps"]
+		"SubSkills": ["Angular CLI", "Node.js", "PHP", "RESTful apps", "Serverless", "Google Firebase"]
     },
     {
         "title": "Software testing",
@@ -133,7 +133,7 @@
             "title": "UoL Walking Tour Backend",
             "date": "1544486400000",
             "coAuthors": ["Stas Synenko"],
-            "description": "This is my Masters' group project. I implemented a Backend system for the university's walking tour gallery app.",
+            "description": "This is my Masters' group project. I implemented a Backend system for the university's walking tour gallery app. You can login as 'admin' with 'password' as the password. ",
             "typography":[
                 {
                     "name": "roboto",

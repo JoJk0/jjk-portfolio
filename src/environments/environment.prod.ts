@@ -7,7 +7,8 @@ export const environment = {
     projectId: "jjk-portfolio",
     storageBucket: "jjk-portfolio.appspot.com",
     messagingSenderId: "711313457353",
-    appId: "1:711313457353:web:809c72ef3b10907ab48d18"
+    appId: "1:711313457353:web:4c56dba15d7d71c6b48d18",
+    measurementId: "G-WYB33TSD0P"
   }
 };
 
