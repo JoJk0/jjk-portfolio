@@ -1,4 +1,9 @@
+# 🕸 This is archived repository of jjk-portfolio v8. 
+> See the next version [here](https://github.com/JoJk0/jojko.tech)
+
 # JJKPortfolio
+
+This is a repository of [jojko.tech](https://jojko.tech) personal website. 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 
